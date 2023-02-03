@@ -1,0 +1,1 @@
+silly mode activate :3 stolen idea do not steal

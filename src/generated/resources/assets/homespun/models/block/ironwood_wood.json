@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "homespun:block/ironwood_log",
+    "side": "homespun:block/ironwood_log"
+  }
+}

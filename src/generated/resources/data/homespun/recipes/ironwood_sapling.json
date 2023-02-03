@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "homespun",
+  "key": {
+    "n": {
+      "tag": "forge:nuggets/iron"
+    },
+    "s": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "pattern": [
+    "nnn",
+    "nsn",
+    "nnn"
+  ],
+  "result": {
+    "item": "homespun:ironwood_sapling"
+  }
+}

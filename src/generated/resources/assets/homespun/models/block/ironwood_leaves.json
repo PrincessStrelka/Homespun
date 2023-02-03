@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "homespun:block/ironwood_leaves"
+  }
+}

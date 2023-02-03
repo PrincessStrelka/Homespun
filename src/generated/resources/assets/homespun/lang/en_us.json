@@ -1,0 +1,23 @@
+{
+  "block.homespun.ironwood_button": "Ironwood Button",
+  "block.homespun.ironwood_door": "Ironwood Door",
+  "block.homespun.ironwood_fence": "Ironwood Fence",
+  "block.homespun.ironwood_fence_gate": "Ironwood Fence Gate",
+  "block.homespun.ironwood_leaves": "Ironwood Leaves",
+  "block.homespun.ironwood_log": "Ironwood Log",
+  "block.homespun.ironwood_planks": "Ironwood Planks",
+  "block.homespun.ironwood_pressure_plate": "Ironwood Pressure Plate",
+  "block.homespun.ironwood_sapling": "Ironwood Sapling",
+  "block.homespun.ironwood_slab": "Ironwood Slab",
+  "block.homespun.ironwood_stairs": "Ironwood Stairs",
+  "block.homespun.ironwood_trapdoor": "Ironwood Trapdoor",
+  "block.homespun.ironwood_wood": "Ironwood Wood",
+  "block.homespun.potted_ironwood_sapling": "Potted Ironwood Sapling",
+  "block.homespun.stripped_ironwood_log": "Stripped Ironwood Log",
+  "block.homespun.stripped_ironwood_wood": "Stripped Ironwood Wood",
+  "item.homespun.ironberries": "Ironberries",
+  "item.homespun.tiny_iron_dust": "Tiny Pile Of Iron Dust",
+  "itemGroup.agriculture_tab": "Homespun Agriculture",
+  "itemGroup.decoration_tab": "Homespun Decoration",
+  "itemGroup.production_tab": "Homespun Industry"
+}

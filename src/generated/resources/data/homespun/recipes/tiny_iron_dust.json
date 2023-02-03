@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "homespun:ironberries"
+    }
+  ],
+  "result": {
+    "item": "homespun:tiny_iron_dust"
+  }
+}

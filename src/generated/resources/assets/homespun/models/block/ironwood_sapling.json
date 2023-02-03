@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "homespun:block/ironwood_sapling"
+  }
+}
