@@ -7,6 +7,7 @@ TODO: pride flag pots with artsy names
 todo: tinted leaves
 todo: In world tree generation
 TODO: make tomato throwable
+todo: implement crushing tub recipes for iron dust
 */
 
 import caittastic.homespun.block.ModBlocks;
