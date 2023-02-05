@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "homespun:block/ironwood_planks",
-    "side": "homespun:block/ironwood_planks",
-    "top": "homespun:block/ironwood_planks"
-  }
-}

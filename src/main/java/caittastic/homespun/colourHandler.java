@@ -11,35 +11,33 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Homespun.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class colourHandler {
-    @SubscribeEvent
-    static void registerBlockColours(RegisterColorHandlersEvent.Block event) {
-        event.register(
-                (blockState, getter, blockPos, tintIndex) ->
-                getter != null && blockPos != null ?
-                        BiomeColors.getAverageFoliageColor(getter, blockPos) :
-                        FoliageColor.getDefaultColor(),
-                ModBlocks.IRONWOOD_LEAVES.get()
-        );
-        //event.register((blockState, getter, blockPos, tintIndex) -> FoliageColor.getDefaultColor(), ModBlockRegistry.IRONWOOD_LEAVES.get());
-    }
+public class colourHandler{
+  @SubscribeEvent
+  static void registerBlockColours(RegisterColorHandlersEvent.Block event){
+    event.register(
+            (blockState, getter, blockPos, tintIndex) ->
+                    getter != null && blockPos != null ?
+                            BiomeColors.getAverageFoliageColor(getter, blockPos) :
+                            FoliageColor.getDefaultColor(),
+            ModBlocks.IRONWOOD_LEAVES.get()
+    );
+  }
 
-    @SubscribeEvent
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        BlockColors blockColors = event.getBlockColors();
-
-        event.register(
-                (stack, tintIndex) -> {
-                    if (stack.getItem() instanceof BlockItem blockItem)
-                        return blockColors.getColor(
-                                blockItem.getBlock().defaultBlockState(),
-                                null,
-                                null,
-                                tintIndex
-                        );
-                    return 0xFFFFFF;
-                },
-                ModBlocks.IRONWOOD_LEAVES.get()
-        );
-    }
+  @SubscribeEvent
+  public static void registerItemColors(RegisterColorHandlersEvent.Item event){
+    BlockColors blockColors = event.getBlockColors();
+    event.register(
+            (stack, tintIndex) -> {
+              if(stack.getItem() instanceof BlockItem blockItem)
+                return blockColors.getColor(
+                        blockItem.getBlock().defaultBlockState(),
+                        null,
+                        null,
+                        tintIndex
+                );
+              return 0xFFFFFF;
+            },
+            ModBlocks.IRONWOOD_LEAVES.get()
+    );
+  }
 }

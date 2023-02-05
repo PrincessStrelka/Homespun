@@ -1,8 +1,7 @@
-// 1.19.2	2022-12-18T01:48:04.6016179	Item Models: homespun
+// 1.19.2	2023-02-05T22:53:21.3221199	Item Models: homespun
 2c6b8d8c789ed4bdc3ddd978e4ec5f234307a7bb assets/homespun/models/item/ironberries.json
-6e16aab8cd6a9459500aed6ecc039917ded357fd assets/homespun/models/item/ironwood_button.json
 8bab1df16adb061828d1f6996c5442cc1672c37e assets/homespun/models/item/ironwood_door.json
-c2c084b4acc1e8a4d73ee7c32dda0c02bd5eba33 assets/homespun/models/item/ironwood_fence.json
+0c9623e808eb55fd76a24cd1c055404a8eb44259 assets/homespun/models/item/ironwood_fence.json
 7950ac65b31bbb3cfd97b6ea7827a4c4a7b1e001 assets/homespun/models/item/ironwood_fence_gate.json
 e07d5b7f21031d55ed8f04ecc68fe90c1cc3b62a assets/homespun/models/item/ironwood_leaves.json
 6bca790b7ca693157088ddbd67c616d1209d7280 assets/homespun/models/item/ironwood_log.json
@@ -13,6 +12,20 @@ dbac34d61edf3c0a1ce680130d291f8933c822f0 assets/homespun/models/item/ironwood_pl
 40f66466242b3e27ed1b67f4c2872ace05203e1b assets/homespun/models/item/ironwood_stairs.json
 51126e0272158b98bf245de29379a5ac1b93a0e3 assets/homespun/models/item/ironwood_trapdoor.json
 2dc12ce62567d9930e057165501c05c6df015159 assets/homespun/models/item/ironwood_wood.json
+33b9f5a3fa738153fe20d3ee2b432b4cfe448675 assets/homespun/models/item/olives.json
+f59b4e0e4f89d425bd062f8b680e40fb97d9519e assets/homespun/models/item/olive_door.json
+06c97fac838dc934914f4f0a7ec8585ae0c69cf8 assets/homespun/models/item/olive_fence_gate.json
+0bbc5627e8df60fd1c88a439e51a5b5940b3f771 assets/homespun/models/item/olive_leaves.json
+ed58ec0f27dac5c25515dd967e9931a9d4b27dcf assets/homespun/models/item/olive_log.json
+c55bdaf61ff0a33baa628b2205637c8637d4d4bc assets/homespun/models/item/olive_planks.json
+233300f30d97d4d12e183846f21447dfa31f7336 assets/homespun/models/item/olive_pressure_plate.json
+6c8fc7253dbdce341a0911ae2accd2d8b8329a9a assets/homespun/models/item/olive_sapling.json
+2b0c32851f380553bb9f64a3d30a0018edfac47f assets/homespun/models/item/olive_slab.json
+571f511ba3f71f2141222cf1244de8b1543b59ec assets/homespun/models/item/olive_stairs.json
+abd38063da98ea518164278144c5a55c50a1e43e assets/homespun/models/item/olive_trapdoor.json
+74bfd6f22e319586b8b59aa332ede88b3dc9f219 assets/homespun/models/item/olive_wood.json
 28597db06e583027ede6fdf0ed58542796a9f1f4 assets/homespun/models/item/stripped_ironwood_log.json
 4a6040549e3ef1627945c9ceb1123a6d69467cdb assets/homespun/models/item/stripped_ironwood_wood.json
+d809846731f17b7275ec344e9e7dfb935bb1ef9f assets/homespun/models/item/stripped_olive_log.json
+0c5be3cb431a7acf87acad1cf95ac58f81cfc3dc assets/homespun/models/item/stripped_olive_wood.json
 f0284c5cd771735c6a506d3fbd67e7ab1fd14556 assets/homespun/models/item/tiny_iron_dust.json

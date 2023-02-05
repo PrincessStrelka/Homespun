@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "homespun:block/ironwood_planks",
-    "side": "homespun:block/ironwood_planks",
-    "top": "homespun:block/ironwood_planks"
-  }
-}

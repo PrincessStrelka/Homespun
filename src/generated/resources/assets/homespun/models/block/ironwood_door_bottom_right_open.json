@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_right_open",
-  "textures": {
-    "bottom": "homespun:block/ironwood_door_bottom",
-    "top": "homespun:block/ironwood_door_top"
-  }
-}

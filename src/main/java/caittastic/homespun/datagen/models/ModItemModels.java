@@ -1,69 +1,125 @@
 package caittastic.homespun.datagen.models;
 
-import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModItemModels extends ItemModelProvider {
+import static caittastic.homespun.Homespun.MOD_ID;
 
-    public ModItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Homespun.MOD_ID, existingFileHelper);
-    }
+public class ModItemModels extends ItemModelProvider{
 
-    @Override
-    protected void registerModels() {
-        //------------------------------------- items -------------------------------------//
-        simpleFlatItemModel(ModItems.IRONBERRIES);
-        simpleFlatItemModel(ModItems.TINY_IRON_DUST);
+  public ModItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper){
+    super(generator, MOD_ID, existingFileHelper);
+  }
 
-        //------------------------------------- blocks -------------------------------------//
-        /*     ironwood     */
-        flatBlockModel(ModBlocks.IRONWOOD_SAPLING, "block/ironwood_sapling"); //IRONWOOD_SAPLING
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_LEAVES); //IRONWOOD_LEAVES
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_LOG); //IRONWOOD_LOG
-        simpleExistingBlockParent(ModBlocks.STRIPPED_IRONWOOD_LOG); //STRIPPED_IRONWOOD_LOG
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_WOOD); //IRONWOOD_WOOD
-        simpleExistingBlockParent(ModBlocks.STRIPPED_IRONWOOD_WOOD); //STRIPPED_IRONWOOD_WOOD
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_PLANKS); //IRONWOOD_PLANKS
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_STAIRS); //IRONWOOD_STAIRS
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_SLAB); //IRONWOOD_SLAB
-        flatBlockModel(ModBlocks.IRONWOOD_DOOR, "item/ironwood_door"); //IRONWOOD_DOOR
-        shortExistingBlockParent(ModBlocks.IRONWOOD_TRAPDOOR, "block/ironwood_trapdoor_bottom"); //IRONWOOD_TRAPDOOR
-        shortExistingBlockParent(ModBlocks.IRONWOOD_FENCE, "item/ironwood_fence_inventory"); //IRONWOOD_FENCE
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_FENCE_GATE); //IRONWOOD_FENCE_GATE
-        shortExistingBlockParent(ModBlocks.IRONWOOD_BUTTON, "item/ironwood_button_inventory"); //IRONWOOD_BUTTON
-        simpleExistingBlockParent(ModBlocks.IRONWOOD_PRESSURE_PLATE); //IRONWOOD_PRESSURE_PLATE
-    }
+  @Override
+  protected void registerModels(){
+    //------------------------------------- items -------------------------------------//
+    /*     ironwood     */
+    registerFlatItemModel(ModItems.IRONBERRIES);
+    registerFlatItemModel(ModItems.TINY_IRON_DUST);
+    registerFlatItemModel(ModItems.OLIVES);
 
-    //------------------------------------- methods -------------------------------------//
-    private void simpleFlatItemModel(RegistryObject<Item> itemToModel) {
-        ResourceLocation resourceLocation = new ResourceLocation(Homespun.MOD_ID, "item/" + itemToModel.getId().getPath());
-        singleTexture(itemToModel.getId().getPath(),
-                mcLoc("item/generated"),
-                "layer0", resourceLocation);
-    }
+    //------------------------------------- blocks -------------------------------------//
+    /*     ironwood     */
+    registerFlatBlockWithBlockTexture(ModBlocks.IRONWOOD_SAPLING);
+    registerWithExistingParent(ModBlocks.IRONWOOD_LEAVES);
+    registerWithExistingParent(ModBlocks.IRONWOOD_LOG);
+    registerWithExistingParent(ModBlocks.STRIPPED_IRONWOOD_LOG);
+    registerWithExistingParent(ModBlocks.IRONWOOD_WOOD);
+    registerWithExistingParent(ModBlocks.STRIPPED_IRONWOOD_WOOD);
+    registerWithExistingParent(ModBlocks.IRONWOOD_PLANKS);
+    registerWithExistingParent(ModBlocks.IRONWOOD_STAIRS);
+    registerWithExistingParent(ModBlocks.IRONWOOD_SLAB);
+    registerFlatBlockModelWithItemTexture(ModBlocks.IRONWOOD_DOOR);
+    regiserTrapdoor(ModBlocks.IRONWOOD_TRAPDOOR);
+    registerWithExistingInventoryModel(ModBlocks.IRONWOOD_FENCE);
+    registerWithExistingParent(ModBlocks.IRONWOOD_FENCE_GATE);
+    registerWithExistingInventoryModel(ModBlocks.IRONWOOD_BUTTON);
+    registerWithExistingParent(ModBlocks.IRONWOOD_PRESSURE_PLATE);
+    /*     olive     */
+    registerFlatBlockWithBlockTexture(ModBlocks.OLIVE_SAPLING);
+    registerWithExistingParent(ModBlocks.OLIVE_LEAVES);
+    registerWithExistingParent(ModBlocks.OLIVE_LOG);
+    registerWithExistingParent(ModBlocks.STRIPPED_OLIVE_LOG);
+    registerWithExistingParent(ModBlocks.OLIVE_WOOD);
+    registerWithExistingParent(ModBlocks.STRIPPED_OLIVE_WOOD);
+    registerWithExistingParent(ModBlocks.OLIVE_PLANKS);
+    registerWithExistingParent(ModBlocks.OLIVE_STAIRS);
+    registerWithExistingParent(ModBlocks.OLIVE_SLAB);
+    registerFlatBlockModelWithItemTexture(ModBlocks.OLIVE_DOOR);
+    regiserTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
+    registerWithExistingInventoryModel(ModBlocks.OLIVE_FENCE);
+    registerWithExistingParent(ModBlocks.OLIVE_FENCE_GATE);
+    registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
+    registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
+  }
 
-    private void flatBlockModel(RegistryObject<Block> blockToModel, String registryLocation) {
-        singleTexture(blockToModel.getId().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc(registryLocation));
-    }
+  //------------------------------------- methods -------------------------------------//
+  private void regiserTrapdoor(RegistryObject<Block> trapdoor){
+    String id = trapdoor.getId().toString();
+    registerWithExistingParentAtRegistryLocation(
+            trapdoor,
+            "block/" + id.substring(id.indexOf(":") + 1) + "_bottom"
+    );
+  }
 
-    private ItemModelBuilder shortExistingBlockParent(RegistryObject<Block> blockToModel, String registryLocation) {
-        return withExistingParent(blockToModel.getId().getPath(), modLoc(registryLocation));
-    }
+  private void registerWithExistingInventoryModel(RegistryObject<Block> block){
+    String id = block.getId().toString();
+    registerWithExistingParentAtRegistryLocation(
+            ModBlocks.IRONWOOD_FENCE,
+            "item/" + id.substring(id.indexOf(":") + 1) + "_inventory"
+    );
+  }
 
-    private ItemModelBuilder simpleExistingBlockParent(RegistryObject<Block> blockToModel) {
-        String registryLocation = "block/" + blockToModel.getId().getPath();
-        return shortExistingBlockParent(blockToModel, registryLocation);
-    }
+  private void registerFlatBlockModelWithItemTexture(RegistryObject<Block> block){
+    ResourceLocation resourceLoc = new ResourceLocation(
+            MOD_ID,
+            "item/" + block.getId().getPath());
+    registerFlatBlockModel(block, resourceLoc.getPath());
+  }
+
+  private void registerFlatBlockWithBlockTexture(RegistryObject<Block> block){
+    String id = block.getId().toString();
+    registerFlatBlockModel(
+            block,
+            "block/" + id.substring(id.indexOf(":") + 1));
+  }
+
+  private void registerFlatBlockModel(RegistryObject<Block> block, String registryLoc){
+    singleTexture(
+            block.getId().getPath(),
+            mcLoc("item/generated"),
+            "layer0",
+            modLoc(registryLoc));
+  }
+
+  private void registerFlatItemModel(RegistryObject<Item> item){
+    ResourceLocation resourceLocation = new ResourceLocation(
+            MOD_ID,
+            "item/" + item.getId().getPath());
+    singleTexture(
+            item.getId().getPath(),
+            mcLoc("item/generated"),
+            "layer0", resourceLocation);
+  }
+
+  private void registerWithExistingParent(RegistryObject<Block> block){
+    registerWithExistingParentAtRegistryLocation(
+            block,
+            "block/" + block.getId().getPath());
+  }
+
+  private void registerWithExistingParentAtRegistryLocation(
+          RegistryObject<Block> block,
+          String registryLoc){
+    withExistingParent(block.getId().getPath(), modLoc(registryLoc));
+  }
 }
 

@@ -19,76 +19,99 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModBlockLootTables extends BlockLoot {
-    private static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
-    private static final LootItemCondition.Builder HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
-    private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
-    private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
-    private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+public class ModBlockLootTables extends BlockLoot{
+  private static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
+  private static final LootItemCondition.Builder HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
+  private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
+  private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
+  private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
-    //------------------------------------- methods -------------------------------------//
-    protected static LootTable.Builder createLeavesDropWithExtra(Block leavesBlock, Block saplingBlock, Item extraItem, float... chances) {
-        return createLeavesDrops(
-                leavesBlock,
-                saplingBlock,
-                chances)
-                .withPool(LootPool
-                        .lootPool()
-                        .setRolls(ConstantValue
-                                .exactly(1.0F))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
-                        .add(applyExplosionCondition(leavesBlock,
-                                LootItem
-                                        .lootTableItem(extraItem))
-                                .when(BonusLevelTableCondition
-                                        .bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                                                0.005F,
-                                                0.0055555557F,
-                                                0.00625F,
-                                                0.008333334F,
-                                                0.025F))));
-    }
-    private void simpleLeafDropWithExtra(RegistryObject<Block> leavesBlock, RegistryObject<Block> saplingBlock, RegistryObject<Item> extraItem) {
-        this.add(
-                leavesBlock.get(),
-                (block) -> createLeavesDropWithExtra(block,
-                        saplingBlock.get(),
-                        extraItem.get(),
-                        NORMAL_LEAVES_SAPLING_CHANCES));
-    }
-    private void simpleDropSelf(RegistryObject<Block> self) {
-        this.dropSelf(self.get());
-    }
-    private void simplePottedBlock(RegistryObject<Block> pottedBlock) {
-        this.dropPottedContents(pottedBlock.get());
-    }
-    private void simpleDoorTable(RegistryObject<Block> simpleDoor) {
-        this.add(simpleDoor.get(), BlockLoot::createDoorTable);
-    }
-    @Override
-    protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCK.getEntries().stream().map(RegistryObject::get)::iterator;
-    }
-    //------------------------------------- ===== -------------------------------------//
-    @Override
-    protected void addTables() {
-        /*     ironwood     */
-        simpleLeafDropWithExtra(ModBlocks.IRONWOOD_LEAVES, ModBlocks.IRONWOOD_SAPLING, ModItems.IRONBERRIES);//IRONWOOD_LEAVES
-        simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);//POTTED_IRONWOOD_SAPLING
-        simpleDoorTable(ModBlocks.IRONWOOD_DOOR);//IRONWOOD_DOOR
-        simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);//IRONWOOD_SAPLING
-        simpleDropSelf(ModBlocks.IRONWOOD_LOG);//IRONWOOD_LOG
-        simpleDropSelf(ModBlocks.STRIPPED_IRONWOOD_LOG);//STRIPPED_IRONWOOD_LOG
-        simpleDropSelf(ModBlocks.IRONWOOD_WOOD);//IRONWOOD_WOOD
-        simpleDropSelf(ModBlocks.STRIPPED_IRONWOOD_WOOD);//STRIPPED_IRONWOOD_WOOD
-        simpleDropSelf(ModBlocks.IRONWOOD_PLANKS);//IRONWOOD_PLANKS
-        simpleDropSelf(ModBlocks.IRONWOOD_STAIRS);//IRONWOOD_STAIRS
-        simpleDropSelf(ModBlocks.IRONWOOD_SLAB);//IRONWOOD_SLAB
-        simpleDropSelf(ModBlocks.IRONWOOD_FENCE);//IRONWOOD_FENCE
-        simpleDropSelf(ModBlocks.IRONWOOD_FENCE_GATE);//IRONWOOD_FENCE_GATE
-        simpleDropSelf(ModBlocks.IRONWOOD_BUTTON);//IRONWOOD_BUTTON
-        simpleDropSelf(ModBlocks.IRONWOOD_PRESSURE_PLATE);//IRONWOOD_PRESSURE_PLATE
-        simpleDropSelf(ModBlocks.IRONWOOD_TRAPDOOR);//IRONWOOD_TRAPDOOR
+  //------------------------------------- methods -------------------------------------//
+  protected static LootTable.Builder createLeavesDropWithExtra(Block leavesBlock, Block saplingBlock, Item extraItem, float... chances){
+    return createLeavesDrops(
+            leavesBlock,
+            saplingBlock,
+            chances)
+            .withPool(LootPool
+                    .lootPool()
+                    .setRolls(ConstantValue
+                            .exactly(1.0F))
+                    .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                    .add(applyExplosionCondition(leavesBlock,
+                            LootItem
+                                    .lootTableItem(extraItem))
+                            .when(BonusLevelTableCondition
+                                    .bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
+                                            0.005F,
+                                            0.0055555557F,
+                                            0.00625F,
+                                            0.008333334F,
+                                            0.025F))));
+  }
 
-    }
+  private void simpleLeafDropWithExtra(RegistryObject<Block> leavesBlock, RegistryObject<Block> saplingBlock, RegistryObject<Item> extraItem){
+    this.add(
+            leavesBlock.get(),
+            (block) -> createLeavesDropWithExtra(block,
+                    saplingBlock.get(),
+                    extraItem.get(),
+                    NORMAL_LEAVES_SAPLING_CHANCES));
+  }
+
+  private void simpleDropSelf(RegistryObject<Block> self){
+    this.dropSelf(self.get());
+  }
+
+  private void simplePottedBlock(RegistryObject<Block> pottedBlock){
+    this.dropPottedContents(pottedBlock.get());
+  }
+
+  private void simpleDoorTable(RegistryObject<Block> simpleDoor){
+    this.add(simpleDoor.get(), BlockLoot::createDoorTable);
+  }
+
+  @Override
+  protected Iterable<Block> getKnownBlocks(){
+    return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+  }
+
+  //------------------------------------- ===== -------------------------------------//
+  @Override
+  protected void addTables(){
+    /*     ironwood     */
+    simpleLeafDropWithExtra(ModBlocks.IRONWOOD_LEAVES, ModBlocks.IRONWOOD_SAPLING, ModItems.IRONBERRIES);
+    simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);
+    simpleDoorTable(ModBlocks.IRONWOOD_DOOR);
+    simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);
+    simpleDropSelf(ModBlocks.IRONWOOD_LOG);
+    simpleDropSelf(ModBlocks.STRIPPED_IRONWOOD_LOG);
+    simpleDropSelf(ModBlocks.IRONWOOD_WOOD);
+    simpleDropSelf(ModBlocks.STRIPPED_IRONWOOD_WOOD);
+    simpleDropSelf(ModBlocks.IRONWOOD_PLANKS);
+    simpleDropSelf(ModBlocks.IRONWOOD_STAIRS);
+    simpleDropSelf(ModBlocks.IRONWOOD_SLAB);
+    simpleDropSelf(ModBlocks.IRONWOOD_FENCE);
+    simpleDropSelf(ModBlocks.IRONWOOD_FENCE_GATE);
+    simpleDropSelf(ModBlocks.IRONWOOD_BUTTON);
+    simpleDropSelf(ModBlocks.IRONWOOD_PRESSURE_PLATE);
+    simpleDropSelf(ModBlocks.IRONWOOD_TRAPDOOR);
+    /*     olive     */
+    simpleLeafDropWithExtra(ModBlocks.OLIVE_LEAVES, ModBlocks.OLIVE_SAPLING, ModItems.OLIVES);
+    simplePottedBlock(ModBlocks.POTTED_OLIVE_SAPLING);
+    simpleDoorTable(ModBlocks.OLIVE_DOOR);
+    simpleDropSelf(ModBlocks.OLIVE_SAPLING);
+    simpleDropSelf(ModBlocks.OLIVE_LOG);
+    simpleDropSelf(ModBlocks.STRIPPED_OLIVE_LOG);
+    simpleDropSelf(ModBlocks.OLIVE_WOOD);
+    simpleDropSelf(ModBlocks.STRIPPED_OLIVE_WOOD);
+    simpleDropSelf(ModBlocks.OLIVE_PLANKS);
+    simpleDropSelf(ModBlocks.OLIVE_STAIRS);
+    simpleDropSelf(ModBlocks.OLIVE_SLAB);
+    simpleDropSelf(ModBlocks.OLIVE_FENCE);
+    simpleDropSelf(ModBlocks.OLIVE_FENCE_GATE);
+    simpleDropSelf(ModBlocks.OLIVE_BUTTON);
+    simpleDropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
+    simpleDropSelf(ModBlocks.OLIVE_TRAPDOOR);
+
+  }
 }

@@ -6,9 +6,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class FlammableWoodBlock extends Block{
-  public FlammableWoodBlock(Properties p_49795_){
-    super(p_49795_);
+public class FlamableLeavesBlock extends Block{
+  public FlamableLeavesBlock(Properties pProperties){
+    super(pProperties);
   }
 
   @Override
@@ -18,11 +18,11 @@ public class FlammableWoodBlock extends Block{
 
   @Override
   public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face){
-    return 20;
+    return 60;
   }
 
   @Override
   public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face){
-    return 5;
+    return 30;
   }
 }
