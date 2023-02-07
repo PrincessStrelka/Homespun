@@ -2,16 +2,13 @@ package caittastic.homespun.world.feature;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
@@ -39,7 +36,6 @@ public class ModConfiguredFeatures{
                   )
           );
 
-
   public static final RegistryObject<ConfiguredFeature<?, ?>> OLIVE =
           CONFIGURED_FEATURES.register(
                   "olive",
@@ -47,10 +43,11 @@ public class ModConfiguredFeatures{
                           Feature.TREE,
                           new TreeConfiguration.TreeConfigurationBuilder(
                                   BlockStateProvider.simple(ModBlocks.OLIVE_LOG.get()), //trunk block
-                                  new ForkingTrunkPlacer(5, 30, 2), //how the trunk block is placed | height,
+                                  new ForkingTrunkPlacer(2, 2, 2), //how the trunk block is placed | height, height?, unknown
+                                  //BlockStateProvider.simple(ModBlocks.OLIVE_LEAVES.get()), //leaves block
                                   BlockStateProvider.simple(ModBlocks.OLIVE_LEAVES.get()), //leaves block
-                                  new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), //how the foliage will be placed
-                                  new TwoLayersFeatureSize(1, 0, 1)) //frick knows
+                                  new BlobFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0), 2), //how the foliage will be placed
+                                  new TwoLayersFeatureSize(1, 0, 0)) //frick knows
                                   .build()
                   )
           );

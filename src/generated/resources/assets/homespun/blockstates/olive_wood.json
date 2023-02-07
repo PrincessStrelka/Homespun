@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "homespun:block/olive_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "homespun:block/olive_wood"
+    },
+    "axis=z": {
+      "model": "homespun:block/olive_wood_horizontal",
+      "x": 90
+    }
+  }
+}

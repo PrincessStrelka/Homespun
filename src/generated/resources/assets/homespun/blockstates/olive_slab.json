@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "homespun:block/olive_slab"
+    },
+    "type=double": {
+      "model": "homespun:block/olive_planks"
+    },
+    "type=top": {
+      "model": "homespun:block/olive_slab_top"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "homespun:olive_planks"
+    }
+  ],
+  "result": {
+    "item": "homespun:olive_button"
+  }
+}
