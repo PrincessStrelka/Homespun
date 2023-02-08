@@ -64,6 +64,10 @@ public class ModItemModels extends ItemModelProvider{
     /*     chain     */
     registerFlatBlockModelWithItemTexture(ModBlocks.GOLD_CHAIN);
     registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
+    /*     deco stone     */
+    registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
+    registerWithExistingParent(ModBlocks.CALCITE_BRICKS);
+    registerWithExistingParent(ModBlocks.TUFF_TILES);
   }
 
   //------------------------------------- methods -------------------------------------//
@@ -78,7 +82,7 @@ public class ModItemModels extends ItemModelProvider{
   private void registerWithExistingInventoryModel(RegistryObject<Block> block){
     String id = block.getId().toString();
     registerWithExistingParentAtRegistryLocation(
-            ModBlocks.IRONWOOD_FENCE,
+            block,
             "item/" + id.substring(id.indexOf(":") + 1) + "_inventory"
     );
   }

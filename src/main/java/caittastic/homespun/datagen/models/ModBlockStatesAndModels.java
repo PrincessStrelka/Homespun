@@ -60,6 +60,10 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerPressurePlate(ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS);
     registerDoor(ModBlocks.OLIVE_DOOR);
     registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
+    /*     deco stone     */
+    axisBlock((RotatedPillarBlock)ModBlocks.SMOOTH_STONE_PILLAR.get(), blockTexture(ModBlocks.SMOOTH_STONE_PILLAR.get()), blockTexture(Blocks.SMOOTH_STONE));
+    simpleBlock(ModBlocks.CALCITE_BRICKS.get());
+    simpleBlock(ModBlocks.TUFF_TILES.get());
   }
   //------------------------------------- methods -------------------------------------//
 

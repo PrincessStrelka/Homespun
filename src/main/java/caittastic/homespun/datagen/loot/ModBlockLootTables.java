@@ -115,5 +115,9 @@ public class ModBlockLootTables extends BlockLoot{
     /*     chain     */
     simpleDropSelf(ModBlocks.GOLD_CHAIN);
     simpleDropSelf(ModBlocks.COPPER_CHAIN);
+    /*     deco stone     */
+    simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
+    simpleDropSelf(ModBlocks.CALCITE_BRICKS);
+    simpleDropSelf(ModBlocks.TUFF_TILES);
   }
 }

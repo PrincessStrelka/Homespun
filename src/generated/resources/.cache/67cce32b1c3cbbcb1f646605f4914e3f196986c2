@@ -1,4 +1,5 @@
-// 1.19.2	2023-02-08T00:19:13.4957698	LootTables
+// 1.19.2	2023-02-08T20:57:26.7517399	LootTables
+cdceccc3956430ac5fd85f64ce86f92fdcdc3b26 data/homespun/loot_tables/blocks/calcite_bricks.json
 cab600513e0e612d910b8c90aa8dea98d278b591 data/homespun/loot_tables/blocks/copper_chain.json
 77052ccb2797cd6785c7ca0434d64f9a663f1ea3 data/homespun/loot_tables/blocks/gold_chain.json
 44ada85fbab68f649d78f99c57ddb2b70a888c59 data/homespun/loot_tables/blocks/ironwood_button.json
@@ -29,7 +30,9 @@ d62eb7bc25199a27ab6dd1418a854edaf6564013 data/homespun/loot_tables/blocks/olive_
 5e683fee5e588e029059ddab12839125e666deb3 data/homespun/loot_tables/blocks/olive_wood.json
 661bd688ffbe1ecc601f7b8caf3f4e413973fda5 data/homespun/loot_tables/blocks/potted_ironwood_sapling.json
 91abbdd96524dd05559e7b13eccdd16cc5be5303 data/homespun/loot_tables/blocks/potted_olive_sapling.json
+23267ca9e31c9033fa82ab6bc3b013addc600252 data/homespun/loot_tables/blocks/smooth_stone_pillar.json
 7c97a9312ccc4fb429c43151a687b0862507fc09 data/homespun/loot_tables/blocks/stripped_ironwood_log.json
 8c71fb0eb316895be836ef7ec1b990bc30d2c1aa data/homespun/loot_tables/blocks/stripped_ironwood_wood.json
 7e366aae25e3c80bd36bcb8535f0eebd60be99aa data/homespun/loot_tables/blocks/stripped_olive_log.json
 f3e26511ce714d2156abf42c3b27aeee88274a19 data/homespun/loot_tables/blocks/stripped_olive_wood.json
+af75522251a9af9d4bfd229323e9461d36818fab data/homespun/loot_tables/blocks/tuff_tiles.json
