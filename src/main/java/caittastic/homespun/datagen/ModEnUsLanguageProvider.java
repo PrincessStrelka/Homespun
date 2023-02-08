@@ -15,9 +15,11 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
   @Override
   protected void addTranslations(){
     //------------------------------------- items -------------------------------------//
+    /*     metallurgy     */
+    add(ModItems.TINY_IRON_DUST.get(), "Tiny Pile Of Iron Dust");
+    add(ModItems.COPPER_NUGGET.get(), "Copper Nugget");
     /*     crops     */
     add(ModItems.IRONBERRIES.get(), "Ironberries");
-    add(ModItems.TINY_IRON_DUST.get(), "Tiny Pile Of Iron Dust");
     add(ModItems.OLIVES.get(), "Olives");
     //------------------------------------- blocks -------------------------------------//
     /*     ironwood     */
@@ -54,6 +56,9 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.OLIVE_PRESSURE_PLATE.get(), "Olive Pressure Plate");
     add(ModBlocks.OLIVE_DOOR.get(), "Olive Door");
     add(ModBlocks.OLIVE_TRAPDOOR.get(), "Olive Trapdoor");
+    /*     chain     */
+    add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
+    add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
 
     //------------------------------------- creative mode tabs -------------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");

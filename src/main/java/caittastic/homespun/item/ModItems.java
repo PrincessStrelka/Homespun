@@ -53,7 +53,7 @@ public class ModItems{
       return 40;
     }
   });
-
+  public static final RegistryObject<Item> COPPER_NUGGET = ITEM.register("copper_nugget", () -> new Item(new Item.Properties().tab(INDUSTRY)));
     /*
     //tomato
     public static final RegistryObject<Item> TOMATO = ITEM.register("tomato", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(TOMATO_FOOD)));

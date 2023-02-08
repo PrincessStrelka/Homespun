@@ -21,9 +21,11 @@ public class ModItemModels extends ItemModelProvider{
   @Override
   protected void registerModels(){
     //------------------------------------- items -------------------------------------//
-    /*     ironwood     */
-    registerFlatItemModel(ModItems.IRONBERRIES);
+    /*     metallurgy     */
     registerFlatItemModel(ModItems.TINY_IRON_DUST);
+    registerFlatItemModel(ModItems.COPPER_NUGGET);
+    /*     crops     */
+    registerFlatItemModel(ModItems.IRONBERRIES);
     registerFlatItemModel(ModItems.OLIVES);
 
     //------------------------------------- blocks -------------------------------------//
@@ -59,6 +61,9 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.OLIVE_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
     registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
+    /*     chain     */
+    registerFlatBlockModelWithItemTexture(ModBlocks.GOLD_CHAIN);
+    registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
   }
 
   //------------------------------------- methods -------------------------------------//

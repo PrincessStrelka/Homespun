@@ -112,6 +112,8 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.OLIVE_BUTTON);
     simpleDropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.OLIVE_TRAPDOOR);
-
+    /*     chain     */
+    simpleDropSelf(ModBlocks.GOLD_CHAIN);
+    simpleDropSelf(ModBlocks.COPPER_CHAIN);
   }
 }

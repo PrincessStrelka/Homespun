@@ -1,12 +1,21 @@
 package caittastic.homespun.datagen;
 
+import caittastic.homespun.Homespun;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
+import caittastic.homespun.item.ModItems;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
@@ -45,9 +54,33 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.OLIVE_DOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
+    /*     chain     */
+    chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, consumer);
+    chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.COPPER_NUGGETS, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
+    /*     metallurgy     */
+    ShapelessRecipeBuilder.shapeless(ModItems.COPPER_NUGGET.get(), 9).requires(Tags.Items.INGOTS_COPPER).unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT)).save(consumer);
+    ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
+            .pattern("xxx")
+            .pattern("xxx")
+            .pattern("xxx")
+            .define('x', TagInit.Items.COPPER_NUGGETS)
+            .group(Homespun.MOD_ID)
+            .unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
+            .save(consumer);
   }
 
   //------------------------------------- methods -------------------------------------//
+  private void chainRecipe(RegistryObject<Block> chain, TagKey<Item> nuggetTag, TagKey<Item> ingotTag, String criterionName, Item criterionItem, Consumer<FinishedRecipe> consumer){
+    ShapedRecipeBuilder.shaped(chain.get())
+            .pattern("o")
+            .pattern("#")
+            .pattern("o")
+            .define('o', nuggetTag)
+            .define('#', ingotTag)
+            .group(Homespun.MOD_ID)
+            .unlockedBy(criterionName, InventoryChangeTrigger.TriggerInstance.hasItems(criterionItem))
+            .save(consumer);
+  }
   private void trapdoorRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Block> trapdoorBlock, RegistryObject<Block> materialBlock, String criterionName){
     trapdoorBuilder(trapdoorBlock.get(), Ingredient.of(materialBlock.get())).unlockedBy(criterionName, has(materialBlock.get())).save(consumer);
   }

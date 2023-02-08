@@ -1,6 +1,7 @@
-// 1.19.2	2023-02-06T00:26:46.7081718	Homespun Tags
+// 1.19.2	2023-02-08T17:20:23.4861421	Homespun Tags
 fed23953b849fe95d605867a1c0d6b228b1fd847 data/forge/tags/items/dusts.json
 064f051db0983f3430807bc8e91432bfedfb1c87 data/forge/tags/items/fence_gates/wooden.json
+12f2d4749b0aadd4a0411d0439022de522c8a8f6 data/homespun/tags/items/copper_nuggets.json
 1e9435b731b98acee240d86b6af2838c2a8085af data/homespun/tags/items/ironwood_logs.json
 1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/items/ironwood_wood.json
 09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/items/olive_logs.json

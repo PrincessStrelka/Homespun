@@ -1,4 +1,7 @@
-// 1.19.2	2023-02-05T22:53:21.3221199	Item Models: homespun
+// 1.19.2	2023-02-08T17:50:33.5281567	Item Models: homespun
+997c81ec2cb0dafed82840380cea43410e176c45 assets/homespun/models/item/copper_chain.json
+6d1b81034f7f439d52d0ac5e42ee7f193310b571 assets/homespun/models/item/copper_nugget.json
+f81eda4ae8d08e7ce6613019672070d0844283c0 assets/homespun/models/item/gold_chain.json
 2c6b8d8c789ed4bdc3ddd978e4ec5f234307a7bb assets/homespun/models/item/ironberries.json
 8bab1df16adb061828d1f6996c5442cc1672c37e assets/homespun/models/item/ironwood_door.json
 0c9623e808eb55fd76a24cd1c055404a8eb44259 assets/homespun/models/item/ironwood_fence.json

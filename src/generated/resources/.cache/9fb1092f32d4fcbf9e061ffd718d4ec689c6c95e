@@ -1,4 +1,6 @@
-// 1.19.2	2023-02-06T00:26:46.7176867	Recipes
+// 1.19.2	2023-02-08T17:59:08.5734545	Recipes
+ec38d63cc98d7df145722215ade6edd5653f2747 data/homespun/advancements/recipes/decoration_tab/copper_chain.json
+dee2f623877febe8af1b4f79d284a42f8aab364d data/homespun/advancements/recipes/decoration_tab/gold_chain.json
 7612be72516610ef7cc6602590864a7291bb7c37 data/homespun/advancements/recipes/decoration_tab/ironwood_button.json
 e650f9b35bc11b83ab7e77e3203e6372b30698b6 data/homespun/advancements/recipes/decoration_tab/ironwood_door.json
 1f7fdf445dddb13d8e5c9f9ac6f318db47dc5d0a data/homespun/advancements/recipes/decoration_tab/ironwood_fence.json
@@ -21,6 +23,10 @@ da6a1a9b6a08a648317b2db5b32504f94fe6bb36 data/homespun/advancements/recipes/deco
 f6ec1f712a555375f810a89008de59fec36c496a data/homespun/advancements/recipes/decoration_tab/olive_wood.json
 bc13a85b683546270e8ecdc195b7c603e32bbb5b data/homespun/advancements/recipes/decoration_tab/stripped_ironwood_log.json
 32344915182daa2e7e6047244bb69fad091c5e6a data/homespun/advancements/recipes/decoration_tab/stripped_olive_log.json
+0d7e05328829dbf0cdd533328d6a418e5b4e5f43 data/homespun/advancements/recipes/production_tab/copper_nugget.json
+55a767dd198ff399878dabc32a7a2ac22c375705 data/homespun/recipes/copper_chain.json
+9a47e9e8b8b3ab88147280d670d79baf04cb32bf data/homespun/recipes/copper_nugget.json
+5fee93951f5b30e397dca6048911d838051fb9b1 data/homespun/recipes/gold_chain.json
 34b974274919bde744de7c074e858708bb097d18 data/homespun/recipes/ironwood_button.json
 238aab5502a6cfdb09c28f9cc7633444a7577ad6 data/homespun/recipes/ironwood_door.json
 c87ab48dc73e86ca379d3a45c2994b33af4866de data/homespun/recipes/ironwood_fence.json
@@ -43,3 +49,5 @@ b6a80341b63c47a5f84c9de49195c5c50d72537e data/homespun/recipes/olive_trapdoor.js
 323059cfaddcabf7d910ac2da013a0b323f96676 data/homespun/recipes/olive_wood.json
 7a59da511719a230588c1e79212c351fdf795048 data/homespun/recipes/stripped_ironwood_log.json
 4ce8e4cc5f362c9e1a3b55812f9d4939fea9edd8 data/homespun/recipes/stripped_olive_log.json
+68348441040a417222b7637a740323fc577cf07a data/minecraft/advancements/recipes/misc/copper_ingot.json
+84321da4e83c07aa6e9c257dc9b9362bf71ba1be data/minecraft/recipes/copper_ingot.json

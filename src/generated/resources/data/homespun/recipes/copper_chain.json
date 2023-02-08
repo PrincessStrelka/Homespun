@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "homespun",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/copper"
+    },
+    "o": {
+      "tag": "homespun:copper_nuggets"
+    }
+  },
+  "pattern": [
+    "o",
+    "#",
+    "o"
+  ],
+  "result": {
+    "item": "homespun:copper_chain"
+  }
+}

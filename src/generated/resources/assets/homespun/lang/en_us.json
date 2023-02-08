@@ -1,4 +1,6 @@
 {
+  "block.homespun.copper_chain": "Copper Chain",
+  "block.homespun.gold_chain": "Gold Chain",
   "block.homespun.ironwood_button": "Ironwood Button",
   "block.homespun.ironwood_door": "Ironwood Door",
   "block.homespun.ironwood_fence": "Ironwood Fence",
@@ -31,6 +33,7 @@
   "block.homespun.stripped_ironwood_wood": "Stripped Ironwood Wood",
   "block.homespun.stripped_olive_log": "Stripped Olive Log",
   "block.homespun.stripped_olive_wood": "Stripped Olive Wood",
+  "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",
   "item.homespun.olives": "Olives",
   "item.homespun.tiny_iron_dust": "Tiny Pile Of Iron Dust",

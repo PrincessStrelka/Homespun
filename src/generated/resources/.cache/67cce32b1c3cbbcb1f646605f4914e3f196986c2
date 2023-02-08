@@ -1,4 +1,6 @@
-// 1.19.2	2023-02-05T22:20:22.5385991	LootTables
+// 1.19.2	2023-02-08T00:19:13.4957698	LootTables
+cab600513e0e612d910b8c90aa8dea98d278b591 data/homespun/loot_tables/blocks/copper_chain.json
+77052ccb2797cd6785c7ca0434d64f9a663f1ea3 data/homespun/loot_tables/blocks/gold_chain.json
 44ada85fbab68f649d78f99c57ddb2b70a888c59 data/homespun/loot_tables/blocks/ironwood_button.json
 766796797d46a5cfe0b37571fac8302b47b248be data/homespun/loot_tables/blocks/ironwood_door.json
 8df4b1ba1f57fdff55385259a63042a39f42a07f data/homespun/loot_tables/blocks/ironwood_fence.json

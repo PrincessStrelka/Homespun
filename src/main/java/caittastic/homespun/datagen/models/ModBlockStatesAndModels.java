@@ -2,9 +2,15 @@ package caittastic.homespun.datagen.models;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,7 +61,6 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerDoor(ModBlocks.OLIVE_DOOR);
     registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
   }
-
   //------------------------------------- methods -------------------------------------//
 
   private void registerLeavesBlock(RegistryObject<Block> leavesBlock){

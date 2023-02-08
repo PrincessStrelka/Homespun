@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -57,38 +58,11 @@ public class ModBlocks{
   public static final RegistryObject<Block> OLIVE_DOOR = registerBlockAndItem("olive_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_TRAPDOOR = registerBlockAndItem("olive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)), ModTabRegistry.DECORATION);
 
-
-  //log
-  //planks
-  //stairs
-  //slab
-  //fence
-  //fence gate
-  //button
-  //pressure plate
-  //door
-  //trapdoor
-
-  //DOOR_OLIVE
-  //OLIVE_SLAB
-  //OLIVE_SLAB_ITEM
-  //OLIVE_STAIRS
-  //OLIVE_FENCE
-  //OLIVE_FENCE_GATE
-  //OLIVE_FENCE
-  //OLIVE_FENCE_GATE
-  //OLIVE_SLAB
-  //OLIVE_SLAB_ITEM
-  //OLIVE_STAIRS
-  //DOOR_OLIVE
-
   /*     chain     */
-  // public static BlockChain CHAIN;
-  //CHAIN = new BlockChain();
-  // public static BlockChain CHAIN_GOLD;
-  //CHAIN_GOLD = new BlockChain("chain_gold");
-  // public static BlockChain CHAIN_SILVER;
-  // CHAIN_SILVER = new BlockChain("chain_silver");
+  public static final RegistryObject<Block> GOLD_CHAIN = registerBlockAndItem("gold_chain", () ->
+          new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> COPPER_CHAIN = registerBlockAndItem("copper_chain", () ->
+          new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
 
   /*     clay wall     */
   // public static BlockBase CLAY_WALL;

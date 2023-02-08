@@ -71,6 +71,8 @@ public class ModItemTags extends ItemTagsProvider{
     //------------------------------- tagging items -------------------------------//
     tag(Tags.Items.DUSTS)
             .add(ModItems.TINY_IRON_DUST.get());
+    tag(TagInit.Items.COPPER_NUGGETS)
+            .add(ModItems.COPPER_NUGGET.get());
 
   }
 
