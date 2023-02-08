@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "homespun:block/calcite_brick_slab"
+    },
+    "type=double": {
+      "model": "homespun:block/calcite_bricks"
+    },
+    "type=top": {
+      "model": "homespun:block/calcite_brick_slab_top"
+    }
+  }
+}

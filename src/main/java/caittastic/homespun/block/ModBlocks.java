@@ -22,7 +22,7 @@ public class ModBlocks{
   public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID); // Create a Deferred Register to hold Blocks registered under the MOD_ID namespace
   //------------------------------------- blocks -------------------------------------//
   /*     ironwood     */
-  public static final RegistryObject<Block> IRONWOOD_SAPLING = registerBlockAndItem("ironwood_sapling", () -> new IronwoodSaplingBlock(new IronwoodTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModTabRegistry.AGRICULTURE);
+  public static final RegistryObject<Block> IRONWOOD_SAPLING = registerBlockAndItem("ironwood_sapling", () -> new SaplingBlock(new IronwoodTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModTabRegistry.AGRICULTURE);
   public static final RegistryObject<Block> POTTED_IRONWOOD_SAPLING = BLOCKS.register("potted_ironwood_sapling", () -> new FlowerPotBlock(IRONWOOD_SAPLING.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
   public static final RegistryObject<Block> IRONWOOD_LEAVES = registerBlockAndItem("ironwood_leaves", () -> new FlamableLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)), ModTabRegistry.AGRICULTURE);
   public static final RegistryObject<Block> IRONWOOD_LOG = registerBlockAndItem("ironwood_log", () -> new FlammableLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModTabRegistry.AGRICULTURE);
@@ -40,7 +40,7 @@ public class ModBlocks{
   public static final RegistryObject<Block> IRONWOOD_TRAPDOOR = registerBlockAndItem("ironwood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)), ModTabRegistry.DECORATION);
 
   /*     olive     */
-  public static final RegistryObject<Block> OLIVE_SAPLING = registerBlockAndItem("olive_sapling", () -> new OliveSaplingBlock(new OliveTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModTabRegistry.AGRICULTURE);
+  public static final RegistryObject<Block> OLIVE_SAPLING = registerBlockAndItem("olive_sapling", () -> new SaplingBlock(new OliveTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModTabRegistry.AGRICULTURE);
   public static final RegistryObject<Block> POTTED_OLIVE_SAPLING = BLOCKS.register("potted_olive_sapling", () -> new FlowerPotBlock(OLIVE_SAPLING.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
   public static final RegistryObject<Block> OLIVE_LEAVES = registerBlockAndItem("olive_leaves", () -> new FlamableLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)), ModTabRegistry.AGRICULTURE);
   public static final RegistryObject<Block> OLIVE_LOG = registerBlockAndItem("olive_log", () -> new FlammableLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModTabRegistry.AGRICULTURE);
@@ -65,8 +65,25 @@ public class ModBlocks{
 
   /*     deco stone     */
   public static final RegistryObject<Block> SMOOTH_STONE_PILLAR = registerBlockAndItem("smooth_stone_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.SMOOTH_STONE)), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CALCITE_BRICKS = registerBlockAndItem("calcite_bricks", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)), ModTabRegistry.DECORATION);
+
+  public static final RegistryObject<Block> CALCITE_BRICKS =
+          registerBlockAndItem("calcite_bricks", () -> 
+                  new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CALCITE_BRICK_STAIRS = 
+          registerBlockAndItem("calcite_brick_stairs", () ->
+                  new StairBlock(() -> ModBlocks.CALCITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CALCITE_BRICK_SLAB = 
+          registerBlockAndItem("calcite_brick_slab", () -> 
+                  new SlabBlock(BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
+
   public static final RegistryObject<Block> TUFF_TILES = registerBlockAndItem("tuff_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.TUFF)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> TUFF_TILE_STAIRS =
+          registerBlockAndItem("tuff_tile_stairs", () ->
+                  new StairBlock(() -> ModBlocks.TUFF_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> TUFF_TILE_SLAB =
+          registerBlockAndItem("tuff_tile_slab", () ->
+                  new SlabBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
+
 
 
   /*     clay wall     */

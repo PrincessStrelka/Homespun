@@ -67,7 +67,11 @@ public class ModItemModels extends ItemModelProvider{
     /*     deco stone     */
     registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
     registerWithExistingParent(ModBlocks.CALCITE_BRICKS);
+    registerWithExistingParent(ModBlocks.CALCITE_BRICK_SLAB);
+    registerWithExistingParent(ModBlocks.CALCITE_BRICK_STAIRS);
     registerWithExistingParent(ModBlocks.TUFF_TILES);
+    registerWithExistingParent(ModBlocks.TUFF_TILE_SLAB);
+    registerWithExistingParent(ModBlocks.TUFF_TILE_STAIRS);
   }
 
   //------------------------------------- methods -------------------------------------//

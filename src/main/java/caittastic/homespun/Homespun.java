@@ -8,6 +8,8 @@ todo: tinted leaves
 todo: In world tree generation
 TODO: make tomato throwable
 todo: implement crushing tub recipes for iron dust
+idea: crushing tup recipe for crushed acorns
+crushed acorns used to make bread and speed potion (coffee)
 */
 
 import caittastic.homespun.block.ModBlocks;

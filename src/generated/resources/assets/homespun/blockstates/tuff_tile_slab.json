@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "homespun:block/tuff_tile_slab"
+    },
+    "type=double": {
+      "model": "homespun:block/tuff_tiles"
+    },
+    "type=top": {
+      "model": "homespun:block/tuff_tile_slab_top"
+    }
+  }
+}

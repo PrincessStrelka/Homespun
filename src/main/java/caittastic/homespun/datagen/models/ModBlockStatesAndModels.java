@@ -2,15 +2,9 @@ package caittastic.homespun.datagen.models;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
-import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.blockstates.PropertyDispatch;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -63,7 +57,12 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     /*     deco stone     */
     axisBlock((RotatedPillarBlock)ModBlocks.SMOOTH_STONE_PILLAR.get(), blockTexture(ModBlocks.SMOOTH_STONE_PILLAR.get()), blockTexture(Blocks.SMOOTH_STONE));
     simpleBlock(ModBlocks.CALCITE_BRICKS.get());
+    registerStairWithBaseBlock(ModBlocks.CALCITE_BRICK_STAIRS, ModBlocks.CALCITE_BRICKS);
+    registerSlabWithBaseBlock(ModBlocks.CALCITE_BRICK_SLAB, ModBlocks.CALCITE_BRICKS);
     simpleBlock(ModBlocks.TUFF_TILES.get());
+    registerStairWithBaseBlock(ModBlocks.TUFF_TILE_STAIRS, ModBlocks.TUFF_TILES);
+    registerSlabWithBaseBlock(ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILES);
+
   }
   //------------------------------------- methods -------------------------------------//
 

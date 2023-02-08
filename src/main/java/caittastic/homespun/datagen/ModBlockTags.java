@@ -19,7 +19,14 @@ public class ModBlockTags extends BlockTagsProvider{
     //------------------------------------- mining tool -------------------------------------//
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.GOLD_CHAIN.get())
-            .add(ModBlocks.COPPER_CHAIN.get());
+            .add(ModBlocks.COPPER_CHAIN.get())
+            .add(ModBlocks.SMOOTH_STONE_PILLAR.get())
+            .add(ModBlocks.CALCITE_BRICKS.get())
+            .add(ModBlocks.CALCITE_BRICK_SLAB.get())
+            .add(ModBlocks.CALCITE_BRICK_STAIRS.get())
+            .add(ModBlocks.TUFF_TILES.get())
+            .add(ModBlocks.TUFF_TILE_STAIRS.get())
+            .add(ModBlocks.TUFF_TILE_SLAB.get());
     tag(BlockTags.MINEABLE_WITH_HOE)
             .add(ModBlocks.IRONWOOD_LEAVES.get())
             .add(ModBlocks.OLIVE_LEAVES.get());

@@ -118,6 +118,10 @@ public class ModBlockLootTables extends BlockLoot{
     /*     deco stone     */
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
+    simpleDropSelf(ModBlocks.CALCITE_BRICK_SLAB);
+    simpleDropSelf(ModBlocks.CALCITE_BRICK_STAIRS);
     simpleDropSelf(ModBlocks.TUFF_TILES);
+    simpleDropSelf(ModBlocks.TUFF_TILE_SLAB);
+    simpleDropSelf(ModBlocks.TUFF_TILE_STAIRS);
   }
 }
