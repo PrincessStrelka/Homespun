@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_log": {
+    "has_calcite": {
       "conditions": {
         "items": [
           {
             "items": [
-              "homespun:stripped_olive_log"
+              "minecraft:calcite"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "homespun:stripped_olive_log"
+        "recipe": "homespun:calcite_brick_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_log",
+      "has_calcite",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "homespun:stripped_olive_log"
+      "homespun:calcite_brick_slab"
     ]
   }
 }

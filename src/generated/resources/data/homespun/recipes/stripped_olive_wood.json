@@ -3,7 +3,7 @@
   "group": "bark",
   "key": {
     "#": {
-      "item": "homespun:stripped_ironwood_log"
+      "item": "homespun:stripped_olive_log"
     }
   },
   "pattern": [
@@ -12,6 +12,6 @@
   ],
   "result": {
     "count": 3,
-    "item": "homespun:stripped_ironwood_log"
+    "item": "homespun:stripped_olive_wood"
   }
 }

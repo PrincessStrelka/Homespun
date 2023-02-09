@@ -59,6 +59,16 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     chain     */
     add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
     add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
+    /*     deco stone     */
+    add(ModBlocks.SMOOTH_STONE_PILLAR.get(), "Smooth Stone Pillar");
+    add(ModBlocks.CALCITE_BRICKS.get(), "Calcite Bricks");
+    add(ModBlocks.CALCITE_BRICK_STAIRS.get(), "Calcite Brick Stairs");
+    add(ModBlocks.CALCITE_BRICK_SLAB.get(), "Calcite Brick Slab");
+    add(ModBlocks.TUFF_TILES.get(), "Tuff Tiles");
+    add(ModBlocks.TUFF_TILE_STAIRS.get(), "Tuff Tile Stairs");
+    add(ModBlocks.TUFF_TILE_SLAB.get(), "Tuff Tile Slab");
+
+
 
     //------------------------------------- creative mode tabs -------------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
