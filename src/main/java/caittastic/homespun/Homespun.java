@@ -10,11 +10,26 @@ TODO: make tomato throwable
 todo: implement crushing tub recipes for iron dust
 idea: crushing tup recipe for crushed acorns
 crushed acorns used to make bread and speed potion (coffee)
+
+idea: forestry like charcoal firepits to get high yeilds of charcoal and ash
+
+idea: using charcoal to make fertile soil
+
+idea: japanese water hammer, monjolo, uses the weight of flowing water to make the hammer end rise up, and then the water pours out and the hammer smacks back down, could be used to automate crushing tub recipes
+look up videos of these in action to see how they could be added
+these are similar to shishi-odochi / deer-scarer
+
+idea: tallow as an alternate recipe for candles
+
+idea: tallow used to make pemmican, energy giving but not verry stomach sating food
+
+idea: leaves in crushing tub gives you their drops at a higher chance (simulate fortune?)
 */
 
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.world.feature.ModConfiguredFeatures;
+import caittastic.homespun.world.feature.ModPlacedFeatures;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +49,7 @@ public class Homespun{
     ModItems.ITEM.register(bus);
     ModBlocks.BLOCKS.register(bus);
     ModConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
+    ModPlacedFeatures.PLACED_FEATURES.register(bus);
 
     bus.addListener(this::setup);
     MinecraftForge.EVENT_BUS.register(this);

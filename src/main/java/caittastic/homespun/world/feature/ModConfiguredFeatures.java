@@ -7,6 +7,8 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -16,10 +18,12 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
+
 public class ModConfiguredFeatures{
   public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
           DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Homespun.MOD_ID);
-
+  /*     ironwood     */
   public static final RegistryObject<ConfiguredFeature<?, ?>> IRONWOOD =
           CONFIGURED_FEATURES.register(
                   "ironwood",
@@ -35,7 +39,14 @@ public class ModConfiguredFeatures{
                                   .build()
                   )
           );
+  //does some magic nonsense that mr tutorial man doesnt understand
+  public static final RegistryObject<ConfiguredFeature<?,?>> IRONWOOD_SPAWN =
+          CONFIGURED_FEATURES.register("ironwood_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                  new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                          ModPlacedFeatures.IRONWOOD_CHECKED.getHolder().get(),
+                          0.5f)), ModPlacedFeatures.IRONWOOD_CHECKED.getHolder().get())));
 
+  /*     olive     */
   public static final RegistryObject<ConfiguredFeature<?, ?>> OLIVE =
           CONFIGURED_FEATURES.register(
                   "olive",
@@ -51,4 +62,11 @@ public class ModConfiguredFeatures{
                                   .build()
                   )
           );
+  //does some magic nonsense that mr tutorial man doesnt understand
+  public static final RegistryObject<ConfiguredFeature<?,?>> OLIVE_SPAWN =
+          CONFIGURED_FEATURES.register("olive_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                  new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                          ModPlacedFeatures.OLIVE_CHECKED.getHolder().get(),
+                          0.5f)), ModPlacedFeatures.OLIVE_CHECKED.getHolder().get())));
+
 }
