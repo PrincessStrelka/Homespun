@@ -1,6 +1,9 @@
 {
   "type": "forge:add_features",
-  "biomes": "minecraft:sparse_jungle",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:forest"
+  ],
   "features": "homespun:ironwood_placed",
   "step": "vegetal_decoration"
 }

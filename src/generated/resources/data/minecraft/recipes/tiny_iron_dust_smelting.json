@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "homespun:tiny_iron_dust"
+  },
+  "result": "minecraft:iron_nugget"
+}

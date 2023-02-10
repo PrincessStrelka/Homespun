@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "minecraft:jungle",
-  "features": "homespun:ironwood_placed",
-  "step": "vegetal_decoration"
-}

@@ -4,7 +4,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = '0.1.0'
+version = '1.19.2-0.2.1'
 group = 'caittastic.homespun' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'homespun'
 

@@ -1,6 +1,10 @@
 {
   "type": "forge:add_features",
-  "biomes": "minecraft:savanna",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau"
+  ],
   "features": "homespun:olive_placed",
   "step": "vegetal_decoration"
 }

@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "minecraft:savanna_plateau",
-  "features": "homespun:olive_placed",
-  "step": "vegetal_decoration"
-}

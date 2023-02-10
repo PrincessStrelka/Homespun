@@ -5,6 +5,7 @@ import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
@@ -28,6 +29,17 @@ public class ModRecipes extends RecipeProvider{
 
   @Override
   protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer){
+    /*     industry     */
+    ShapelessRecipeBuilder.shapeless(ModItems.TINY_IRON_DUST.get()).requires(ModItems.IRONBERRIES.get()).unlockedBy("has_ironberries", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.IRONBERRIES.get())).save(consumer);
+    SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.TINY_IRON_DUST.get()),
+                    Items.IRON_NUGGET, 1.0f, 100)
+            .unlockedBy("has_ironberries", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.IRONBERRIES.get()).build()))
+            .save(consumer, "tiny_iron_dust_smelting");
+    SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.TINY_IRON_DUST.get()),
+                    Items.IRON_NUGGET, 1.0f, 50)
+            .unlockedBy("has_ironberries", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.IRONBERRIES.get()).build()))
+            .save(consumer, "tiny_iron_dust_blasting");
+
     /*     IRONWOOD     */
     woodFromLogs(consumer, ModBlocks.IRONWOOD_WOOD.get(), ModBlocks.IRONWOOD_LOG.get());
     woodFromLogs(consumer, ModBlocks.STRIPPED_IRONWOOD_WOOD.get(), ModBlocks.STRIPPED_IRONWOOD_LOG.get());

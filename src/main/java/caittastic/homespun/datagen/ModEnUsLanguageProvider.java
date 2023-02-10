@@ -68,8 +68,6 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.TUFF_TILE_STAIRS.get(), "Tuff Tile Stairs");
     add(ModBlocks.TUFF_TILE_SLAB.get(), "Tuff Tile Slab");
 
-
-
     //------------------------------------- creative mode tabs -------------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
     add("itemGroup." + ModTabRegistry.DECORATION.getRecipeFolderName(), "Homespun Decoration");

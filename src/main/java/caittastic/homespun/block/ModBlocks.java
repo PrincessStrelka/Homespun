@@ -58,31 +58,26 @@ public class ModBlocks{
   public static final RegistryObject<Block> OLIVE_TRAPDOOR = registerBlockAndItem("olive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)), ModTabRegistry.DECORATION);
 
   /*     chain     */
-  public static final RegistryObject<Block> GOLD_CHAIN = registerBlockAndItem("gold_chain", () ->
-          new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> COPPER_CHAIN = registerBlockAndItem("copper_chain", () ->
-          new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> GOLD_CHAIN = registerBlockAndItem("gold_chain", () -> new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> COPPER_CHAIN = registerBlockAndItem("copper_chain", () -> new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
 
   /*     deco stone     */
   public static final RegistryObject<Block> SMOOTH_STONE_PILLAR = registerBlockAndItem("smooth_stone_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.SMOOTH_STONE)), ModTabRegistry.DECORATION);
-
-  public static final RegistryObject<Block> CALCITE_BRICKS =
-          registerBlockAndItem("calcite_bricks", () -> 
-                  new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CALCITE_BRICK_STAIRS = 
-          registerBlockAndItem("calcite_brick_stairs", () ->
-                  new StairBlock(() -> ModBlocks.CALCITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CALCITE_BRICK_SLAB = 
-          registerBlockAndItem("calcite_brick_slab", () -> 
-                  new SlabBlock(BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
-
+  public static final RegistryObject<Block> CALCITE_BRICKS = registerBlockAndItem("calcite_bricks", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CALCITE_BRICK_STAIRS = registerBlockAndItem("calcite_brick_stairs", () -> new StairBlock(() -> ModBlocks.CALCITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CALCITE_BRICK_SLAB = registerBlockAndItem("calcite_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> TUFF_TILES = registerBlockAndItem("tuff_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.TUFF)), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> TUFF_TILE_STAIRS =
-          registerBlockAndItem("tuff_tile_stairs", () ->
-                  new StairBlock(() -> ModBlocks.TUFF_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> TUFF_TILE_SLAB =
-          registerBlockAndItem("tuff_tile_slab", () ->
-                  new SlabBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> TUFF_TILE_STAIRS = registerBlockAndItem("tuff_tile_stairs", () -> new StairBlock(() -> ModBlocks.TUFF_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> TUFF_TILE_SLAB = registerBlockAndItem("tuff_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
+
+  /*     industry     */
+  //public static final RegistryObject<Block> CRUSHING_TUB = registerBlockAndItem("crushing_tub", () -> new CrushingTub(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
+  //EVAPORATING_BASIN = new BlockEvaporatingBasin();
+  //CONDENSER = new BlockCondenser();
+  //RETORT = new BlockRetort("retort");
+  //CONDENSER_ADVANCED = new BlockCondenserAdvanced();
+  //RETORT_ADVANCED = new BlockRetort("retort_advanced");
+  //BREWING_BARREL = new BlockBrewingBarrel();
 
 
 
@@ -183,36 +178,12 @@ public class ModBlocks{
   //APPLE_SAPLING = new BlockSaplingApple();
   //APPLE_LEAVES = new BlockLeavesApple();
 
-  /*     industry     */
-  //CRUSHING_TUB = new BlockCrushingTub();
-  //EVAPORATING_BASIN = new BlockEvaporatingBasin();
-  //CONDENSER = new BlockCondenser();
-  //RETORT = new BlockRetort("retort");
-  //CONDENSER_ADVANCED = new BlockCondenserAdvanced();
-  //RETORT_ADVANCED = new BlockRetort("retort_advanced");
-  //BREWING_BARREL = new BlockBrewingBarrel();
+
 
   /*     grape     */
   //GRAPE_STEM = new BlockGrapeStem();
   //GRAPE_LEAVES = new BlockGrapeLeaves();
 
-  /*     slate     */
-  //  SLATE
-  //  SLATE_BRICK
-  //  SLATE_BRICK_SLAB
-  //  SLATE_BRICK_STAIRS
-  //  SLATE_CHISELED
-  //  SLATE_ROOF
-  //  SLATE_ROOF_SLAB
-  //  SLATE_ROOF_STAIRS
-  //  SLATE_TILE
-
-  /*     pillar     */
-  //STONE_PILLAR
-  //ANDESITE_PILLAR
-  //DIORITE_PILLAR
-  //GRANITE_PILLAR
-  //SLATE_PILLAR
 
   /*     candle     */
   //CANDLE
