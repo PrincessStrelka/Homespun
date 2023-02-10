@@ -1,13 +1,9 @@
 package caittastic.homespun;
 
 /*
-TODO: mosaic plank blocks
-TODO: pots of every dye type, with different patterns
-TODO: pride flag pots with artsy names
-todo: tinted leaves
-todo: In world tree generation
 TODO: make tomato throwable
 todo: implement crushing tub recipes for iron dust
+
 idea: crushing tup recipe for crushed acorns
 crushed acorns used to make bread and speed potion (coffee)
 
@@ -24,6 +20,14 @@ idea: tallow as an alternate recipe for candles
 idea: tallow used to make pemmican, energy giving but not verry stomach sating food
 
 idea: leaves in crushing tub gives you their drops at a higher chance (simulate fortune?)
+
+idea: calcite and tuff walls
+
+idea: pride flag pots with artsy names
+
+idea: mosaic blocks for ironwood and olive
+
+idea: drying basin should probably be able to be sped up by having lava/fire/magma blocks underneath it
 */
 
 import caittastic.homespun.block.ModBlocks;

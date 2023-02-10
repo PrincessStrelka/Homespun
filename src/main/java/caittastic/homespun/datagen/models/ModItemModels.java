@@ -73,7 +73,6 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.TUFF_TILE_SLAB);
     registerWithExistingParent(ModBlocks.TUFF_TILE_STAIRS);
     /*     machines     */
-    //registerWithExistingParent(ModBlocks.CRUSHING_TUB);
   }
 
   //------------------------------------- methods -------------------------------------//

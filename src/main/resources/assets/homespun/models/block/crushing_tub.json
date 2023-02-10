@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "crushing_tub_bottom",
-		"1": "crushing_tub_side"
+		"0": "homespun:block/crushing_tub_bottom",
+		"1": "homespun:block/crushing_tub_side"
 	},
 	"elements": [
 		{
