@@ -38,6 +38,15 @@ public class ModItemTags extends ItemTagsProvider{
             .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get().asItem())
             .add(ModBlocks.OLIVE_LOG.get().asItem())
             .add(ModBlocks.STRIPPED_OLIVE_LOG.get().asItem());
+    tag(ItemTags.LOGS_THAT_BURN)
+            .add(ModBlocks.IRONWOOD_LOG.get().asItem())
+            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get().asItem())
+            .add(ModBlocks.OLIVE_LOG.get().asItem())
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get().asItem())
+            .add(ModBlocks.IRONWOOD_WOOD.get().asItem())
+            .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem())
+            .add(ModBlocks.OLIVE_WOOD.get().asItem())
+            .add(ModBlocks.STRIPPED_OLIVE_WOOD.get().asItem());
     tag(ItemTags.LEAVES)
             .add(ModBlocks.IRONWOOD_LEAVES.get().asItem())
             .add(ModBlocks.OLIVE_LEAVES.get().asItem());
