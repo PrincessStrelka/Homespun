@@ -24,6 +24,7 @@ public class ModItemModels extends ItemModelProvider{
     /*     metallurgy     */
     registerFlatItemModel(ModItems.TINY_IRON_DUST);
     registerFlatItemModel(ModItems.COPPER_NUGGET);
+
     /*     crops     */
     registerFlatItemModel(ModItems.IRONBERRIES);
     registerFlatItemModel(ModItems.OLIVES);
@@ -45,6 +46,7 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.IRONWOOD_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.IRONWOOD_BUTTON);
     registerWithExistingParent(ModBlocks.IRONWOOD_PRESSURE_PLATE);
+
     /*     olive     */
     registerFlatBlockWithBlockTexture(ModBlocks.OLIVE_SAPLING);
     registerWithExistingParent(ModBlocks.OLIVE_LEAVES);
@@ -61,18 +63,26 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.OLIVE_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
     registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
+
     /*     chain     */
     registerFlatBlockModelWithItemTexture(ModBlocks.GOLD_CHAIN);
     registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
+
     /*     deco stone     */
     registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
+
     registerWithExistingParent(ModBlocks.CALCITE_BRICKS);
     registerWithExistingParent(ModBlocks.CALCITE_BRICK_SLAB);
     registerWithExistingParent(ModBlocks.CALCITE_BRICK_STAIRS);
+    registerWithExistingInventoryModel(ModBlocks.CALCITE_BRICK_WALL);
+
     registerWithExistingParent(ModBlocks.TUFF_TILES);
     registerWithExistingParent(ModBlocks.TUFF_TILE_SLAB);
     registerWithExistingParent(ModBlocks.TUFF_TILE_STAIRS);
-    /*     machines     */
+    registerWithExistingInventoryModel(ModBlocks.TUFF_TILE_WALL);
+
+    /*     industry     */
+    registerWithExistingParent(ModBlocks.CRUSHING_TUB);
   }
 
   //------------------------------------- methods -------------------------------------//

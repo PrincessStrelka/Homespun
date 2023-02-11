@@ -11,13 +11,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStatesAndModels extends BlockStateProvider{
-  public static final String BLOCK_FOLDER = "block";
-
   public ModBlockStatesAndModels(DataGenerator gen, ExistingFileHelper helper){
     super(gen, Homespun.MOD_ID, helper);
   }
 
-  //------------------------------------- ===== -------------------------------------//
   @Override
   protected void registerStatesAndModels(){
     /*     ironwood     */
@@ -37,6 +34,7 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerPressurePlate(ModBlocks.IRONWOOD_PRESSURE_PLATE, ModBlocks.IRONWOOD_PLANKS);
     registerDoor(ModBlocks.IRONWOOD_DOOR);
     registerTrapdoor(ModBlocks.IRONWOOD_TRAPDOOR);
+
     /*     olive     */
     registerCrossBlock(ModBlocks.OLIVE_SAPLING);
     registerPottedPlant(ModBlocks.POTTED_OLIVE_SAPLING, ModBlocks.OLIVE_SAPLING);
@@ -54,14 +52,19 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerPressurePlate(ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS);
     registerDoor(ModBlocks.OLIVE_DOOR);
     registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
+
     /*     deco stone     */
     axisBlock((RotatedPillarBlock)ModBlocks.SMOOTH_STONE_PILLAR.get(), blockTexture(ModBlocks.SMOOTH_STONE_PILLAR.get()), blockTexture(Blocks.SMOOTH_STONE));
+
     simpleBlock(ModBlocks.CALCITE_BRICKS.get());
     registerStairWithBaseBlock(ModBlocks.CALCITE_BRICK_STAIRS, ModBlocks.CALCITE_BRICKS);
     registerSlabWithBaseBlock(ModBlocks.CALCITE_BRICK_SLAB, ModBlocks.CALCITE_BRICKS);
+    registerWall(ModBlocks.CALCITE_BRICK_WALL, ModBlocks.CALCITE_BRICKS);
+
     simpleBlock(ModBlocks.TUFF_TILES.get());
     registerStairWithBaseBlock(ModBlocks.TUFF_TILE_STAIRS, ModBlocks.TUFF_TILES);
     registerSlabWithBaseBlock(ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILES);
+    registerWall(ModBlocks.TUFF_TILE_WALL, ModBlocks.TUFF_TILES);
 
   }
   //------------------------------------- methods -------------------------------------//
@@ -153,6 +156,17 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     itemModels().fenceInventory(
             ForgeRegistries.BLOCKS.getKey(fenceBlock.get()).toString() + "_inventory",
             blockTexture(fenceBaseBlock.get())
+    );
+  }
+
+  private void registerWall(RegistryObject<Block> wallBlock, RegistryObject<Block> ParentBlock){
+    wallBlock(
+            (WallBlock)wallBlock.get(),
+            blockTexture(ParentBlock.get())
+    );
+    itemModels().wallInventory(
+            ForgeRegistries.BLOCKS.getKey(wallBlock.get()).toString() + "_inventory",
+            blockTexture(ParentBlock.get())
     );
   }
 }

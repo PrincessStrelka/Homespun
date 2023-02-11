@@ -2,32 +2,9 @@ package caittastic.homespun;
 
 /*
 TODO: make tomato throwable
-todo: implement crushing tub recipes for iron dust
-
-idea: crushing tup recipe for crushed acorns
-crushed acorns used to make bread and speed potion (coffee)
-
-idea: forestry like charcoal firepits to get high yeilds of charcoal and ash
-
-idea: using charcoal to make fertile soil
-
 idea: japanese water hammer, monjolo, uses the weight of flowing water to make the hammer end rise up, and then the water pours out and the hammer smacks back down, could be used to automate crushing tub recipes
 look up videos of these in action to see how they could be added
 these are similar to shishi-odochi / deer-scarer
-
-idea: tallow as an alternate recipe for candles
-
-idea: tallow used to make pemmican, energy giving but not verry stomach sating food
-
-idea: leaves in crushing tub gives you their drops at a higher chance (simulate fortune?)
-
-idea: calcite and tuff walls
-
-idea: pride flag pots with artsy names
-
-idea: mosaic blocks for ironwood and olive
-
-idea: drying basin should probably be able to be sped up by having lava/fire/magma blocks underneath it
 */
 
 import caittastic.homespun.block.ModBlocks;

@@ -63,13 +63,16 @@ public class ModBlocks{
 
   /*     deco stone     */
   public static final RegistryObject<Block> SMOOTH_STONE_PILLAR = registerBlockAndItem("smooth_stone_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.SMOOTH_STONE)), ModTabRegistry.DECORATION);
+
   public static final RegistryObject<Block> CALCITE_BRICKS = registerBlockAndItem("calcite_bricks", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> CALCITE_BRICK_STAIRS = registerBlockAndItem("calcite_brick_stairs", () -> new StairBlock(() -> ModBlocks.CALCITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> CALCITE_BRICK_SLAB = registerBlockAndItem("calcite_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CALCITE_BRICK_WALL = registerBlockAndItem("calcite_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(CALCITE_BRICKS.get())), ModTabRegistry.DECORATION);
+
   public static final RegistryObject<Block> TUFF_TILES = registerBlockAndItem("tuff_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.TUFF)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> TUFF_TILE_STAIRS = registerBlockAndItem("tuff_tile_stairs", () -> new StairBlock(() -> ModBlocks.TUFF_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> TUFF_TILE_SLAB = registerBlockAndItem("tuff_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
-
+  public static final RegistryObject<Block> TUFF_TILE_WALL = registerBlockAndItem("tuff_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
   /*     industry     */
   public static final RegistryObject<Block> CRUSHING_TUB = registerBlockAndItem("crushing_tub", () -> new CrushingTub(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.INDUSTRY);
   //EVAPORATING_BASIN = new BlockEvaporatingBasin();

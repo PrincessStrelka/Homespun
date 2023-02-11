@@ -81,9 +81,23 @@ public class ModRecipes extends RecipeProvider{
             .save(consumer);
     /*     deco stone     */
     //calcite
-    registerBrickSet(consumer, "calcite_brick", "has_calcite", Blocks.CALCITE, ModBlocks.CALCITE_BRICKS, ModBlocks.CALCITE_BRICK_SLAB, ModBlocks.CALCITE_BRICK_STAIRS);
+    registerBrickSet(consumer,
+            "calcite_brick",
+            "has_calcite",
+            Blocks.CALCITE,
+            ModBlocks.CALCITE_BRICKS,
+            ModBlocks.CALCITE_BRICK_SLAB,
+            ModBlocks.CALCITE_BRICK_STAIRS,
+            ModBlocks.CALCITE_BRICK_WALL);
     //tuff
-    registerBrickSet(consumer, "tuff_tile", "has_tuff", Blocks.TUFF, ModBlocks.TUFF_TILES, ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILE_STAIRS);
+    registerBrickSet(consumer,
+            "tuff_tile",
+            "has_tuff",
+            Blocks.TUFF,
+            ModBlocks.TUFF_TILES,
+            ModBlocks.TUFF_TILE_SLAB,
+            ModBlocks.TUFF_TILE_STAIRS,
+            ModBlocks.TUFF_TILE_WALL);
     //smooth stone pillar
     ShapedRecipeBuilder.shaped(ModBlocks.SMOOTH_STONE_PILLAR.get(), 3)
             .pattern("x")
@@ -113,7 +127,8 @@ public class ModRecipes extends RecipeProvider{
           Block parent,
           RegistryObject<Block> bricks,
           RegistryObject<Block> brickSlab,
-          RegistryObject<Block> brickStairs
+          RegistryObject<Block> brickStairs,
+          RegistryObject<Block> brickWall
   ){
     ShapedRecipeBuilder.shaped(bricks.get(), 4)
             .pattern("xx")
@@ -150,6 +165,18 @@ public class ModRecipes extends RecipeProvider{
             .stonecutting(Ingredient.of(bricks.get()), brickStairs.get())
             .unlockedBy(criterionName, has(parent))
             .save(consumer, brickName + "_stairs_from_stonecutting");
+    //walls
+    ShapedRecipeBuilder.shaped(brickWall.get())
+            .pattern("xxx")
+            .pattern("xxx")
+            .define('x', bricks.get())
+            .group(Homespun.MOD_ID)
+            .unlockedBy(criterionName, has(parent))
+            .save(consumer);
+    SingleItemRecipeBuilder
+            .stonecutting(Ingredient.of(bricks.get()), brickWall.get())
+            .unlockedBy(criterionName, has(parent))
+            .save(consumer, brickName + "_wall_from_stonecutting");
   }
 
   private void chainRecipe(RegistryObject<Block> chain, TagKey<Item> nuggetTag, TagKey<Item> ingotTag, String criterionName, Item criterionItem, Consumer<FinishedRecipe> consumer){

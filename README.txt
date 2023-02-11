@@ -1,1 +1,2 @@
 silly mode activate :3 stolen idea do not steal (not legally binding)
+i don't really mind if people copy a reasonable chunk of the code, but i would rather the assets and name of the mod werent used by someone else
