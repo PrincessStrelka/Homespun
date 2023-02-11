@@ -75,38 +75,11 @@ public class ModBlocks{
   public static final RegistryObject<Block> TUFF_TILE_WALL = registerBlockAndItem("tuff_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
   /*     industry     */
   public static final RegistryObject<Block> CRUSHING_TUB = registerBlockAndItem("crushing_tub", () -> new CrushingTub(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.INDUSTRY);
-  //EVAPORATING_BASIN = new BlockEvaporatingBasin();
   //CONDENSER = new BlockCondenser();
   //RETORT = new BlockRetort("retort");
   //CONDENSER_ADVANCED = new BlockCondenserAdvanced();
   //RETORT_ADVANCED = new BlockRetort("retort_advanced");
   //BREWING_BARREL = new BlockBrewingBarrel();
-
-
-
-  /*     clay wall     */
-  // public static BlockBase CLAY_WALL;
-  // public static BlockBase CLAY_WALL_CROSS;
-  // public static BlockClayWallDiag CLAY_WALL_DIAG;
-  //  CLAY_WALL = ((BlockBase) new BlockBase(Material.CLAY, "clay_wall").setHardness(1F)).setBlockSoundType(SoundType.GROUND);
-  //  CLAY_WALL_CROSS = ((BlockBase) new BlockBase(Material.CLAY, "clay_wall_cross").setHardness(1F)).setBlockSoundType(SoundType.GROUND);
-  //  CLAY_WALL_DIAG = (BlockClayWallDiag) new BlockClayWallDiag().setHardness(1F);
-
-  /*     lanterns     */
-  // public static BlockWoodLantern LANTERN_WOOD;
-  //LANTERN_WOOD = new BlockWoodLantern();
-  // public static BlockLantern IRON_LANTERN;
-  // public static BlockLantern GOLDEN_LANTERN;
-  // public static BlockLantern SILVER_LANTERN;
-  //IRON_LANTERN = new BlockLantern(Material.IRON, "iron_lantern");
-  //GOLDEN_LANTERN = new BlockLantern(Material.IRON, "golden_lantern");
-  //SILVER_LANTERN = new BlockLantern(Material.IRON, "silver_lantern");
-
-  /*     decoration     */
-  // public static BlockLattice IRON_LATTICE;
-  //IRON_LATTICE = new BlockLattice(Material.IRON, "iron_lattice");
-  // public static BlockGargoyle GARGOYLE;
-  //GARGOYLE = new BlockGargoyle();
 
   /*     farming     */
   // public static BlockFertileSoil FERTILE_SOIL;
@@ -119,12 +92,8 @@ public class ModBlocks{
   //    STAKE_TIED = new BlockStakeTied();
 
   /*     storage     */
-  // public static BlockCabinet CABINET;
-  //CABINET = new BlockCabinet();
   // public static BlockLiquidBarrel LIQUID_BARREL;
   // public static BlockBarrel BARREL;
-  // public static BlockVase VASE;
-  //  VASE = new BlockVase();
   //  BARREL = new BlockBarrel();
   //LIQUID_BARREL = new BlockLiquidBarrel();
 
@@ -176,69 +145,9 @@ public class ModBlocks{
     };
     */
 
-  /*     apple     */
-  //APPLE_SEEDS = new BlockAppleSeeds();
-  //APPLE_SAPLING = new BlockSaplingApple();
-  //APPLE_LEAVES = new BlockLeavesApple();
-
-
-
   /*     grape     */
   //GRAPE_STEM = new BlockGrapeStem();
   //GRAPE_LEAVES = new BlockGrapeLeaves();
-
-
-  /*     candle     */
-  //CANDLE
-  //CANDLE_LEVER
-  //CANDLE_GOLD
-  //CANDLE_SILVER
-  //CANDLE_LEVER_GOLD
-  //CANDLE_LEVER_SILVER
-
-  /*     chandelier     */
-
-  //CHANDELIER = new BlockChandelier();
-  //CHANDELIER_GOLD = new BlockChandelier("chandelier_gold");
-  //CHANDELIER_SILVER = new BlockChandelier("chandelier_silver");
-
-  /*     painted wood     */
-  // public static BlockBase PAINTED_WOOD_WHITE;
-  // public static BlockBase PAINTED_WOOD_ORANGE;
-  // public static BlockBase PAINTED_WOOD_MAGENTA;
-  // public static BlockBase PAINTED_WOOD_LIGHT_BLUE;
-  // public static BlockBase PAINTED_WOOD_YELLOW;
-  // public static BlockBase PAINTED_WOOD_LIME;
-  // public static BlockBase PAINTED_WOOD_PINK;
-  // public static BlockBase PAINTED_WOOD_GRAY;
-  // public static BlockBase PAINTED_WOOD_SILVER;
-  // public static BlockBase PAINTED_WOOD_CYAN;
-  // public static BlockBase PAINTED_WOOD_PURPLE;
-  // public static BlockBase PAINTED_WOOD_BLUE;
-  // public static BlockBase PAINTED_WOOD_BROWN;
-  // public static BlockBase PAINTED_WOOD_GREEN;
-  // public static BlockBase PAINTED_WOOD_RED;
-  // public static BlockBase PAINTED_WOOD_BLACK;
-
-  /*     chair     */
-  //CHAIR_OAK = new BlockChair("oak");
-  //CHAIR_BIG_OAK = new BlockChair("big_oak");
-  //CHAIR_BIRCH = new BlockChair("birch");
-  //CHAIR_SPRUCE = new BlockChair("spruce");
-  //CHAIR_ACACIA = new BlockChair("acacia");
-  //CHAIR_JUNGLE = new BlockChair("jungle");
-  //CHAIR_OLIVE = new BlockChair("olive");
-  //CHAIR_IRONWOOD = new BlockChair("ironwood");
-
-  /*     table     */
-  //TABLE_OAK = new BlockTable("oak");
-  //TABLE_BIG_OAK = new BlockTable("big_oak");
-  //TABLE_BIRCH = new BlockTable("birch");
-  //TABLE_SPRUCE = new BlockTable("spruce");
-  //TABLE_ACACIA = new BlockTable("acacia");
-  //TABLE_JUNGLE = new BlockTable("jungle");
-  //TABLE_OLIVE = new BlockTable("olive");
-  //TABLE_IRONWOOD = new BlockTable("ironwood");
 
   //------------------------------------- utility -------------------------------------//
   private static <T extends Block> RegistryObject<T> registerBlockAndItem(String name, Supplier<T> block, CreativeModeTab tab){

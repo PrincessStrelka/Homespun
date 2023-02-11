@@ -74,6 +74,9 @@ public class ModItemTags extends ItemTagsProvider{
     tag(ItemTags.WOODEN_TRAPDOORS)
             .add(ModBlocks.IRONWOOD_TRAPDOOR.get().asItem())
             .add(ModBlocks.OLIVE_TRAPDOOR.get().asItem());
+    tag(ItemTags.WOODEN_SLABS)
+            .add(ModBlocks.IRONWOOD_SLAB.get().asItem())
+            .add(ModBlocks.OLIVE_SLAB.get().asItem());
     tag(ItemTags.SAPLINGS)
             .add(ModBlocks.IRONWOOD_SAPLING.get().asItem())
             .add(ModBlocks.OLIVE_SAPLING.get().asItem());

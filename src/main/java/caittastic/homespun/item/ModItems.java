@@ -35,7 +35,6 @@ public class ModItems{
   public static final FoodProperties CHILI_PEPPER_FOOD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.4F)
           .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 0, false, false), 1)
           .build();
-  public static final FoodProperties WILDBERRIES_FOOD = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).build();
   public static final FoodProperties GRAPES_FOOD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 
   //------------------------------------- items -------------------------------------//
@@ -65,13 +64,6 @@ public class ModItems{
             return super.finishUsingItem(pStack, pLevel, pLivingEntity);
         }
     });
-    //wildberries
-    public static final RegistryObject<Item> WILDBERRIES = ITEM.register("wildberries", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(WILDBERRIES_FOOD)) {
-        @Override
-        public int getUseDuration(ItemStack item) {
-            return 16;
-        }
-    });
     //grapes
     public static final RegistryObject<Item> GRAPES = ITEM.register("grapes", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(GRAPES_FOOD)) {
         @Override
@@ -88,8 +80,5 @@ public class ModItems{
     public static final RegistryObject<Item> BEE = ITEM.register("bee", () -> new Item(new Item.Properties().tab(AGRICULTURE))); //bee
     public static final RegistryObject<Item> HONEYCOMB = ITEM.register("honeycomb", () -> new Item(new Item.Properties().tab(AGRICULTURE))); //honeycomb
     public static final RegistryObject<Item> BEESWAX = ITEM.register("beeswax", () -> new Item(new Item.Properties().tab(AGRICULTURE))); //beeswax
-
-    //     other
-    public static final RegistryObject<Item> TALLOW = ITEM.register("tallow", () -> new Item(new Item.Properties().tab(AGRICULTURE))); //tallow
     */
 }
