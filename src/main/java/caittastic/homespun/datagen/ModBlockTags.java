@@ -126,6 +126,10 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.IRONWOOD_SLAB.get())
             .add(ModBlocks.OLIVE_SLAB.get());
 
+    tag(BlockTags.LEAVES)
+            .add(ModBlocks.IRONWOOD_LEAVES.get())
+            .add(ModBlocks.OLIVE_LEAVES.get());
+
     tag(BlockTags.SAPLINGS)
             .add(ModBlocks.IRONWOOD_TRAPDOOR.get())
             .add(ModBlocks.OLIVE_TRAPDOOR.get());
