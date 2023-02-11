@@ -11,7 +11,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -24,62 +23,17 @@ public class ModBlockLootTables extends BlockLoot{
   private static final LootItemCondition.Builder HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
   private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
   private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
-  private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-
-  //------------------------------------- methods -------------------------------------//
-  protected static LootTable.Builder createLeavesDropWithExtra(Block leavesBlock, Block saplingBlock, Item extraItem, float... chances){
-    return createLeavesDrops(
-            leavesBlock,
-            saplingBlock,
-            chances)
-            .withPool(LootPool
-                    .lootPool()
-                    .setRolls(ConstantValue
-                            .exactly(1.0F))
-                    .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
-                    .add(applyExplosionCondition(leavesBlock,
-                            LootItem
-                                    .lootTableItem(extraItem))
-                            .when(BonusLevelTableCondition
-                                    .bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                                            0.05F,
-                                            0.055555557F,
-                                            0.0625F,
-                                            0.08333334F,
-                                            0.25F))));
-  }
-
-  private void simpleLeafDropWithExtra(RegistryObject<Block> leavesBlock, RegistryObject<Block> saplingBlock, RegistryObject<Item> extraItem){
-    this.add(
-            leavesBlock.get(),
-            (block) -> createLeavesDropWithExtra(block,
-                    saplingBlock.get(),
-                    extraItem.get(),
-                    NORMAL_LEAVES_SAPLING_CHANCES));
-  }
-
-  private void simpleDropSelf(RegistryObject<Block> self){
-    this.dropSelf(self.get());
-  }
-
-  private void simplePottedBlock(RegistryObject<Block> pottedBlock){
-    this.dropPottedContents(pottedBlock.get());
-  }
-
-  private void simpleDoorTable(RegistryObject<Block> simpleDoor){
-    this.add(simpleDoor.get(), BlockLoot::createDoorTable);
-  }
-
-  @Override
-  protected Iterable<Block> getKnownBlocks(){
-    return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
-  }
 
   //------------------------------------- ===== -------------------------------------//
   @Override
   protected void addTables(){
     /*     ironwood     */
-    simpleLeafDropWithExtra(ModBlocks.IRONWOOD_LEAVES, ModBlocks.IRONWOOD_SAPLING, ModItems.IRONBERRIES);
+    leafWithExtra(
+            ModBlocks.IRONWOOD_LEAVES,
+            ModBlocks.IRONWOOD_SAPLING,
+            ModItems.IRONBERRIES,
+            new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F},
+            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F});
     simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);
     simpleDoorTable(ModBlocks.IRONWOOD_DOOR);
     simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);
@@ -96,7 +50,12 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.IRONWOOD_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.IRONWOOD_TRAPDOOR);
     /*     olive     */
-    simpleLeafDropWithExtra(ModBlocks.OLIVE_LEAVES, ModBlocks.OLIVE_SAPLING, ModItems.OLIVES);
+    leafWithExtra(
+            ModBlocks.OLIVE_LEAVES,
+            ModBlocks.OLIVE_SAPLING,
+            ModItems.OLIVES,
+            new float[]{0.08F, 0.106F, 0.132F, 0.16F},
+            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F});
     simplePottedBlock(ModBlocks.POTTED_OLIVE_SAPLING);
     simpleDoorTable(ModBlocks.OLIVE_DOOR);
     simpleDropSelf(ModBlocks.OLIVE_SAPLING);
@@ -127,5 +86,39 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.TUFF_TILE_WALL);
     /*     industry     */
     simpleDropSelf(ModBlocks.CRUSHING_TUB);
+  }
+
+  //------------------------------------- methods -------------------------------------//
+  private void simpleDropSelf(RegistryObject<Block> self){
+    this.dropSelf(self.get());
+  }
+
+  private void simplePottedBlock(RegistryObject<Block> pottedBlock){
+    this.dropPottedContents(pottedBlock.get());
+  }
+
+  private void simpleDoorTable(RegistryObject<Block> simpleDoor){
+    this.add(simpleDoor.get(), BlockLoot::createDoorTable);
+  }
+
+  @Override
+  protected Iterable<Block> getKnownBlocks(){
+    return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+  }
+
+  private void leafWithExtra(RegistryObject<Block> leafBlock, RegistryObject<Block> saplingBlock, RegistryObject<Item> extraItem, float[] saplingFortuneChances, float[] extraFortuneChances){
+    this.add(leafBlock.get(),
+            (block) -> createLeavesDrops(
+                    block,
+                    saplingBlock.get(),
+                    saplingFortuneChances)
+                    .withPool(LootPool
+                            .lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                            .add(applyExplosionCondition(block, LootItem.lootTableItem(extraItem.get()))
+                                    .when(BonusLevelTableCondition.bonusLevelFlatChance(
+                                            Enchantments.BLOCK_FORTUNE,
+                                            extraFortuneChances)))));
   }
 }
