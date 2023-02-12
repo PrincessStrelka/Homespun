@@ -26,12 +26,10 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.CALCITE_BRICKS.get())
             .add(ModBlocks.CALCITE_BRICK_SLAB.get())
             .add(ModBlocks.CALCITE_BRICK_STAIRS.get())
-            .add(ModBlocks.CALCITE_BRICK_WALL.get())
 
             .add(ModBlocks.TUFF_TILES.get())
             .add(ModBlocks.TUFF_TILE_STAIRS.get())
-            .add(ModBlocks.TUFF_TILE_SLAB.get())
-            .add(ModBlocks.TUFF_TILE_WALL.get());
+            .add(ModBlocks.TUFF_TILE_SLAB.get());
     tag(BlockTags.MINEABLE_WITH_HOE)
             .add(ModBlocks.IRONWOOD_LEAVES.get())
             .add(ModBlocks.OLIVE_LEAVES.get());
@@ -62,9 +60,7 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_BUTTON.get())
             .add(ModBlocks.OLIVE_PRESSURE_PLATE.get())
             .add(ModBlocks.OLIVE_DOOR.get())
-            .add(ModBlocks.OLIVE_TRAPDOOR.get())
-
-            .add(ModBlocks.CRUSHING_TUB.get());
+            .add(ModBlocks.OLIVE_TRAPDOOR.get());
     //------------------------------------- block tags -------------------------------------//
     tag(TagInit.Blocks.IRONWOOD_LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get())
@@ -138,10 +134,13 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.POTTED_IRONWOOD_SAPLING.get())
             .add(ModBlocks.POTTED_OLIVE_SAPLING.get());
 
+    /*
     tag(BlockTags.WALLS)
             .add(ModBlocks.CALCITE_BRICK_WALL.get())
             .add(ModBlocks.TUFF_TILE_WALL.get());
 
+
+     */
   }
 
   @Override

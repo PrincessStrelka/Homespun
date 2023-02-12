@@ -5,10 +5,17 @@ TODO: make tomato throwable
 idea: japanese water hammer, monjolo, uses the weight of flowing water to make the hammer end rise up, and then the water pours out and the hammer smacks back down, could be used to automate crushing tub recipes
 look up videos of these in action to see how they could be added
 these are similar to shishi-odochi / deer-scarer
+GameRegistry.registerTileEntity(TileEntityApiary.class, new ResourceLocation(Rustic.MODID , "tileEntityApiary"))
+GameRegistry.registerTileEntity(TileEntityCondenser.class, new ResourceLocation(Rustic.MODID, "tileEntityCondenser"))
+GameRegistry.registerTileEntity(TileEntityCondenserAdvancedBottom.class, new ResourceLocation(Rustic.MODID, "tileEntityCondenserAdvanced"))
+GameRegistry.registerTileEntity(TileEntityCondenserAdvancedTop.class, new ResourceLocation(Rustic.MODID, "tileEntityCondenserAdvancedProxy"))
+GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, new ResourceLocation(Rustic.MODID, "tileEntityBrewingBarrel"))
 */
 
 import caittastic.homespun.block.ModBlocks;
+import caittastic.homespun.blockentity.BlockEntities;
 import caittastic.homespun.item.ModItems;
+import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.world.feature.ModConfiguredFeatures;
 import caittastic.homespun.world.feature.ModPlacedFeatures;
 import net.minecraft.world.level.block.Blocks;
@@ -30,6 +37,7 @@ public class Homespun{
 
     ModItems.ITEM.register(bus);
     ModBlocks.BLOCKS.register(bus);
+    BlockEntities.BLOCK_ENTITIES.register(bus);
 
     ModConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
     ModPlacedFeatures.PLACED_FEATURES.register(bus);
@@ -41,6 +49,8 @@ public class Homespun{
 
   private void setup(final FMLCommonSetupEvent event){
     event.enqueueWork(() -> {
+      //needs to be the first thing in the enqueuework else it wont work
+      ModPackets.register();
       /*     potted     */
       ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.IRONWOOD_SAPLING.getId(), ModBlocks.POTTED_IRONWOOD_SAPLING);
       ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.OLIVE_SAPLING.getId(), ModBlocks.POTTED_OLIVE_SAPLING);

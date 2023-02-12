@@ -1,20 +1,21 @@
-// 1.19.2	2023-02-08T20:57:26.7557352	Rustic Tags
+// 1.19.2	2023-02-11T17:03:49.5609584	Rustic Tags
 1e9435b731b98acee240d86b6af2838c2a8085af data/homespun/tags/blocks/ironwood_logs.json
 1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/blocks/ironwood_wood.json
 09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/blocks/olive_logs.json
 c3bf46fe21ec862bd896b9038b4205b21a94ec72 data/homespun/tags/blocks/olive_wood.json
 064f051db0983f3430807bc8e91432bfedfb1c87 data/minecraft/tags/blocks/fence_gates.json
 c15e6a374ce2e63654289ace75c4a732336000e5 data/minecraft/tags/blocks/flower_pots.json
-8755a67c300487452e9bff57e2264d2faf710922 data/minecraft/tags/blocks/leaves.json
+1ba176153abe0ef2fc2d4b4e25011c606816ff97 data/minecraft/tags/blocks/leaves.json
 4e96a9b1e3ae8906e3c1046967acf15418467bba data/minecraft/tags/blocks/logs.json
 1af130822aa227ec49070998aeea0e043d0633f8 data/minecraft/tags/blocks/mineable/axe.json
 8755a67c300487452e9bff57e2264d2faf710922 data/minecraft/tags/blocks/mineable/hoe.json
-a9fda5c9bf26578d097a050b257a52dd71d08c40 data/minecraft/tags/blocks/mineable/pickaxe.json
+96302aea13b430dc42cf0511b08069069208d999 data/minecraft/tags/blocks/mineable/pickaxe.json
 d212a31d00a09f548fe68170a69790cecf93e94f data/minecraft/tags/blocks/planks.json
 0f762b9237c2f3d711fabeb6437ee163ca83b55b data/minecraft/tags/blocks/saplings.json
 be55ba27ecb4e7dbb541b9d9504634e9e5df74d1 data/minecraft/tags/blocks/wooden_buttons.json
 c9a47cf192ef025a3bf75944c6fe84180f65f1fe data/minecraft/tags/blocks/wooden_doors.json
 58d3973ee555ec1b930eead892fb9e75020ed32b data/minecraft/tags/blocks/wooden_fences.json
 09d940eff72a92ccb348958621dd300e8cd00b86 data/minecraft/tags/blocks/wooden_pressure_plates.json
+e48571b43fa24de3e8b497fc91ae32d77e2c450a data/minecraft/tags/blocks/wooden_slabs.json
 80ed10053d0df256cb7132b339871332aaea4aac data/minecraft/tags/blocks/wooden_stairs.json
 0f762b9237c2f3d711fabeb6437ee163ca83b55b data/minecraft/tags/blocks/wooden_trapdoors.json

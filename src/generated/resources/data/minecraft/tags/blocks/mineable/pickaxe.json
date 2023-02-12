@@ -6,10 +6,8 @@
     "homespun:calcite_bricks",
     "homespun:calcite_brick_slab",
     "homespun:calcite_brick_stairs",
-    "homespun:calcite_brick_wall",
     "homespun:tuff_tiles",
     "homespun:tuff_tile_stairs",
-    "homespun:tuff_tile_slab",
-    "homespun:tuff_tile_wall"
+    "homespun:tuff_tile_slab"
   ]
 }

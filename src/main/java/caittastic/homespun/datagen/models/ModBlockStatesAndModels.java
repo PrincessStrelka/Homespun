@@ -59,12 +59,12 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     simpleBlock(ModBlocks.CALCITE_BRICKS.get());
     registerStairWithBaseBlock(ModBlocks.CALCITE_BRICK_STAIRS, ModBlocks.CALCITE_BRICKS);
     registerSlabWithBaseBlock(ModBlocks.CALCITE_BRICK_SLAB, ModBlocks.CALCITE_BRICKS);
-    registerWall(ModBlocks.CALCITE_BRICK_WALL, ModBlocks.CALCITE_BRICKS);
+    //registerWall(ModBlocks.CALCITE_BRICK_WALL, ModBlocks.CALCITE_BRICKS);
 
     simpleBlock(ModBlocks.TUFF_TILES.get());
     registerStairWithBaseBlock(ModBlocks.TUFF_TILE_STAIRS, ModBlocks.TUFF_TILES);
     registerSlabWithBaseBlock(ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILES);
-    registerWall(ModBlocks.TUFF_TILE_WALL, ModBlocks.TUFF_TILES);
+    //registerWall(ModBlocks.TUFF_TILE_WALL, ModBlocks.TUFF_TILES);
 
   }
   //------------------------------------- methods -------------------------------------//

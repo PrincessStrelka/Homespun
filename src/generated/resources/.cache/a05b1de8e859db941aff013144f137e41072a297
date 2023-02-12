@@ -1,4 +1,4 @@
-// 1.19.2	2023-02-08T17:20:23.4861421	Homespun Tags
+// 1.19.2	2023-02-11T14:35:19.4436906	Homespun Tags
 fed23953b849fe95d605867a1c0d6b228b1fd847 data/forge/tags/items/dusts.json
 064f051db0983f3430807bc8e91432bfedfb1c87 data/forge/tags/items/fence_gates/wooden.json
 12f2d4749b0aadd4a0411d0439022de522c8a8f6 data/homespun/tags/items/copper_nuggets.json
@@ -6,13 +6,15 @@ fed23953b849fe95d605867a1c0d6b228b1fd847 data/forge/tags/items/dusts.json
 1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/items/ironwood_wood.json
 09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/items/olive_logs.json
 c3bf46fe21ec862bd896b9038b4205b21a94ec72 data/homespun/tags/items/olive_wood.json
-8755a67c300487452e9bff57e2264d2faf710922 data/minecraft/tags/items/leaves.json
+1ba176153abe0ef2fc2d4b4e25011c606816ff97 data/minecraft/tags/items/leaves.json
 4e96a9b1e3ae8906e3c1046967acf15418467bba data/minecraft/tags/items/logs.json
+c64960ffc25032e94df55b8ac4b1066533e94c6d data/minecraft/tags/items/logs_that_burn.json
 d212a31d00a09f548fe68170a69790cecf93e94f data/minecraft/tags/items/planks.json
 368e692d75bcc70e29ba82183de186b3ebc756f0 data/minecraft/tags/items/saplings.json
 be55ba27ecb4e7dbb541b9d9504634e9e5df74d1 data/minecraft/tags/items/wooden_buttons.json
 c9a47cf192ef025a3bf75944c6fe84180f65f1fe data/minecraft/tags/items/wooden_doors.json
 a2fb5dbf6167c7dce6af4ecbe93d36d2248a1f31 data/minecraft/tags/items/wooden_fences.json
 09d940eff72a92ccb348958621dd300e8cd00b86 data/minecraft/tags/items/wooden_pressure_plates.json
+e48571b43fa24de3e8b497fc91ae32d77e2c450a data/minecraft/tags/items/wooden_slabs.json
 80ed10053d0df256cb7132b339871332aaea4aac data/minecraft/tags/items/wooden_stairs.json
 0f762b9237c2f3d711fabeb6437ee163ca83b55b data/minecraft/tags/items/wooden_trapdoors.json
