@@ -1,7 +1,8 @@
-// 1.19.2	2023-02-11T17:03:49.5609584	Item Models: homespun
+// 1.19.2	2023-02-13T19:14:44.4018862	Item Models: homespun
 1c4dcc3b9b26ea18af242e0666ce4afb8a693319 assets/homespun/models/item/calcite_bricks.json
 20fe2c4567c9b0cf7fff93f8e532b5ece5257f9f assets/homespun/models/item/calcite_brick_slab.json
 06a762d93f3a78457349fa0e12641a8dd11a8811 assets/homespun/models/item/calcite_brick_stairs.json
+e6e52e951081431578624b6827cd5abe1aedccf2 assets/homespun/models/item/calcite_brick_wall.json
 997c81ec2cb0dafed82840380cea43410e176c45 assets/homespun/models/item/copper_chain.json
 6d1b81034f7f439d52d0ac5e42ee7f193310b571 assets/homespun/models/item/copper_nugget.json
 f81eda4ae8d08e7ce6613019672070d0844283c0 assets/homespun/models/item/gold_chain.json
@@ -42,3 +43,4 @@ f0284c5cd771735c6a506d3fbd67e7ab1fd14556 assets/homespun/models/item/tiny_iron_d
 1c67fd2925d79fb9378e818a6e4730b502ffe369 assets/homespun/models/item/tuff_tiles.json
 7abc16a199524603ba23bf84837a9a66f06bcd31 assets/homespun/models/item/tuff_tile_slab.json
 b277f628ec1b47aabc839b07a6d2b9180002505a assets/homespun/models/item/tuff_tile_stairs.json
+da7de3eefde3f49c8f06c750835b3a376cf5d97e assets/homespun/models/item/tuff_tile_wall.json

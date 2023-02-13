@@ -74,12 +74,12 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CALCITE_BRICKS);
     registerWithExistingParent(ModBlocks.CALCITE_BRICK_SLAB);
     registerWithExistingParent(ModBlocks.CALCITE_BRICK_STAIRS);
-    //registerWithExistingInventoryModel(ModBlocks.CALCITE_BRICK_WALL);
+    registerWithExistingInventoryModel(ModBlocks.CALCITE_BRICK_WALL);
 
     registerWithExistingParent(ModBlocks.TUFF_TILES);
     registerWithExistingParent(ModBlocks.TUFF_TILE_SLAB);
     registerWithExistingParent(ModBlocks.TUFF_TILE_STAIRS);
-    //registerWithExistingInventoryModel(ModBlocks.TUFF_TILE_WALL);
+    registerWithExistingInventoryModel(ModBlocks.TUFF_TILE_WALL);
 
     /*     industry     */
 
