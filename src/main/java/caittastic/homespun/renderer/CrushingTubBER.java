@@ -55,13 +55,13 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     Random rand = new Random();
     poseStack.pushPose();
     rand.setSeed((long)entity.getBlockPos().getX() * entity.getBlockPos().getZ() * entity.getBlockPos().getY());
+    int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
 
     //initialises the start of where the stacks should be rendered from
     poseStack.translate(0.5f, startHeight + pixHeight, 0.5f);
     poseStack.scale(1f, 1f, 1f);
     poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
 
-    int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
 
     //for every item in the stack to be rendered, move up one pixel and render item
     for(int i = 0; i < entity.getInputRenderStackSize(); i++){
@@ -94,8 +94,7 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     float red = (fluidTintColour >> 16 & 0xFF) / 255.0F;
     float green = (fluidTintColour >> 8 & 0xFF) / 255.0F;
     float blue = (fluidTintColour & 0xFF) / 255.0F;
-    //float alpha = ((fluidTintColour >> 24) & 0xFF) / 255F;
-    float[] fColour = {red, green, blue};
+    float alpha = ((fluidTintColour >> 24) & 0xFF) / 255F;
 
     //fluid texture info
     TextureAtlasSprite stillFluidSprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(renderProperties.getStillTexture(fluidStack));
@@ -111,13 +110,13 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     float fluidSpriteV0 = stillFluidSprite.getV0() + (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 8;
     float fluidSpriteV1 = stillFluidSprite.getV1() - (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 8;
     //north-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).color(fColour[0], fColour[1], fColour[2], 1).uv(fluidSpriteU0, fluidSpriteV1).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV1).uv2(l2, i3).endVertex();
     //south-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).color(fColour[0], fColour[1], fColour[2], 1).uv(fluidSpriteU0, fluidSpriteV0).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV0).uv2(l2, i3).endVertex();
     //south-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(fColour[0], fColour[1], fColour[2], 1).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).endVertex();
     //north-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(fColour[0], fColour[1], fColour[2], 1).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).endVertex();
 
   }
 
