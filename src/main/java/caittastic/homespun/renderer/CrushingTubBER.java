@@ -3,6 +3,7 @@ package caittastic.homespun.renderer;
 import caittastic.homespun.blockentity.CrushingTubBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -56,16 +56,17 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     poseStack.pushPose();
     rand.setSeed((long)entity.getBlockPos().getX() * entity.getBlockPos().getZ() * entity.getBlockPos().getY());
     int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
+    float itemScaleFactor = 1;
 
     //initialises the start of where the stacks should be rendered from
     poseStack.translate(0.5f, startHeight + pixHeight, 0.5f);
-    poseStack.scale(1f, 1f, 1f);
     poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
+    poseStack.scale(itemScaleFactor, itemScaleFactor, itemScaleFactor);
 
 
     //for every item in the stack to be rendered, move up one pixel and render item
     for(int i = 0; i < entity.getInputRenderStackSize(); i++){
-      poseStack.translate(0, 0, -pixHeight);
+      poseStack.translate(0, 0, -pixHeight * itemScaleFactor);
       poseStack.mulPose(Vector3f.ZN.rotationDegrees((float)(rand.nextFloat() * 360.0)));
       itemRenderer.renderStatic(
               stackToRender,
@@ -98,11 +99,12 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
 
     //fluid texture info
     TextureAtlasSprite stillFluidSprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(renderProperties.getStillTexture(fluidStack));
-    VertexConsumer vertexBuffer = bufferSource.getBuffer(RenderType.text(stillFluidSprite.atlas().location()));
+    VertexConsumer vertexBuffer = bufferSource.getBuffer(RenderType.translucentNoCrumbling());
 
     //fluid render info
     Matrix4f lastPose = poseStack.last().pose();
-    float fluidY = pixHeight * 8;
+    Matrix3f matrix = poseStack.last().normal();
+    float fluidY = 0.0001f + pixHeight * 8;
     float fluidStartDrawPixel = pixHeight * 2;
     float fluidEndDrawPixel = pixHeight * 14;
     float fluidSpriteU0 = stillFluidSprite.getU0() + (stillFluidSprite.getU1() - stillFluidSprite.getU0()) / 8;
@@ -110,13 +112,14 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     float fluidSpriteV0 = stillFluidSprite.getV0() + (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 8;
     float fluidSpriteV1 = stillFluidSprite.getV1() - (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 8;
     //north-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV1).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV1).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
     //south-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV0).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV0).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
     //south-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
     //north-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).endVertex();
+    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
+
 
   }
 

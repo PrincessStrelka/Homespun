@@ -119,8 +119,10 @@ public class CrushingTubBE extends BlockEntity{
 
   public FluidStack getStoredFluidStack(){
     //return FLUID_TANK.getFluid();
-    return new FluidStack(Fluids.WATER, 4000);
-
+    return new FluidStack(Fluids.WATER, 2000);
+  }
+  public int getFluidCap(){
+    return FLUID_TANK.getTankCapacity(0);
   }
 
   //just done on the client to keep things in sync?
