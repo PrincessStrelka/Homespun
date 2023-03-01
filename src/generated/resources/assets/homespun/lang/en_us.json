@@ -1,8 +1,10 @@
 {
   "block.homespun.calcite_brick_slab": "Calcite Brick Slab",
   "block.homespun.calcite_brick_stairs": "Calcite Brick Stairs",
+  "block.homespun.calcite_brick_wall": "Calcite Brick Wall",
   "block.homespun.calcite_bricks": "Calcite Bricks",
   "block.homespun.copper_chain": "Copper Chain",
+  "block.homespun.crushing_tub": "Crushing Tub",
   "block.homespun.gold_chain": "Gold Chain",
   "block.homespun.ironwood_button": "Ironwood Button",
   "block.homespun.ironwood_door": "Ironwood Door",
@@ -39,6 +41,7 @@
   "block.homespun.stripped_olive_wood": "Stripped Olive Wood",
   "block.homespun.tuff_tile_slab": "Tuff Tile Slab",
   "block.homespun.tuff_tile_stairs": "Tuff Tile Stairs",
+  "block.homespun.tuff_tile_wall": "Tuff Tile Wall",
   "block.homespun.tuff_tiles": "Tuff Tiles",
   "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",

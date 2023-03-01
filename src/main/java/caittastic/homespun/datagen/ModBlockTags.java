@@ -134,13 +134,13 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.POTTED_IRONWOOD_SAPLING.get())
             .add(ModBlocks.POTTED_OLIVE_SAPLING.get());
 
-    /*
+
     tag(BlockTags.WALLS)
             .add(ModBlocks.CALCITE_BRICK_WALL.get())
             .add(ModBlocks.TUFF_TILE_WALL.get());
 
 
-     */
+
   }
 
   @Override

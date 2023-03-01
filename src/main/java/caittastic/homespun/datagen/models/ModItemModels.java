@@ -82,7 +82,7 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingInventoryModel(ModBlocks.TUFF_TILE_WALL);
 
     /*     industry     */
-
+    registerWithExistingParent(ModBlocks.CRUSHING_TUB);
   }
 
   //------------------------------------- methods -------------------------------------//

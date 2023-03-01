@@ -4,12 +4,11 @@ import caittastic.homespun.blockentity.BlockEntities;
 import caittastic.homespun.blockentity.CrushingTubBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,13 +16,14 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -96,24 +96,40 @@ public class CrushingTubBlock extends BaseEntityBlock{
   }
 
   @Override
-  public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand hand, BlockHitResult pHit){
-    BlockEntity blockentity = pLevel.getBlockEntity(pos);
-    if(blockentity instanceof CrushingTubBE entity){
+  public InteractionResult use(BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult){
+    if(!level.isClientSide){
+      BlockEntity blockentity = level.getBlockEntity(pos);
       ItemStack stackInHand = player.getItemInHand(hand);
-      //if the inventory has a stack currently, put move stack into players inventory then return success
-      //shift right click should empty fluid in the inventory
-      //using with a bucket should fill the bucket with fluid in fluid tank
+      if(blockentity instanceof CrushingTubBE entity){
+        FluidActionResult fluidResult = FluidUtil.tryEmptyContainerAndStow(
+                stackInHand,
+                entity.getFluidTank(),
+                new InvWrapper(player.getInventory()),
+                1000,
+                player,
+                true);
+        if(fluidResult.isSuccess())
+          player.setItemInHand(hand, fluidResult.getResult());
 
+        fluidResult = FluidUtil.tryFillContainerAndStow(
+                stackInHand,
+                entity.getFluidTank(),
+                new InvWrapper(player.getInventory()),
+                1000,
+                player,
+                true);
+        if(fluidResult.isSuccess()){
+          player.setItemInHand(hand, fluidResult.getResult());
+        }
 
-      //this checks if an itemstack is in a recipe, when crushing tub recipes are implemented do this
-      //Optional<CampfireCookingRecipe> optional = campfireblockentity.getCookableRecipe(itemstack);
-      if(!pLevel.isClientSide && entity.placeItem(player, player.getAbilities().instabuild ? stackInHand.copy() : stackInHand)){
-        pLevel.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ARMOR_EQUIP_LEATHER, SoundSource.NEUTRAL, 1.0F, 1.0F);
-        return InteractionResult.SUCCESS;
+        if(entity.tryPlaceOrTakeOrBucket(player, player.getAbilities().instabuild ? stackInHand.copy() : stackInHand)){
+          return InteractionResult.SUCCESS;
+        }
+
       }
-      return InteractionResult.CONSUME;
     }
-    return InteractionResult.PASS;
+    return InteractionResult.sidedSuccess(level.isClientSide);
+
   }
 
   @Nullable
@@ -125,11 +141,5 @@ public class CrushingTubBlock extends BaseEntityBlock{
   @Override
   public RenderShape getRenderShape(BlockState pState){
     return RenderShape.MODEL;
-  }
-
-  @Nullable
-  @Override
-  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entityType){
-    return createTickerHelper(entityType, BlockEntities.CRUSHING_TUB.get(), CrushingTubBE::tick);
   }
 }

@@ -85,7 +85,7 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.TUFF_TILE_STAIRS);
     simpleDropSelf(ModBlocks.TUFF_TILE_WALL);
     /*     industry     */
-    simpleDropSelf(ModBlocks.CRUSHING_TUB);
+    //simpleDropSelf(ModBlocks.CRUSHING_TUB);
   }
 
   //------------------------------------- methods -------------------------------------//

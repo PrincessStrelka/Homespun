@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/cube_all",
 	"textures": {
 		"particle": "homespun:block/crushing_tub_bottom",
 		"0": "homespun:block/crushing_tub_bottom",

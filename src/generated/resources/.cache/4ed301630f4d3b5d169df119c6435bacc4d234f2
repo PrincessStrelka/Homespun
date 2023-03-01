@@ -1,4 +1,4 @@
-// 1.19.2	2023-02-11T17:03:49.5609584	Rustic Tags
+// 1.19.2	2023-03-01T19:33:48.8911528	Rustic Tags
 1e9435b731b98acee240d86b6af2838c2a8085af data/homespun/tags/blocks/ironwood_logs.json
 1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/blocks/ironwood_wood.json
 09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/blocks/olive_logs.json
@@ -12,6 +12,7 @@ c15e6a374ce2e63654289ace75c4a732336000e5 data/minecraft/tags/blocks/flower_pots.
 96302aea13b430dc42cf0511b08069069208d999 data/minecraft/tags/blocks/mineable/pickaxe.json
 d212a31d00a09f548fe68170a69790cecf93e94f data/minecraft/tags/blocks/planks.json
 0f762b9237c2f3d711fabeb6437ee163ca83b55b data/minecraft/tags/blocks/saplings.json
+de31d6251c56d6b7c42e5eb19e7e8d6967d5e4f3 data/minecraft/tags/blocks/walls.json
 be55ba27ecb4e7dbb541b9d9504634e9e5df74d1 data/minecraft/tags/blocks/wooden_buttons.json
 c9a47cf192ef025a3bf75944c6fe84180f65f1fe data/minecraft/tags/blocks/wooden_doors.json
 58d3973ee555ec1b930eead892fb9e75020ed32b data/minecraft/tags/blocks/wooden_fences.json

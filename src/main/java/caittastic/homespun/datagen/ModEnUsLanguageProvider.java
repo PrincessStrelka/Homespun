@@ -64,13 +64,13 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CALCITE_BRICKS.get(), "Calcite Bricks");
     add(ModBlocks.CALCITE_BRICK_STAIRS.get(), "Calcite Brick Stairs");
     add(ModBlocks.CALCITE_BRICK_SLAB.get(), "Calcite Brick Slab");
-    //add(ModBlocks.CALCITE_BRICK_WALL.get(), "Calcite Brick Wall");
+    add(ModBlocks.CALCITE_BRICK_WALL.get(), "Calcite Brick Wall");
     add(ModBlocks.TUFF_TILES.get(), "Tuff Tiles");
     add(ModBlocks.TUFF_TILE_STAIRS.get(), "Tuff Tile Stairs");
     add(ModBlocks.TUFF_TILE_SLAB.get(), "Tuff Tile Slab");
-    //add(ModBlocks.TUFF_TILE_WALL.get(), "Tuff Tile Wall");
+    add(ModBlocks.TUFF_TILE_WALL.get(), "Tuff Tile Wall");
     /*     industry     */
-    //add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
+    add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
     //------------------------------------- creative mode tabs -------------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
     add("itemGroup." + ModTabRegistry.DECORATION.getRecipeFolderName(), "Homespun Decoration");

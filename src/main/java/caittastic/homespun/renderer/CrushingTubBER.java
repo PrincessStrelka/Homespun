@@ -56,13 +56,12 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     poseStack.pushPose();
     rand.setSeed((long)entity.getBlockPos().getX() * entity.getBlockPos().getZ() * entity.getBlockPos().getY());
     int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
-    float itemScaleFactor = 1;
+    float itemScaleFactor = 0.53f;
 
     //initialises the start of where the stacks should be rendered from
     poseStack.translate(0.5f, startHeight + pixHeight, 0.5f);
     poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
     poseStack.scale(itemScaleFactor, itemScaleFactor, itemScaleFactor);
-
 
     //for every item in the stack to be rendered, move up one pixel and render item
     for(int i = 0; i < entity.getInputRenderStackSize(); i++){
@@ -84,6 +83,10 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     FluidStack fluidStack = entity.getStoredFluidStack();
     Fluid fluid = fluidStack.getFluid();
 
+    //skip over fluid rendering if the fluidstack is empty
+    if(fluidStack.isEmpty())
+      return;
+
     //fluid brightness info
     int fluidBrightness = Math.max(lightLevel, fluidStack.getFluid().getFluidType().getLightLevel(fluidStack));
     int l2 = fluidBrightness >> 0x10 & 0xFFFF;
@@ -104,7 +107,7 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     //fluid render info
     Matrix4f lastPose = poseStack.last().pose();
     Matrix3f matrix = poseStack.last().normal();
-    float fluidY = 0.0001f + pixHeight * 8;
+    float fluidY = 0.0001f + pixHeight * 2 + ((pixHeight * 6) * ((float)fluidStack.getAmount() / (float)entity.getFluidCapacity()));
     float fluidStartDrawPixel = pixHeight * 2;
     float fluidEndDrawPixel = pixHeight * 14;
     float fluidSpriteU0 = stillFluidSprite.getU0() + (stillFluidSprite.getU1() - stillFluidSprite.getU0()) / 8;
@@ -119,8 +122,6 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
     //north-east
     vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
-
-
   }
 
   private int getLightLevel(Level level, BlockPos pos){
