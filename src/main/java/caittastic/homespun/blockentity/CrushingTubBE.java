@@ -1,10 +1,14 @@
 package caittastic.homespun.blockentity;
 
 import caittastic.homespun.item.ModItems;
-import caittastic.homespun.networking.ItemstackSyncS2CPacket;
+import caittastic.homespun.networking.FluidStackSyncS2CPacket;
+import caittastic.homespun.networking.ItemStackSyncS2CPacket;
 import caittastic.homespun.networking.ModPackets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -29,26 +33,30 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class CrushingTubBE extends BlockEntity{
-  int CRAFT_SLOT = 0;
   private final ItemStackHandler itemHandler = new ItemStackHandler(1){
     @Override
     protected void onContentsChanged(int slot){
       setChanged();
       if(!level.isClientSide){
-        ModPackets.sendToClients(new ItemstackSyncS2CPacket(this, worldPosition));
+        ModPackets.sendToClients(new ItemStackSyncS2CPacket(this, worldPosition));
       }
     }
   };
   private final FluidTank FLUID_TANK = new FluidTank(4000){
     @Override
     protected void onContentsChanged(){
-      super.onContentsChanged();
+      if(!level.isClientSide){
+        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
+      }
+      setChanged();
     }
   };
+  int CRAFT_SLOT = 0;
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
@@ -118,9 +126,10 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public FluidStack getStoredFluidStack(){
-    //return FLUID_TANK.getFluid();
-    return new FluidStack(Fluids.WATER, 2000);
+    return FLUID_TANK.getFluid();
+    //return new FluidStack(Fluids.WATER, 2000);
   }
+
   public int getFluidCap(){
     return FLUID_TANK.getTankCapacity(0);
   }
@@ -173,8 +182,8 @@ public class CrushingTubBE extends BlockEntity{
 
     if(
             itemHandler.getStackInSlot(CRAFT_SLOT).getItem() == craftItem &&
-            itemHandler.getStackInSlot(CRAFT_SLOT).getCount() >= craftItemCount &&
-            FLUID_TANK.getSpace() >= resultFluidCount
+                    itemHandler.getStackInSlot(CRAFT_SLOT).getCount() >= craftItemCount &&
+                    FLUID_TANK.getSpace() >= resultFluidCount
     ){
       this.level.playSound(null, this.getBlockPos(), SoundEvents.SLIME_BLOCK_FALL, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.1F + 0.9F);
       this.itemHandler.extractItem(CRAFT_SLOT, craftItemCount, false);

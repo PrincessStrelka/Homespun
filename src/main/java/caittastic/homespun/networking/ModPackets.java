@@ -23,11 +23,18 @@ public class ModPackets{
             .simpleChannel();
     INSTANCE = net;
 
-    net.messageBuilder(ItemstackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-            .decoder(ItemstackSyncS2CPacket::new)
-            .encoder(ItemstackSyncS2CPacket::toBytes)
-            .consumerMainThread(ItemstackSyncS2CPacket::handle)
+    net.messageBuilder(ItemStackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+            .decoder(ItemStackSyncS2CPacket::new)
+            .encoder(ItemStackSyncS2CPacket::toBytes)
+            .consumerMainThread(ItemStackSyncS2CPacket::handle)
             .add();
+    
+    net.messageBuilder(FluidStackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+            .decoder(FluidStackSyncS2CPacket::new)
+            .encoder(FluidStackSyncS2CPacket::toBytes)
+            .consumerMainThread(FluidStackSyncS2CPacket::handle)
+            .add();
+    
   }
   public static <MSG> void sendToServer(MSG message){
     INSTANCE.sendToServer(message);

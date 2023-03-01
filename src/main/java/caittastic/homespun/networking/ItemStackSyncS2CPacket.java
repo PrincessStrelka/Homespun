@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ItemstackSyncS2CPacket{
+public class ItemStackSyncS2CPacket{
   private final ItemStackHandler itemStackHandler;
   private final BlockPos pos;
 
-  public ItemstackSyncS2CPacket(ItemStackHandler itemStackHandler, BlockPos pos){
+  public ItemStackSyncS2CPacket(ItemStackHandler itemStackHandler, BlockPos pos){
     this.itemStackHandler = itemStackHandler;
     this.pos = pos;
   }
 
-  public ItemstackSyncS2CPacket(FriendlyByteBuf buf){
+  public ItemStackSyncS2CPacket(FriendlyByteBuf buf){
     List<ItemStack> collection = buf.readCollection(ArrayList::new, FriendlyByteBuf::readItem);
     itemStackHandler = new ItemStackHandler(collection.size());
     for (int i =0; i< collection.size(); i++){
