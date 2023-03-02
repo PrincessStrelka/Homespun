@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -33,9 +34,12 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static caittastic.homespun.blockentity.CrushingTubBE.CRAFT_SLOT;
 
 public class CrushingTubBlock extends BaseEntityBlock{
   public CrushingTubBlock(Properties pProperties){
@@ -96,37 +100,29 @@ public class CrushingTubBlock extends BaseEntityBlock{
   @Override
   public InteractionResult use(BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult){
     if(!level.isClientSide){
-      BlockEntity blockentity = level.getBlockEntity(pos);
+      FluidActionResult fluidResult;
       ItemStack stackInHand = player.getItemInHand(hand);
       Item itemInHand = stackInHand.getItem();
-      FluidActionResult fluidResult;
-
-      if(blockentity instanceof CrushingTubBE entity){
+      if(level.getBlockEntity(pos) instanceof CrushingTubBE entity){
         FluidTank fluidTank = entity.getFluidTank();
+        IItemHandler itemHandler = entity.getItemHandler();
+        ItemStack internalStack = itemHandler.getStackInSlot(CRAFT_SLOT);
+        Item internalItem = internalStack.getItem();
+
+
         //try to bucket in to/out of
-        fluidResult = FluidUtil.tryEmptyContainerAndStow(
-                stackInHand,
-                entity.getFluidTank(),
-                new InvWrapper(player.getInventory()),
-                1000,
-                player,
-                true);
+        fluidResult = FluidUtil.tryEmptyContainerAndStow(stackInHand, fluidTank, new InvWrapper(player.getInventory()), 1000, player, true);
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
-        fluidResult = FluidUtil.tryFillContainerAndStow(
-                stackInHand,
-                entity.getFluidTank(),
-                new InvWrapper(player.getInventory()),
-                1000,
-                player,
-                true);
+        fluidResult = FluidUtil.tryFillContainerAndStow(stackInHand, fluidTank, new InvWrapper(player.getInventory()), 1000, player, true);
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
         if(!stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
           //try extract fluid with bottle
           //TODO: make this into recipe
+
           if(itemInHand.equals(Items.GLASS_BOTTLE)){
             if(entity.getStoredFluidStack().getFluid() == Fluids.WATER){
               fluidTank.drain(250, IFluidHandler.FluidAction.EXECUTE);
@@ -160,11 +156,28 @@ public class CrushingTubBlock extends BaseEntityBlock{
 
 
             //try to place items in/take items
+            int internalMaxStackSize = internalStack.getMaxStackSize();
 
-            if(entity.tryToPlaceOrTake(player, player.isCreative() ? stackInHand.copy() : stackInHand)){
-              return InteractionResult.SUCCESS;
+            //if we should be able to place into the container
+            if(internalStack.isEmpty() || ((internalItem == itemInHand) && (internalStack.getCount() < internalMaxStackSize))){
+              //find the smallest between the amount of items in hand and the remaining items untill stack stored is full
+              int amountToInsert = Math.min(stackInHand.getCount(), internalMaxStackSize - internalStack.getCount());
+              //insert amount to insert of held item into container
+              itemHandler.insertItem(CRAFT_SLOT, new ItemStack(itemInHand, amountToInsert), false);
+              //extract amount to insert from held item
+              if(!player.isCreative())
+                stackInHand.shrink(amountToInsert);
+              level.playSound(player, player.blockPosition(), SoundEvents.ARMOR_EQUIP_LEATHER, SoundSource.PLAYERS, 1.0F, 1.0F);
+              level.gameEvent(GameEvent.BLOCK_CHANGE, entity.getBlockPos(), GameEvent.Context.of(player, entity.getBlockState()));
+              entity.setChanged();
+              entity.getLevel().sendBlockUpdated(entity.getBlockPos(), entity.getBlockState(), entity.getBlockState(), 3);
             }
-
+            else{
+              //drop the internal stack
+              if(!player.isCreative())
+                popResourceFromFace(player.getLevel(), entity.getBlockPos(), player.getDirection().getOpposite(), internalStack);
+              itemHandler.extractItem(CRAFT_SLOT, internalStack.getCount(), false);
+            }
           }
         }
       }

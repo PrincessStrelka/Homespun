@@ -61,7 +61,7 @@ public class CrushingTubBE extends BlockEntity{
       setChanged();
     }
   };
-  int CRAFT_SLOT = 0;
+  public static final int CRAFT_SLOT = 0;
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
@@ -142,56 +142,6 @@ public class CrushingTubBE extends BlockEntity{
   }
 
 
-  public boolean tryToPlaceOrTake(Player player, ItemStack stackInHand){
-    ItemStack internalStack = itemHandler.getStackInSlot(CRAFT_SLOT);
-    Item internalItem = internalStack.getItem();
-    Item itemInHand = stackInHand.getItem();
-
-    //using with a bucket should fill the bucket with fluid in fluid tank
-    AtomicReference<ItemStack> result = new AtomicReference<>(stackInHand);
-    stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
-      FluidUtil.tryFluidTransfer(handler, this.FLUID_TANK, 1000, true);
-
-      //for buckets, this will be the empty bucket, for others, this should be the same as stack
-      result.set(handler.getContainer());
-    });
-    stackInHand = result.get();
-
-    if(stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
-      return true;
-    }
-
-
-    //shift right click should empty fluid in the inventory
-
-    //if the inventory has items, and its not a stack we could put on to
-    if(!internalStack.isEmpty() && internalItem != itemInHand){
-      //drop the internal stack
-      Block.popResourceFromFace(player.getLevel(), this.getBlockPos(), player.getDirection().getOpposite(), internalStack);
-      this.itemHandler.extractItem(CRAFT_SLOT, internalStack.getCount(), false);
-      return true;
-    }
-
-
-    if(internalStack.isEmpty() || (internalItem == itemInHand)){
-      if(internalStack.getCount() + stackInHand.getCount() <= internalStack.getMaxStackSize()){
-        itemHandler.insertItem(CRAFT_SLOT, stackInHand, false);
-        player.getItemInHand(InteractionHand.MAIN_HAND).setCount(0);
-      }
-      else{
-        stackInHand.setCount(internalStack.getMaxStackSize() - internalStack.getCount());
-        player.getItemInHand(InteractionHand.MAIN_HAND).setCount(player.getItemInHand(InteractionHand.MAIN_HAND).getCount() - (internalStack.getMaxStackSize() - internalStack.getCount()));
-        itemHandler.insertItem(CRAFT_SLOT, stackInHand, false);
-      }
-      this.level.playSound(player, player.blockPosition(), SoundEvents.ARMOR_EQUIP_LEATHER, SoundSource.PLAYERS, 1.0F, 1.0F);
-      this.level.gameEvent(GameEvent.BLOCK_CHANGE, this.getBlockPos(), GameEvent.Context.of(player, this.getBlockState()));
-      this.setChanged();
-      this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
-      return true;
-    }
-    return false;
-  }
-
   void dropItems(BlockPos dropPos, ItemStack stack){
     Level level = this.level;
     float midItemHeight = EntityType.ITEM.getHeight() / 2.0F;
@@ -206,6 +156,7 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public void doCraft(){
+    //TODO: make this recipe based
     Random rand = new Random();
     Item craftItem = ModItems.IRONBERRIES.get();
     int craftItemCount = 1;
@@ -229,5 +180,9 @@ public class CrushingTubBE extends BlockEntity{
 
   public FluidTank getFluidTank(){
     return FLUID_TANK;
+  }
+
+  public IItemHandler getItemHandler(){
+    return itemHandler;
   }
 }
