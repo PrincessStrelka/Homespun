@@ -12,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
@@ -30,8 +29,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -97,70 +98,89 @@ public class CrushingTubBlock extends BaseEntityBlock{
     if(!level.isClientSide){
       BlockEntity blockentity = level.getBlockEntity(pos);
       ItemStack stackInHand = player.getItemInHand(hand);
-      if(blockentity instanceof CrushingTubBE entity){
-        FluidActionResult fluidResult;
+      Item itemInHand = stackInHand.getItem();
+      FluidActionResult fluidResult;
 
+      if(blockentity instanceof CrushingTubBE entity){
+        FluidTank fluidTank = entity.getFluidTank();
         //try to bucket in to/out of
-        fluidResult = tryInsertFluidFromItemToEntity(player, stackInHand, entity);
+        fluidResult = FluidUtil.tryEmptyContainerAndStow(
+                stackInHand,
+                entity.getFluidTank(),
+                new InvWrapper(player.getInventory()),
+                1000,
+                player,
+                true);
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
-        fluidResult = tryTakeFluidFromEntityToItem(player, stackInHand, entity);
+        fluidResult = FluidUtil.tryFillContainerAndStow(
+                stackInHand,
+                entity.getFluidTank(),
+                new InvWrapper(player.getInventory()),
+                1000,
+                player,
+                true);
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
         if(!stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
-          //try insert fluid with bottle
+          //try extract fluid with bottle
           //TODO: make this into recipe
-          if(stackInHand.getItem() == Items.GLASS_BOTTLE){
+          if(itemInHand.equals(Items.GLASS_BOTTLE)){
             if(entity.getStoredFluidStack().getFluid() == Fluids.WATER){
-              entity.getFluidTank().drain(250, IFluidHandler.FluidAction.EXECUTE);
+              fluidTank.drain(250, IFluidHandler.FluidAction.EXECUTE);
               level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
-              ItemUtils.createFilledResult(stackInHand, player, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+              removeStackAndReplaceWith(player, hand, stackInHand, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER));
             }
             if(entity.getStoredFluidStack().getFluid() == Fluids.LAVA){
-              entity.getFluidTank().drain(250, IFluidHandler.FluidAction.EXECUTE);
+              fluidTank.drain(250, IFluidHandler.FluidAction.EXECUTE);
               level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
-              ItemUtils.createFilledResult(stackInHand, player, Items.HONEY_BOTTLE.getDefaultInstance());
+              removeStackAndReplaceWith(player, hand, stackInHand, Items.HONEY_BOTTLE.getDefaultInstance());
             }
           }
-          //try extract fluid with bottle
+          else{
+            //try insert fluid with bottle
+            if(itemInHand.equals(Items.POTION)){
+              int leftovers = fluidTank.fill(new FluidStack(Fluids.WATER, 250), IFluidHandler.FluidAction.SIMULATE);
+              if(leftovers > 0){
+                fluidTank.fill(new FluidStack(Fluids.WATER, 250), IFluidHandler.FluidAction.EXECUTE);
+                level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                removeStackAndReplaceWith(player, hand, stackInHand, Items.GLASS_BOTTLE.getDefaultInstance());
+              }
+            }
+            if(itemInHand.equals(Items.HONEY_BOTTLE)){
+              int leftovers = fluidTank.fill(new FluidStack(Fluids.LAVA, 250), IFluidHandler.FluidAction.SIMULATE);
+              if(leftovers > 0){
+                fluidTank.fill(new FluidStack(Fluids.LAVA, 250), IFluidHandler.FluidAction.EXECUTE);
+                level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                removeStackAndReplaceWith(player, hand, stackInHand, Items.GLASS_BOTTLE.getDefaultInstance());
+              }
+            }
+
+
+            //try to place items in/take items
+
+            if(entity.tryToPlaceOrTake(player, player.isCreative() ? stackInHand.copy() : stackInHand)){
+              return InteractionResult.SUCCESS;
+            }
+
+          }
         }
-
-
-        //try to place items in/take items
-        /*
-        if(entity.tryPlaceOrTakeOrBucket(player, player.getAbilities().instabuild ? stackInHand.copy() : stackInHand)){
-          return InteractionResult.SUCCESS;
-        }
-         */
-
       }
     }
     return InteractionResult.sidedSuccess(level.isClientSide);
 
   }
 
-  @NotNull
-  private FluidActionResult tryTakeFluidFromEntityToItem(Player player, ItemStack stackInHand, CrushingTubBE entity){
-    return FluidUtil.tryFillContainerAndStow(
-            stackInHand,
-            entity.getFluidTank(),
-            new InvWrapper(player.getInventory()),
-            1000,
-            player,
-            true);
-  }
-
-  @NotNull
-  private FluidActionResult tryInsertFluidFromItemToEntity(Player player, ItemStack stackInHand, CrushingTubBE entity){
-    return FluidUtil.tryEmptyContainerAndStow(
-            stackInHand,
-            entity.getFluidTank(),
-            new InvWrapper(player.getInventory()),
-            1000,
-            player,
-            true);
+  private void removeStackAndReplaceWith(Player player, InteractionHand hand, ItemStack stackToRemove, ItemStack stackToGive){
+    if(!player.isCreative()){
+      stackToRemove.shrink(1);
+      if(player.getItemInHand(hand).isEmpty())
+        player.setItemInHand(hand, stackToGive);
+      else if(!player.getInventory().add(stackToGive))
+        player.drop(stackToGive, false);
+    }
   }
 
   @Nullable

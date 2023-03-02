@@ -142,7 +142,7 @@ public class CrushingTubBE extends BlockEntity{
   }
 
 
-  public boolean tryPlaceOrTakeOrBucket(Player player, ItemStack stackInHand){
+  public boolean tryToPlaceOrTake(Player player, ItemStack stackInHand){
     ItemStack internalStack = itemHandler.getStackInSlot(CRAFT_SLOT);
     Item internalItem = internalStack.getItem();
     Item itemInHand = stackInHand.getItem();
