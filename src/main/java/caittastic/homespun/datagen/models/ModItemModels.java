@@ -30,6 +30,10 @@ public class ModItemModels extends ItemModelProvider{
     registerFlatItemModel(ModItems.IRONBERRIES);
     registerFlatItemModel(ModItems.OLIVES);
 
+
+    /*     fluids     */
+    registerFlatItemModel(ModItems.IRONBERRY_JUICE_BOTTLE);
+    registerFlatItemModel(ModItems.IRONBERRY_JUICE_BUCKET);
     //------------------------------------- blocks -------------------------------------//
     /*     ironwood     */
     registerFlatBlockWithBlockTexture(ModBlocks.IRONWOOD_SAPLING);
@@ -84,6 +88,7 @@ public class ModItemModels extends ItemModelProvider{
 
     /*     industry     */
     registerWithExistingParent(ModBlocks.CRUSHING_TUB);
+    registerWithExistingParent(ModBlocks.EVAPORATING_BASIN);
   }
 
   //------------------------------------- methods -------------------------------------//

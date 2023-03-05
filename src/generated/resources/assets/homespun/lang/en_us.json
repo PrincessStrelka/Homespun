@@ -43,13 +43,17 @@
   "block.homespun.tuff_tile_stairs": "Tuff Tile Stairs",
   "block.homespun.tuff_tile_wall": "Tuff Tile Wall",
   "block.homespun.tuff_tiles": "Tuff Tiles",
+  "fluid_type.homespun.ironberry_juice": "Ironberry Juice",
   "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",
+  "item.homespun.ironbery_juice_bottle": "Ironberry Juice Bottle",
+  "item.homespun.ironbery_juice_bucket": "Ironberry Juice Bucket",
   "item.homespun.olives": "Olives",
   "item.homespun.salt": "Salt Rocks",
   "item.homespun.tiny_iron_dust": "Tiny Pile Of Iron Dust",
   "itemGroup.agriculture_tab": "Homespun Agriculture",
   "itemGroup.decoration_tab": "Homespun Decoration",
   "itemGroup.production_tab": "Homespun Industry",
-  "tooltip.homespun.crushing_tub": "§8§oPut stuff in and jump on it"
+  "jei.homespun.crushing_tub_recipe": "Tub Crushing",
+  "tooltip.homespun.crushing_tub": "§8§oPut stuff in then jump on it"
 }

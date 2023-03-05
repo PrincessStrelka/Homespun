@@ -1,11 +1,14 @@
 package caittastic.homespun.item;
 
 import caittastic.homespun.Homespun;
+import caittastic.homespun.fluid.ModFluids;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -55,6 +58,11 @@ public class ModItems{
   public static final RegistryObject<Item> TINY_IRON_DUST = ITEMS.register("tiny_iron_dust", () -> new Item(new Item.Properties().tab(INDUSTRY)));
   public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(INDUSTRY)));
   public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(INDUSTRY)));
+  /*     industry     */
+  public static final RegistryObject<Item> IRONBERRY_JUICE_BOTTLE = ITEMS.register("ironbery_juice_bottle", () -> new Item(new Item.Properties().tab(AGRICULTURE).stacksTo(16)));
+  public static final RegistryObject<Item> IRONBERRY_JUICE_BUCKET = ITEMS.register("ironbery_juice_bucket",
+          () -> new BucketItem(ModFluids.IRONBERRY_JUICE, new Item.Properties().tab(AGRICULTURE).stacksTo(1).craftRemainder(Items.BUCKET)));
+
 
     /*
     //tomato

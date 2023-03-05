@@ -57,11 +57,9 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     poseStack.pushPose();
     rand.setSeed((long)entity.getBlockPos().getX() * entity.getBlockPos().getZ() * entity.getBlockPos().getY());
     int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
-    //float itemScaleFactor = 0.53f;
     float itemScaleFactor = 0.53f;
 
     //initialises the start of where the stacks should be rendered from
-
     //if the model is a block, do something different to a flat item model
     if(stackToRender.getItem() instanceof BlockItem){
       poseStack.translate(0.5f, pixHeight*2, 0.5f);
@@ -92,7 +90,7 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
         }
       }
       else{
-        if(i % 2 == 0){
+        if(i % ((int)Math.ceil(stackToRender.getMaxStackSize()/ 32f)) == 0){
           poseStack.translate(0, 0, -pixHeight * itemScaleFactor);
           poseStack.mulPose(Vector3f.ZN.rotationDegrees((float)(rand.nextFloat() * 360.0)));
           itemRenderer.renderStatic(

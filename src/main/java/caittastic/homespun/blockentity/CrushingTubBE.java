@@ -39,6 +39,7 @@ import java.util.Random;
 
 public class CrushingTubBE extends BlockEntity{
   public static final int CRAFT_SLOT = 0;
+  private static final int CAPACITY = 4000;
   private final ItemStackHandler itemHandler = new ItemStackHandler(1){
     @Override
     protected void onContentsChanged(int slot){
@@ -48,20 +49,30 @@ public class CrushingTubBE extends BlockEntity{
       }
     }
   };
-  private final FluidTank FLUID_TANK = new FluidTank(4000){
-    @Override
-    protected void onContentsChanged(){
-      if(!level.isClientSide){
-        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
+  private final FluidTank FLUID_TANK;
+
+  {
+
+    FLUID_TANK = new FluidTank(CAPACITY){
+      @Override
+      protected void onContentsChanged(){
+        if(!level.isClientSide){
+          ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
+        }
+        setChanged();
       }
-      setChanged();
-    }
-  };
+    };
+  }
+
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
   public CrushingTubBE(BlockPos pos, BlockState state){
     super(ModBlockEntities.CRUSHING_TUB.get(), pos, state);
+  }
+
+  public static int getCapacity(){
+    return CAPACITY;
   }
 
   public void setFluid(FluidStack stack){
@@ -120,7 +131,6 @@ public class CrushingTubBE extends BlockEntity{
 
   public FluidStack getStoredFluidStack(){
     return FLUID_TANK.getFluid();
-    //return new FluidStack(Fluids.WATER, 2000);
   }
 
   @Override

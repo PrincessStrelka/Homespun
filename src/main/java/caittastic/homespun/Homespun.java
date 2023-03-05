@@ -14,6 +14,8 @@ GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, new ResourceLocat
 
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.blockentity.ModBlockEntities;
+import caittastic.homespun.fluid.ModFluidTypes;
+import caittastic.homespun.fluid.ModFluids;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.ModRecipes;
@@ -39,7 +41,11 @@ public class Homespun{
     ModItems.ITEMS.register(bus);
     ModBlocks.BLOCKS.register(bus);
     ModBlockEntities.BLOCK_ENTITIES.register(bus);
+
     ModRecipes.SERIALIZERS.register(bus);
+
+    ModFluids.FLUIDS.register(bus);
+    ModFluidTypes.FLUID_TYPES.register(bus);
 
     ModConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
     ModPlacedFeatures.PLACED_FEATURES.register(bus);

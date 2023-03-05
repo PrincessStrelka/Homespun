@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "homespun",
+  "key": {
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "s": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "w": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "w w",
+    "i i",
+    "sss"
+  ],
+  "result": {
+    "item": "homespun:crushing_tub"
+  }
+}

@@ -4,10 +4,10 @@
     "item": "minecraft:glass_bottle"
   },
   "filled_item": {
-    "item": "minecraft:honey_bottle"
+    "item": "homepun:ironberry_juice_bottle"
   },
   "fluid_stack": {
-    "fluid": "minecraft:lava",
+    "fluid": "homepun:ironberry_juice",
     "amount": 250
   }
 }

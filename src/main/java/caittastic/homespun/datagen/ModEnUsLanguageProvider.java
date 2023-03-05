@@ -3,6 +3,7 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.Homespun;
 import caittastic.homespun.ModTabRegistry;
 import caittastic.homespun.block.ModBlocks;
+import caittastic.homespun.fluid.ModFluids;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -22,6 +23,9 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     crops     */
     add(ModItems.IRONBERRIES.get(), "Ironberries");
     add(ModItems.OLIVES.get(), "Olives");
+    /*     fluids     */
+    add(ModItems.IRONBERRY_JUICE_BOTTLE.get(), "Ironberry Juice Bottle");
+    add(ModItems.IRONBERRY_JUICE_BUCKET.get(), "Ironberry Juice Bucket");
     //------------------------------------- blocks -------------------------------------//
     /*     ironwood     */
     add(ModBlocks.IRONWOOD_SAPLING.get(), "Ironwood Sapling");
@@ -73,12 +77,18 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     industry     */
     add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
 
-    //------------------------------------- creative mode tabs -------------------------------------//
+    //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
     add("itemGroup." + ModTabRegistry.DECORATION.getRecipeFolderName(), "Homespun Decoration");
     add("itemGroup." + ModTabRegistry.INDUSTRY.getRecipeFolderName(), "Homespun Industry");
 
-    //------------------------------------- tooltips -------------------------------------//
+    //------------------------------------ tooltips ------------------------------------//
     add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");
+
+    //------------------------------------- fluids -------------------------------------//
+    add("fluid_type.homespun.ironberry_juice", "Ironberry Juice");
+
+    //-------------------------------------- jei --------------------------------------//
+    add("jei.homespun.crushing_tub_recipe", "Tub Crushing");
   }
 }

@@ -8,6 +8,7 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -30,7 +31,6 @@ public class ModRecipes extends RecipeProvider{
   @Override
   protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer){
     /*     industry     */
-    ShapelessRecipeBuilder.shapeless(ModItems.TINY_IRON_DUST.get()).requires(ModItems.IRONBERRIES.get()).unlockedBy("has_ironberries", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.IRONBERRIES.get())).save(consumer);
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.TINY_IRON_DUST.get()),
                     Items.IRON_NUGGET, 1.0f, 100)
             .unlockedBy("has_ironberries", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.IRONBERRIES.get()).build()))
@@ -39,6 +39,16 @@ public class ModRecipes extends RecipeProvider{
                     Items.IRON_NUGGET, 1.0f, 50)
             .unlockedBy("has_ironberries", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.IRONBERRIES.get()).build()))
             .save(consumer, "tiny_iron_dust_blasting");
+    ShapedRecipeBuilder.shaped(ModBlocks.CRUSHING_TUB.get(), 1)
+            .pattern("w w")
+            .pattern("i i")
+            .pattern("sss")
+            .define('w', ItemTags.PLANKS)
+            .define('i', Tags.Items.INGOTS_IRON)
+            .define('s', ItemTags.WOODEN_SLABS)
+            .group(Homespun.MOD_ID)
+            .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+            .save(consumer);
 
     /*     IRONWOOD     */
     woodFromLogs(consumer, ModBlocks.IRONWOOD_WOOD.get(), ModBlocks.IRONWOOD_LOG.get());
@@ -88,7 +98,7 @@ public class ModRecipes extends RecipeProvider{
             ModBlocks.CALCITE_BRICKS,
             ModBlocks.CALCITE_BRICK_SLAB,
             ModBlocks.CALCITE_BRICK_STAIRS
-            //,ModBlocks.CALCITE_BRICK_WALL
+            ,ModBlocks.CALCITE_BRICK_WALL
     );
     //tuff
     registerBrickSet(consumer,
@@ -98,7 +108,7 @@ public class ModRecipes extends RecipeProvider{
             ModBlocks.TUFF_TILES,
             ModBlocks.TUFF_TILE_SLAB,
             ModBlocks.TUFF_TILE_STAIRS
-            //,ModBlocks.TUFF_TILE_WALL
+            ,ModBlocks.TUFF_TILE_WALL
     );
     //smooth stone pillar
     ShapedRecipeBuilder.shaped(ModBlocks.SMOOTH_STONE_PILLAR.get(), 3)
@@ -130,7 +140,7 @@ public class ModRecipes extends RecipeProvider{
           RegistryObject<Block> bricks,
           RegistryObject<Block> brickSlab,
           RegistryObject<Block> brickStairs
-          //,RegistryObject<Block> brickWall
+          ,RegistryObject<Block> brickWall
   ){
     ShapedRecipeBuilder.shaped(bricks.get(), 4)
             .pattern("xx")
@@ -168,8 +178,6 @@ public class ModRecipes extends RecipeProvider{
             .unlockedBy(criterionName, has(parent))
             .save(consumer, brickName + "_stairs_from_stonecutting");
     //walls
-    /*
-
     ShapedRecipeBuilder.shaped(brickWall.get())
             .pattern("xxx")
             .pattern("xxx")
@@ -181,8 +189,6 @@ public class ModRecipes extends RecipeProvider{
             .stonecutting(Ingredient.of(bricks.get()), brickWall.get())
             .unlockedBy(criterionName, has(parent))
             .save(consumer, brickName + "_wall_from_stonecutting");
-
-     */
   }
 
   private void chainRecipe(RegistryObject<Block> chain, TagKey<Item> nuggetTag, TagKey<Item> ingotTag, String criterionName, Item criterionItem, Consumer<FinishedRecipe> consumer){

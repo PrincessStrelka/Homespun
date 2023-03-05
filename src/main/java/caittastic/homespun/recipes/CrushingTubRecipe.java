@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -103,7 +104,7 @@ public class CrushingTubRecipe implements Recipe<SimpleContainerWithTank>{
     @Override
     public CrushingTubRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe){
       ItemStack inputItem = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "input_item"));
-      ItemStack outputItem = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output_item"));
+      ItemStack outputItem = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(pSerializedRecipe, "output_item"), true, false);
       FluidStack fluidStack = fluidStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "fluid_stack"));
 
       return new CrushingTubRecipe(pRecipeId, inputItem, fluidStack, outputItem);

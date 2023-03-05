@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/cube_all",
 	"textures": {
 		"0": "homespun:block/evaporating_tub_bottom",
 		"1": "homespun:block/evaporating_tub_side",

@@ -75,6 +75,8 @@ public class ModBlocks{
   public static final RegistryObject<Block> TUFF_TILE_WALL = registerBlockAndItem("tuff_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(TUFF_TILES.get())), ModTabRegistry.DECORATION);
   /*     industry     */
   public static final RegistryObject<Block> CRUSHING_TUB = registerBlockAndItem("crushing_tub", () -> new CrushingTubBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.INDUSTRY);
+  public static final RegistryObject<Block> EVAPORATING_BASIN = registerBlockAndItem("evaporating_basin", () -> new EvaporatingBasinBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)), ModTabRegistry.INDUSTRY);
+
   //CONDENSER = new BlockCondenser();
   //RETORT = new BlockRetort("retort");
   //CONDENSER_ADVANCED = new BlockCondenserAdvanced();

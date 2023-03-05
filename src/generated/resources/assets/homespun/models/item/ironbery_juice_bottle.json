@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "homespun:item/ironbery_juice_bottle"
+  }
+}
