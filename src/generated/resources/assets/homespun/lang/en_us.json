@@ -46,8 +46,10 @@
   "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",
   "item.homespun.olives": "Olives",
+  "item.homespun.salt": "Salt Rocks",
   "item.homespun.tiny_iron_dust": "Tiny Pile Of Iron Dust",
   "itemGroup.agriculture_tab": "Homespun Agriculture",
   "itemGroup.decoration_tab": "Homespun Decoration",
-  "itemGroup.production_tab": "Homespun Industry"
+  "itemGroup.production_tab": "Homespun Industry",
+  "tooltip.homespun.crushing_tub": "§8§oPut stuff in and jump on it"
 }

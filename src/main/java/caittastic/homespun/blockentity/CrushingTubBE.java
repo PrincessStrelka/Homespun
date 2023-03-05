@@ -1,9 +1,10 @@
 package caittastic.homespun.blockentity;
 
-import caittastic.homespun.item.ModItems;
 import caittastic.homespun.networking.FluidStackSyncS2CPacket;
 import caittastic.homespun.networking.ItemStackSyncS2CPacket;
 import caittastic.homespun.networking.ModPackets;
+import caittastic.homespun.recipes.CrushingTubRecipe;
+import caittastic.homespun.recipes.SimpleContainerWithTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,27 +12,18 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
@@ -39,8 +31,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CrushingTubBE extends BlockEntity{
   private final ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -66,7 +58,7 @@ public class CrushingTubBE extends BlockEntity{
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
   public CrushingTubBE(BlockPos pos, BlockState state){
-    super(BlockEntities.CRUSHING_TUB.get(), pos, state);
+    super(ModBlockEntities.CRUSHING_TUB.get(), pos, state);
   }
 
   public void setFluid(FluidStack stack){
@@ -156,24 +148,19 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public void doCraft(){
-    //TODO: make this recipe based
-    Random rand = new Random();
-    Item craftItem = ModItems.IRONBERRIES.get();
-    int craftItemCount = 1;
-    Item resultItem = ModItems.TINY_IRON_DUST.get();
-    int resultItemCount = 1;
-    Fluid resultFluid = Fluids.WATER;
-    int resultFluidCount = 250;
 
-    if(itemHandler.getStackInSlot(CRAFT_SLOT).getItem() == craftItem &&
-            itemHandler.getStackInSlot(CRAFT_SLOT).getCount() >= craftItemCount &&
-            (FLUID_TANK.getFluid().getFluid() == resultFluid || FLUID_TANK.getFluid().getFluid() == Fluids.EMPTY) &&
-            FLUID_TANK.getSpace() >= resultFluidCount
-    ){
-      this.level.playSound(null, this.getBlockPos(), SoundEvents.SLIME_BLOCK_FALL, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.1F + 0.9F);
-      this.itemHandler.extractItem(CRAFT_SLOT, craftItemCount, false);
-      dropItems(this.getBlockPos(), new ItemStack(resultItem, resultItemCount));
-      this.FLUID_TANK.fill(new FluidStack(resultFluid, resultFluidCount), IFluidHandler.FluidAction.EXECUTE);
+    //TODO: make this recipe based
+    Optional<CrushingTubRecipe> crushingRecipe = level.getRecipeManager().getRecipeFor(
+            CrushingTubRecipe.Type.INSTANCE,
+            new SimpleContainerWithTank(FLUID_TANK, itemHandler.getStackInSlot(CRAFT_SLOT)),
+            level);
+
+    if(crushingRecipe.isPresent()){
+      CrushingTubRecipe recipe = crushingRecipe.get();
+      this.level.playSound(null, this.getBlockPos(), SoundEvents.SLIME_BLOCK_FALL, SoundSource.BLOCKS, 0.5F, new Random().nextFloat() * 0.1F + 0.9F);
+      this.itemHandler.extractItem(CRAFT_SLOT, recipe.getInputItemStack().getCount(), false);
+      dropItems(this.getBlockPos(), recipe.getResultItem());
+      this.FLUID_TANK.fill(recipe.getResultFluidStack(), IFluidHandler.FluidAction.EXECUTE);
     }
   }
 

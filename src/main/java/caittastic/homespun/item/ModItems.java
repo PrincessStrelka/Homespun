@@ -18,7 +18,7 @@ import static caittastic.homespun.ModTabRegistry.INDUSTRY;
 
 public class ModItems{
   // Create a Deferred Register to hold Items which will all be registered under the MOD_ID
-  public static final DeferredRegister<Item> ITEM = DeferredRegister.create(ForgeRegistries.ITEMS, Homespun.MOD_ID);
+  public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Homespun.MOD_ID);
 
   //------------------------------------- food data -------------------------------------//
   public static final FoodProperties OLIVES_FOOD = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.4F)
@@ -39,20 +39,23 @@ public class ModItems{
 
   //------------------------------------- items -------------------------------------//
   /*     crops     */
-  public static final RegistryObject<Item> IRONBERRIES = ITEM.register("ironberries", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(IRONBERRIES_FOOD)){
+  public static final RegistryObject<Item> IRONBERRIES = ITEMS.register("ironberries", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(IRONBERRIES_FOOD)){
     @Override
     public int getUseDuration(@NotNull ItemStack i){
       return 16;
     }
   });
-  public static final RegistryObject<Item> TINY_IRON_DUST = ITEM.register("tiny_iron_dust", () -> new Item(new Item.Properties().tab(INDUSTRY)));
-  public static final RegistryObject<Item> OLIVES = ITEM.register("olives", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(OLIVES_FOOD)){
+  public static final RegistryObject<Item> OLIVES = ITEMS.register("olives", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(OLIVES_FOOD)){
     @Override
     public int getUseDuration(@NotNull ItemStack i){
       return 40;
     }
   });
-  public static final RegistryObject<Item> COPPER_NUGGET = ITEM.register("copper_nugget", () -> new Item(new Item.Properties().tab(INDUSTRY)));
+  /*     industry     */
+  public static final RegistryObject<Item> TINY_IRON_DUST = ITEMS.register("tiny_iron_dust", () -> new Item(new Item.Properties().tab(INDUSTRY)));
+  public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(INDUSTRY)));
+  public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(INDUSTRY)));
+
     /*
     //tomato
     public static final RegistryObject<Item> TOMATO = ITEM.register("tomato", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(TOMATO_FOOD)));

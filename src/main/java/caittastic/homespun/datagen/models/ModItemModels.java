@@ -24,6 +24,7 @@ public class ModItemModels extends ItemModelProvider{
     /*     metallurgy     */
     registerFlatItemModel(ModItems.TINY_IRON_DUST);
     registerFlatItemModel(ModItems.COPPER_NUGGET);
+    registerFlatItemModel(ModItems.SALT);
 
     /*     crops     */
     registerFlatItemModel(ModItems.IRONBERRIES);

@@ -1,7 +1,7 @@
 package caittastic.homespun.events;
 
 import caittastic.homespun.Homespun;
-import caittastic.homespun.blockentity.BlockEntities;
+import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.renderer.CrushingTubBER;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -18,7 +18,7 @@ public class ClientEvents{
   public static class ClientModBusEvents{
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-      event.registerBlockEntityRenderer(BlockEntities.CRUSHING_TUB.get(), CrushingTubBER::new);
+      event.registerBlockEntityRenderer(ModBlockEntities.CRUSHING_TUB.get(), CrushingTubBER::new);
     }
   }
 }

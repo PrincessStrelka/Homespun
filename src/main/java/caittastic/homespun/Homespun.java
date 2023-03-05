@@ -13,9 +13,10 @@ GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, new ResourceLocat
 */
 
 import caittastic.homespun.block.ModBlocks;
-import caittastic.homespun.blockentity.BlockEntities;
+import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.networking.ModPackets;
+import caittastic.homespun.recipes.ModRecipes;
 import caittastic.homespun.world.feature.ModConfiguredFeatures;
 import caittastic.homespun.world.feature.ModPlacedFeatures;
 import net.minecraft.world.level.block.Blocks;
@@ -35,9 +36,10 @@ public class Homespun{
   public Homespun(){
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    ModItems.ITEM.register(bus);
+    ModItems.ITEMS.register(bus);
     ModBlocks.BLOCKS.register(bus);
-    BlockEntities.BLOCK_ENTITIES.register(bus);
+    ModBlockEntities.BLOCK_ENTITIES.register(bus);
+    ModRecipes.SERIALIZERS.register(bus);
 
     ModConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
     ModPlacedFeatures.PLACED_FEATURES.register(bus);

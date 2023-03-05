@@ -18,6 +18,7 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     metallurgy     */
     add(ModItems.TINY_IRON_DUST.get(), "Tiny Pile Of Iron Dust");
     add(ModItems.COPPER_NUGGET.get(), "Copper Nugget");
+    add(ModItems.SALT.get(), "Salt Rocks");
     /*     crops     */
     add(ModItems.IRONBERRIES.get(), "Ironberries");
     add(ModItems.OLIVES.get(), "Olives");
@@ -71,9 +72,13 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.TUFF_TILE_WALL.get(), "Tuff Tile Wall");
     /*     industry     */
     add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
+
     //------------------------------------- creative mode tabs -------------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
     add("itemGroup." + ModTabRegistry.DECORATION.getRecipeFolderName(), "Homespun Decoration");
     add("itemGroup." + ModTabRegistry.INDUSTRY.getRecipeFolderName(), "Homespun Industry");
+
+    //------------------------------------- tooltips -------------------------------------//
+    add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");
   }
 }

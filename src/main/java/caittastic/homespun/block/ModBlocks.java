@@ -157,7 +157,7 @@ public class ModBlocks{
   }
 
   private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab){
-    return ModItems.ITEM.register(name, () -> new BlockItem(block.get(),
+    return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
             new Item.Properties().tab(tab)));
   }
 

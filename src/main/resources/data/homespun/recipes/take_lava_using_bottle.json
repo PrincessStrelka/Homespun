@@ -1,0 +1,13 @@
+{
+  "type": "homespun:take_using_item",
+  "empty_item": {
+    "item": "minecraft:glass_bottle"
+  },
+  "filled_item": {
+    "item": "minecraft:honey_bottle"
+  },
+  "fluid_stack": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  }
+}
