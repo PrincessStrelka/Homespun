@@ -151,7 +151,7 @@ public class CrushingTubBlock extends BaseEntityBlock{
           }
           else{ //try to insert/remove items
             if(internalStack.isEmpty() || (internalItem == itemInHand && (internalStack.getCount() < internalStack.getMaxStackSize()))){
-              System.out.println("insert");
+
               player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.PLAYERS, 1.0F, 1.0F);
               int amountToInsert = Math.min(stackInHand.getCount(), internalStack.getMaxStackSize() - internalStack.getCount());
               itemHandler.insertItem(CRAFT_SLOT, new ItemStack(itemInHand, amountToInsert), false);
@@ -161,7 +161,7 @@ public class CrushingTubBlock extends BaseEntityBlock{
                 stackInHand.shrink(amountToInsert);
             }
             else{
-              System.out.println("try extract");
+
               player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.PLAYERS, 1.0F, 1.0F);
               if(!player.isCreative())
                 popResourceFromFace(player.getLevel(), entity.getBlockPos(), player.getDirection().getOpposite(), internalStack);

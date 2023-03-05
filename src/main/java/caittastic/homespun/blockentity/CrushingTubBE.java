@@ -8,6 +8,8 @@ import caittastic.homespun.recipes.SimpleContainerWithTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -15,6 +17,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -35,6 +38,7 @@ import java.util.Optional;
 import java.util.Random;
 
 public class CrushingTubBE extends BlockEntity{
+  public static final int CRAFT_SLOT = 0;
   private final ItemStackHandler itemHandler = new ItemStackHandler(1){
     @Override
     protected void onContentsChanged(int slot){
@@ -53,7 +57,6 @@ public class CrushingTubBE extends BlockEntity{
       setChanged();
     }
   };
-  public static final int CRAFT_SLOT = 0;
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
@@ -70,6 +73,26 @@ public class CrushingTubBE extends BlockEntity{
     super.onLoad();
     lazyItemHandler = LazyOptional.of(() -> itemHandler);
     lazyFluidHandler = LazyOptional.of(() -> FLUID_TANK);
+
+  }
+
+  @Override
+  public void load(CompoundTag nbt){
+    itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+    FLUID_TANK.readFromNBT(nbt);
+
+    super.load(nbt);
+
+  }
+
+  @Override
+  public ClientboundBlockEntityDataPacket getUpdatePacket(){
+    return ClientboundBlockEntityDataPacket.create(this);
+  }
+
+  @Override
+  public @NotNull CompoundTag getUpdateTag(){
+    return saveWithoutMetadata();
   }
 
   @Override
@@ -86,12 +109,6 @@ public class CrushingTubBE extends BlockEntity{
     super.saveAdditional(nbt);
   }
 
-  @Override
-  public void load(CompoundTag nbt){
-    itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-    FLUID_TANK.readFromNBT(nbt);
-    super.load(nbt);
-  }
 
   public ItemStack getInputRenderStack(){
     return itemHandler.getStackInSlot(CRAFT_SLOT);
@@ -110,6 +127,9 @@ public class CrushingTubBE extends BlockEntity{
   public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
     if(cap == ForgeCapabilities.FLUID_HANDLER)
       lazyFluidHandler.cast();
+    if (cap == ForgeCapabilities.ITEM_HANDLER && side != Direction.DOWN) {
+      return lazyItemHandler.cast();
+    }
     return super.getCapability(cap, side);
   }
 
@@ -157,8 +177,14 @@ public class CrushingTubBE extends BlockEntity{
 
     if(crushingRecipe.isPresent()){
       CrushingTubRecipe recipe = crushingRecipe.get();
-      this.level.playSound(null, this.getBlockPos(), SoundEvents.SLIME_BLOCK_FALL, SoundSource.BLOCKS, 0.5F, new Random().nextFloat() * 0.1F + 0.9F);
-      this.itemHandler.extractItem(CRAFT_SLOT, recipe.getInputItemStack().getCount(), false);
+      SoundEvent crushSound;
+      ItemStack inputItemStack = recipe.getInputItemStack();
+      if(inputItemStack.getItem() instanceof BlockItem blockitem)
+        crushSound = blockitem.getBlock().defaultBlockState().getSoundType().getBreakSound();
+      else
+        crushSound = SoundEvents.SLIME_BLOCK_FALL;
+      this.level.playSound(null, this.getBlockPos(), crushSound, SoundSource.BLOCKS, 0.5F, new Random().nextFloat() * 0.1F + 0.9F);
+      this.itemHandler.extractItem(CRAFT_SLOT, inputItemStack.getCount(), false);
       dropItems(this.getBlockPos(), recipe.getResultItem());
       this.FLUID_TANK.fill(recipe.getResultFluidStack(), IFluidHandler.FluidAction.EXECUTE);
     }
