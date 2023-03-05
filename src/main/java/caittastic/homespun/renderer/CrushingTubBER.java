@@ -18,6 +18,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -56,25 +57,55 @@ public class CrushingTubBER implements BlockEntityRenderer<CrushingTubBE>{
     poseStack.pushPose();
     rand.setSeed((long)entity.getBlockPos().getX() * entity.getBlockPos().getZ() * entity.getBlockPos().getY());
     int lightLevel = getLightLevel(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
+    //float itemScaleFactor = 0.53f;
     float itemScaleFactor = 0.53f;
 
     //initialises the start of where the stacks should be rendered from
-    poseStack.translate(0.5f, startHeight + pixHeight, 0.5f);
-    poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
-    poseStack.scale(itemScaleFactor, itemScaleFactor, itemScaleFactor);
+
+    //if the model is a block, do something different to a flat item model
+    if(stackToRender.getItem() instanceof BlockItem){
+      poseStack.translate(0.5f, pixHeight*2, 0.5f);
+      poseStack.translate((rand.nextFloat()-0.5)/4, 0, (rand.nextFloat()-0.5)/4);
+      poseStack.scale(1, 1, 1);
+    }
+    else{
+      poseStack.translate(0.5f, startHeight + pixHeight, 0.5f);
+      poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
+      poseStack.scale(itemScaleFactor, itemScaleFactor, itemScaleFactor);
+    }
+
 
     //for every item in the stack to be rendered, move up one pixel and render item
     for(int i = 0; i < entity.getInputRenderStackSize(); i++){
-      poseStack.translate(0, 0, -pixHeight * itemScaleFactor);
-      poseStack.mulPose(Vector3f.ZN.rotationDegrees((float)(rand.nextFloat() * 360.0)));
-      itemRenderer.renderStatic(
-              stackToRender,
-              ItemTransforms.TransformType.GUI,
-              lightLevel,
-              OverlayTexture.NO_OVERLAY,
-              poseStack,
-              bufferSource,
-              1);
+      if(stackToRender.getItem() instanceof BlockItem){
+        if((i) % 16 == 0){
+          poseStack.translate((rand.nextFloat()-0.5)/4, pixHeight * 2, (rand.nextFloat()-0.5)/4);
+          //poseStack.mulPose(Vector3f.YN.rotationDegrees((float)(rand.nextFloat() * 360.0)));
+          itemRenderer.renderStatic(
+                  stackToRender,
+                  ItemTransforms.TransformType.FIXED,
+                  lightLevel,
+                  OverlayTexture.NO_OVERLAY,
+                  poseStack,
+                  bufferSource,
+                  1);
+        }
+      }
+      else{
+        if(i % 2 == 0){
+          poseStack.translate(0, 0, -pixHeight * itemScaleFactor);
+          poseStack.mulPose(Vector3f.ZN.rotationDegrees((float)(rand.nextFloat() * 360.0)));
+          itemRenderer.renderStatic(
+                  stackToRender,
+                  ItemTransforms.TransformType.GUI,
+                  lightLevel,
+                  OverlayTexture.NO_OVERLAY,
+                  poseStack,
+                  bufferSource,
+                  1);
+        }
+      }
+
     }
     poseStack.popPose();
 
