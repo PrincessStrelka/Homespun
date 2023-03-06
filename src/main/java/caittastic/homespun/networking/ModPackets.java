@@ -34,6 +34,12 @@ public class ModPackets{
             .encoder(FluidStackSyncS2CPacket::toBytes)
             .consumerMainThread(FluidStackSyncS2CPacket::handle)
             .add();
+
+    net.messageBuilder(BooleanSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+            .decoder(BooleanSyncS2CPacket::new)
+            .encoder(BooleanSyncS2CPacket::toBytes)
+            .consumerMainThread(BooleanSyncS2CPacket::handle)
+            .add();
     
   }
   public static <MSG> void sendToServer(MSG message){

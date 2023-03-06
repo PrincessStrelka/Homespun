@@ -180,7 +180,6 @@ public class CrushingTubBlock extends BaseEntityBlock{
       stackToRemove.shrink(1);
       if(player.getItemInHand(hand).isEmpty()){
         player.setItemInHand(hand, stackToGive);
-        System.out.println("player given:" + stackToGive);
       }
       else if(!player.getInventory().add(stackToGive))
         player.drop(stackToGive, false);

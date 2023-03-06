@@ -49,6 +49,13 @@ public class ModRecipes extends RecipeProvider{
             .group(Homespun.MOD_ID)
             .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
             .save(consumer);
+    ShapedRecipeBuilder.shaped(ModBlocks.EVAPORATING_BASIN.get(), 1)
+            .pattern("t t")
+            .pattern(" t ")
+            .define('t', ItemTags.TERRACOTTA)
+            .group(Homespun.MOD_ID)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA))
+            .save(consumer);
 
     /*     IRONWOOD     */
     woodFromLogs(consumer, ModBlocks.IRONWOOD_WOOD.get(), ModBlocks.IRONWOOD_LOG.get());

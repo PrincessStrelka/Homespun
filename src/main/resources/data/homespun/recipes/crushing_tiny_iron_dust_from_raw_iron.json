@@ -1,0 +1,13 @@
+{
+  "type": "homespun:tub_crushing",
+  "input_item": {
+    "item": "minecraft:raw_iron"
+  },
+  "output_item": {
+    "count": 12,
+    "item": "homespun:tiny_iron_dust"
+  },
+  "fluid_stack": {
+    "fluid": "minecraft:empty"
+  }
+}

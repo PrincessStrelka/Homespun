@@ -5,42 +5,40 @@ import caittastic.homespun.blockentity.EvaporatingBasinBE;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class FluidStackSyncS2CPacket{
-  private final FluidStack fluidStack;
+public class BooleanSyncS2CPacket{
+  private final boolean isCrafting;
   private final BlockPos pos;
 
-
-  public FluidStackSyncS2CPacket(FluidStack fluidStack, BlockPos pos){
-    this.fluidStack = fluidStack;
+  public BooleanSyncS2CPacket(boolean isCrafting, BlockPos pos){
+    this.isCrafting = isCrafting;
     this.pos = pos;
   }
 
-  public FluidStackSyncS2CPacket(FriendlyByteBuf buf){
-    this.fluidStack = buf.readFluidStack();
+  public BooleanSyncS2CPacket(FriendlyByteBuf buf){
+    this.isCrafting = buf.readBoolean();
     this.pos = buf.readBlockPos();
   }
 
+
   public void toBytes(FriendlyByteBuf buf){
-    buf.writeFluidStack(fluidStack);
+
+    buf.writeBoolean(isCrafting);
     buf.writeBlockPos(pos);
   }
 
   public boolean handle(Supplier<NetworkEvent.Context> supplier){
     NetworkEvent.Context context = supplier.get();
     context.enqueueWork(() -> {
-      if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof CrushingTubBE blockEntity){
-        blockEntity.setFluid(this.fluidStack);
-      }
       if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof EvaporatingBasinBE blockEntity){
-        blockEntity.setFluid(this.fluidStack);
+        blockEntity.isCrafting = this.isCrafting;
       }
     });
     return true;

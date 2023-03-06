@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
@@ -33,7 +34,7 @@ public class ModBlockLootTables extends BlockLoot{
             ModBlocks.IRONWOOD_SAPLING,
             ModItems.IRONBERRIES,
             new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F},
-            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F});
+            new float[]{0.30F, 0.40F, 0.68F, 0.76F, 0.64F});
     simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);
     simpleDoorTable(ModBlocks.IRONWOOD_DOOR);
     simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);
@@ -43,7 +44,7 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.STRIPPED_IRONWOOD_WOOD);
     simpleDropSelf(ModBlocks.IRONWOOD_PLANKS);
     simpleDropSelf(ModBlocks.IRONWOOD_STAIRS);
-    simpleDropSelf(ModBlocks.IRONWOOD_SLAB);
+    simpleSlabBlock(ModBlocks.IRONWOOD_SLAB);
     simpleDropSelf(ModBlocks.IRONWOOD_FENCE);
     simpleDropSelf(ModBlocks.IRONWOOD_FENCE_GATE);
     simpleDropSelf(ModBlocks.IRONWOOD_BUTTON);
@@ -65,7 +66,8 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.STRIPPED_OLIVE_WOOD);
     simpleDropSelf(ModBlocks.OLIVE_PLANKS);
     simpleDropSelf(ModBlocks.OLIVE_STAIRS);
-    simpleDropSelf(ModBlocks.OLIVE_SLAB);
+    simpleSlabBlock(ModBlocks.OLIVE_SLAB);
+
     simpleDropSelf(ModBlocks.OLIVE_FENCE);
     simpleDropSelf(ModBlocks.OLIVE_FENCE_GATE);
     simpleDropSelf(ModBlocks.OLIVE_BUTTON);
@@ -77,16 +79,22 @@ public class ModBlockLootTables extends BlockLoot{
     /*     deco stone     */
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
-    simpleDropSelf(ModBlocks.CALCITE_BRICK_SLAB);
+    simpleSlabBlock(ModBlocks.CALCITE_BRICK_SLAB);
+
     simpleDropSelf(ModBlocks.CALCITE_BRICK_STAIRS);
     simpleDropSelf(ModBlocks.CALCITE_BRICK_WALL);
     simpleDropSelf(ModBlocks.TUFF_TILES);
-    simpleDropSelf(ModBlocks.TUFF_TILE_SLAB);
+    simpleSlabBlock(ModBlocks.TUFF_TILE_SLAB);
+
     simpleDropSelf(ModBlocks.TUFF_TILE_STAIRS);
     simpleDropSelf(ModBlocks.TUFF_TILE_WALL);
     /*     industry     */
     simpleDropSelf(ModBlocks.CRUSHING_TUB);
     simpleDropSelf(ModBlocks.EVAPORATING_BASIN);
+  }
+
+  private void simpleSlabBlock(RegistryObject<Block> slabBlock){
+    this.add(slabBlock.get(), BlockLoot::createSlabItemTable);
   }
 
   //------------------------------------- methods -------------------------------------//

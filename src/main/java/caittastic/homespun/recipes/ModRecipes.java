@@ -18,4 +18,6 @@ public class ModRecipes{
 
   public static final RegistryObject<RecipeSerializer<CrushingTubRecipe>> CRUSHING_TUB_RECIPE =
           SERIALIZERS.register("tub_crushing", ()-> CrushingTubRecipe.Serializer.INSTANCE);
+  public static final RegistryObject<RecipeSerializer<EvaporatingBasinRecipe>> EVAPORATING_BASIN_RECIPE =
+          SERIALIZERS.register("evaporating", ()-> EvaporatingBasinRecipe.Serializer.INSTANCE);
 }

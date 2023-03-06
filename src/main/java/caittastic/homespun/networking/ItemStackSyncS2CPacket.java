@@ -1,6 +1,7 @@
 package caittastic.homespun.networking;
 
 import caittastic.homespun.blockentity.CrushingTubBE;
+import caittastic.homespun.blockentity.EvaporatingBasinBE;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -44,6 +45,9 @@ public class ItemStackSyncS2CPacket{
     NetworkEvent.Context context = supplier.get();
     context.enqueueWork(() -> {
       if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof CrushingTubBE blockEntity){
+        blockEntity.setHandler(this.itemStackHandler);
+      }
+      if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof EvaporatingBasinBE blockEntity){
         blockEntity.setHandler(this.itemStackHandler);
       }
     });

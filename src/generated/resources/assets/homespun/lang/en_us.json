@@ -5,6 +5,7 @@
   "block.homespun.calcite_bricks": "Calcite Bricks",
   "block.homespun.copper_chain": "Copper Chain",
   "block.homespun.crushing_tub": "Crushing Tub",
+  "block.homespun.evaporating_basin": "Evaporating Basin",
   "block.homespun.gold_chain": "Gold Chain",
   "block.homespun.ironwood_button": "Ironwood Button",
   "block.homespun.ironwood_door": "Ironwood Door",
@@ -46,8 +47,8 @@
   "fluid_type.homespun.ironberry_juice": "Ironberry Juice",
   "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",
-  "item.homespun.ironbery_juice_bottle": "Ironberry Juice Bottle",
-  "item.homespun.ironbery_juice_bucket": "Ironberry Juice Bucket",
+  "item.homespun.ironberry_juice_bottle": "Ironberry Juice Bottle",
+  "item.homespun.ironberry_juice_bucket": "Ironberry Juice Bucket",
   "item.homespun.olives": "Olives",
   "item.homespun.salt": "Salt Rocks",
   "item.homespun.tiny_iron_dust": "Tiny Pile Of Iron Dust",
@@ -55,5 +56,6 @@
   "itemGroup.decoration_tab": "Homespun Decoration",
   "itemGroup.production_tab": "Homespun Industry",
   "jei.homespun.crushing_tub_recipe": "Tub Crushing",
+  "jei.homespun.evaporating_recipe": "Evaporating",
   "tooltip.homespun.crushing_tub": "§8§oPut stuff in then jump on it"
 }

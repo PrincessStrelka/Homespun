@@ -49,20 +49,16 @@ public class CrushingTubBE extends BlockEntity{
       }
     }
   };
-  private final FluidTank FLUID_TANK;
-
-  {
-
-    FLUID_TANK = new FluidTank(CAPACITY){
-      @Override
-      protected void onContentsChanged(){
-        if(!level.isClientSide){
-          ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
-        }
-        setChanged();
+  private final FluidTank FLUID_TANK = new FluidTank(CAPACITY){
+    @Override
+    protected void onContentsChanged(){
+      if(!level.isClientSide){
+        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
       }
-    };
-  }
+      setChanged();
+    }
+  };
+
 
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
   private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
@@ -137,7 +133,7 @@ public class CrushingTubBE extends BlockEntity{
   public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
     if(cap == ForgeCapabilities.FLUID_HANDLER)
       lazyFluidHandler.cast();
-    if (cap == ForgeCapabilities.ITEM_HANDLER && side != Direction.DOWN) {
+    if(cap == ForgeCapabilities.ITEM_HANDLER && side != Direction.DOWN){
       return lazyItemHandler.cast();
     }
     return super.getCapability(cap, side);
@@ -178,8 +174,6 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public void doCraft(){
-
-    //TODO: make this recipe based
     Optional<CrushingTubRecipe> crushingRecipe = level.getRecipeManager().getRecipeFor(
             CrushingTubRecipe.Type.INSTANCE,
             new SimpleContainerWithTank(FLUID_TANK, itemHandler.getStackInSlot(CRAFT_SLOT)),
@@ -199,7 +193,6 @@ public class CrushingTubBE extends BlockEntity{
       this.FLUID_TANK.fill(recipe.getResultFluidStack(), IFluidHandler.FluidAction.EXECUTE);
     }
   }
-
 
   public FluidTank getFluidTank(){
     return FLUID_TANK;

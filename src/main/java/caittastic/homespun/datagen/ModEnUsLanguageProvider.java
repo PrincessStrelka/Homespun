@@ -76,6 +76,7 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.TUFF_TILE_WALL.get(), "Tuff Tile Wall");
     /*     industry     */
     add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
+    add(ModBlocks.EVAPORATING_BASIN.get(), "Evaporating Basin");
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
@@ -90,5 +91,6 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
 
     //-------------------------------------- jei --------------------------------------//
     add("jei.homespun.crushing_tub_recipe", "Tub Crushing");
+    add("jei.homespun.evaporating_recipe", "Evaporating");
   }
 }
