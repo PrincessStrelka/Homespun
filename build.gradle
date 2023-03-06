@@ -4,7 +4,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = '1.19.2-0.3.0'
+version = "${mc_version}-${homespun_version}"
 group = 'caittastic.homespun' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'homespun'
 
@@ -126,6 +126,19 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { // Thermal
+        // Human Browsable: https://nexus.covers1624.net/#browse/browse:cofh-releases
+        url 'https://maven.covers1624.net/'
+        content {
+            includeGroup 'com.teamcofh'
+        }
+    }
+    maven { // curse mods
+        url 'https://cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -152,6 +165,13 @@ dependencies {
     // at runtime, use the full JEI jar for Forge
     runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
 
+    //other mods for testing stuff, only at run time
+    runtimeOnly fg.deobf("com.teamcofh:cofh_core:${mc_version}-${cofh_core_version}")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_core:${mc_version}-${thermal_core_version}")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:${mc_version}-${thermal_foundation_version}")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${mc_version}-${thermal_expansion_version}")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_dynamics:${mc_version}-${thermal_dynamics_version}")
+    runtimeOnly fg.deobf("curse.maven:CTM-267602:4393695")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

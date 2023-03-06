@@ -132,7 +132,7 @@ public class CrushingTubBE extends BlockEntity{
   @Override
   public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
     if(cap == ForgeCapabilities.FLUID_HANDLER)
-      lazyFluidHandler.cast();
+      return lazyFluidHandler.cast();
     if(cap == ForgeCapabilities.ITEM_HANDLER && side != Direction.DOWN){
       return lazyItemHandler.cast();
     }

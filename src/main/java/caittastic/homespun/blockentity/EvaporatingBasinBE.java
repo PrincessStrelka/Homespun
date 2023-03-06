@@ -7,6 +7,7 @@ import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.EvaporatingBasinRecipe;
 import caittastic.homespun.recipes.SimpleContainerWithTank;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
@@ -18,6 +19,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -25,6 +28,7 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -176,5 +180,16 @@ public class EvaporatingBasinBE extends BlockEntity{
     }
 
     Containers.dropContents(this.level, this.worldPosition, inventory); //drops the contents of the simplecontainer
+  }
+
+  //for making our block interact with other mods blocks
+  @Override
+  public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
+    if(cap == ForgeCapabilities.FLUID_HANDLER)
+      return lazyFluidHandler.cast();
+    if(cap == ForgeCapabilities.ITEM_HANDLER){
+      return lazyItemHandler.cast();
+    }
+    return super.getCapability(cap, side);
   }
 }
