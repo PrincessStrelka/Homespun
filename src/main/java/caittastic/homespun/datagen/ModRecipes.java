@@ -85,14 +85,14 @@ public class ModRecipes extends RecipeProvider{
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     /*     chain     */
     chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, consumer);
-    chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.COPPER_NUGGETS, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
+    chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.FORGE_NUGGETS_COPPER, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
     /*     metallurgy     */
     ShapelessRecipeBuilder.shapeless(ModItems.COPPER_NUGGET.get(), 9).requires(Tags.Items.INGOTS_COPPER).unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT)).save(consumer);
     ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
             .pattern("xxx")
             .pattern("xxx")
             .pattern("xxx")
-            .define('x', TagInit.Items.COPPER_NUGGETS)
+            .define('x', TagInit.Items.FORGE_NUGGETS_COPPER)
             .group(Homespun.MOD_ID)
             .unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
             .save(consumer);

@@ -24,7 +24,15 @@ public class TagInit{
     public static final TagKey<Item> IRONWOOD_WOOD = CreateItemTag("ironwood_wood");
     public static final TagKey<Item> OLIVE_LOGS = CreateItemTag("olive_logs");
     public static final TagKey<Item> OLIVE_WOOD = CreateItemTag("olive_wood");
-    public static final TagKey<Item> COPPER_NUGGETS = CreateItemTag("copper_nuggets");
+
+    public static final TagKey<Item> FORGE_NUGGETS_COPPER = CreateForgeItemTag("nuggets/copper");
+    public static final TagKey<Item> FORGE_SALT = CreateForgeItemTag("salt");
+    public static final TagKey<Item> FORGE_SALT_SALT = CreateForgeItemTag("dusts/salt");
+
+
+    private static TagKey<Item> CreateForgeItemTag(String key){
+      return ItemTags.create(new ResourceLocation("forge", key));
+    }
 
     private static TagKey<Item> CreateItemTag(String PathName){
       return ItemTags.create(new ResourceLocation(Homespun.MOD_ID, PathName));

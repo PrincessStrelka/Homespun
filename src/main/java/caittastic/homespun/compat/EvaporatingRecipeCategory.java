@@ -54,9 +54,11 @@ public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBas
   public void setRecipe(IRecipeLayoutBuilder builder, EvaporatingBasinRecipe recipe, IFocusGroup focuses){
 
     int scaledAmount = (int)(recipe.inputFluidStack().getAmount() * (34f / EvaporatingBasinBE.TANK_CAPACITY));
+
     builder.addSlot(RecipeIngredientRole.INPUT, 21, 15 + (34 - scaledAmount))
             .addFluidStack(recipe.inputFluidStack().getFluid(), recipe.inputFluidStack().getAmount())
             .setFluidRenderer(recipe.inputFluidStack().getAmount(), true, 16, scaledAmount);
+
     builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 29).addItemStack(recipe.getResultItem());
 
   }

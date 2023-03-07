@@ -6,6 +6,7 @@ import caittastic.homespun.block.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockTags extends BlockTagsProvider{
@@ -49,6 +50,7 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.IRONWOOD_PRESSURE_PLATE.get())
             .add(ModBlocks.IRONWOOD_DOOR.get())
             .add(ModBlocks.IRONWOOD_TRAPDOOR.get())
+            .add(ModBlocks.IRONWOOD_SAPLING.get())
 
             .add(ModBlocks.OLIVE_LOG.get())
             .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
@@ -63,28 +65,65 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_PRESSURE_PLATE.get())
             .add(ModBlocks.OLIVE_DOOR.get())
             .add(ModBlocks.OLIVE_TRAPDOOR.get())
+            .add(ModBlocks.OLIVE_SAPLING.get())
 
             .add(ModBlocks.CRUSHING_TUB.get());
     //------------------------------------- block tags -------------------------------------//
+    tag(BlockTags.SLABS)
+            .add(ModBlocks.TUFF_TILE_SLAB.get())
+            .add(ModBlocks.CALCITE_BRICK_SLAB.get());
+    tag(BlockTags.STAIRS)
+            .add(ModBlocks.TUFF_TILE_STAIRS.get())
+            .add(ModBlocks.CALCITE_BRICK_STAIRS.get());
+    tag(BlockTags.PARROTS_SPAWNABLE_ON)
+            .add(ModBlocks.IRONWOOD_LOG.get())
+            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get())
+            .add(ModBlocks.IRONWOOD_WOOD.get())
+            .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get())
+            .add(ModBlocks.OLIVE_LOG.get())
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
+            .add(ModBlocks.OLIVE_WOOD.get())
+            .add(ModBlocks.STRIPPED_OLIVE_WOOD.get());
+
+    tag(BlockTags.LOGS_THAT_BURN)
+            .add(ModBlocks.IRONWOOD_LOG.get())
+            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get())
+            .add(ModBlocks.IRONWOOD_WOOD.get())
+            .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get())
+            .add(ModBlocks.OLIVE_LOG.get())
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
+            .add(ModBlocks.OLIVE_WOOD.get())
+            .add(ModBlocks.STRIPPED_OLIVE_WOOD.get());
+
+    tag(BlockTags.OVERWORLD_NATURAL_LOGS)
+            .add(ModBlocks.IRONWOOD_LOG.get())
+            .add(ModBlocks.OLIVE_LOG.get());
+
+    tag(BlockTags.SNAPS_GOAT_HORN)
+            .add(ModBlocks.IRONWOOD_LOG.get())
+            .add(ModBlocks.OLIVE_LOG.get());
+
     tag(TagInit.Blocks.IRONWOOD_LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get())
-            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get());
-    tag(TagInit.Blocks.IRONWOOD_WOOD)
+            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get())
             .add(ModBlocks.IRONWOOD_WOOD.get())
             .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get());
 
     tag(TagInit.Blocks.OLIVE_LOGS)
             .add(ModBlocks.OLIVE_LOG.get())
-            .add(ModBlocks.STRIPPED_OLIVE_LOG.get());
-    tag(TagInit.Blocks.OLIVE_WOOD)
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
             .add(ModBlocks.OLIVE_WOOD.get())
             .add(ModBlocks.STRIPPED_OLIVE_WOOD.get());
 
     tag(BlockTags.LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get())
             .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get())
+            .add(ModBlocks.IRONWOOD_WOOD.get())
+            .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get())
             .add(ModBlocks.OLIVE_LOG.get())
-            .add(ModBlocks.STRIPPED_OLIVE_LOG.get());
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
+            .add(ModBlocks.OLIVE_WOOD.get())
+            .add(ModBlocks.STRIPPED_OLIVE_WOOD.get());
 
     tag(BlockTags.PLANKS)
             .add(ModBlocks.IRONWOOD_PLANKS.get())
@@ -100,7 +139,7 @@ public class ModBlockTags extends BlockTagsProvider{
 
     tag(BlockTags.WOODEN_FENCES)
             .add(ModBlocks.IRONWOOD_FENCE.get())
-            .add(ModBlocks.OLIVE_LEAVES.get());
+            .add(ModBlocks.OLIVE_FENCE.get());
 
     tag(BlockTags.FENCE_GATES)
             .add(ModBlocks.IRONWOOD_FENCE_GATE.get())
@@ -131,8 +170,8 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_LEAVES.get());
 
     tag(BlockTags.SAPLINGS)
-            .add(ModBlocks.IRONWOOD_TRAPDOOR.get())
-            .add(ModBlocks.OLIVE_TRAPDOOR.get());
+            .add(ModBlocks.IRONWOOD_SAPLING.get())
+            .add(ModBlocks.OLIVE_SAPLING.get());
 
     tag(BlockTags.FLOWER_POTS)
             .add(ModBlocks.POTTED_IRONWOOD_SAPLING.get())
@@ -143,6 +182,9 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.CALCITE_BRICK_WALL.get())
             .add(ModBlocks.TUFF_TILE_WALL.get());
 
+    tag(Tags.Blocks.FENCE_GATES_WOODEN)
+            .add(ModBlocks.IRONWOOD_FENCE_GATE.get())
+            .add(ModBlocks.OLIVE_FENCE_GATE.get());
 
 
   }

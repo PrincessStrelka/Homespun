@@ -172,6 +172,7 @@ dependencies {
     runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${mc_version}-${thermal_expansion_version}")
     runtimeOnly fg.deobf("com.teamcofh:thermal_dynamics:${mc_version}-${thermal_dynamics_version}")
     runtimeOnly fg.deobf("curse.maven:CTM-267602:4393695")
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:4385637")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

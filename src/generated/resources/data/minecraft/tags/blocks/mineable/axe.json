@@ -13,6 +13,7 @@
     "homespun:ironwood_pressure_plate",
     "homespun:ironwood_door",
     "homespun:ironwood_trapdoor",
+    "homespun:ironwood_sapling",
     "homespun:olive_log",
     "homespun:stripped_olive_log",
     "homespun:olive_wood",
@@ -26,6 +27,7 @@
     "homespun:olive_pressure_plate",
     "homespun:olive_door",
     "homespun:olive_trapdoor",
+    "homespun:olive_sapling",
     "homespun:crushing_tub"
   ]
 }

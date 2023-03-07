@@ -3,7 +3,7 @@
   "group": "homespun",
   "key": {
     "x": {
-      "tag": "homespun:copper_nuggets"
+      "tag": "forge:nuggets/copper"
     }
   },
   "pattern": [

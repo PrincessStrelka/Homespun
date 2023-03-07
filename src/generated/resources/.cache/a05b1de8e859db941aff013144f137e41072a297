@@ -1,7 +1,10 @@
-// 1.19.2	2023-02-11T14:35:19.4436906	Homespun Tags
-fed23953b849fe95d605867a1c0d6b228b1fd847 data/forge/tags/items/dusts.json
+// 1.19.2	2023-03-07T22:58:48.1871657	Homespun Tags
+2124f27a508f8ddfcbc78307715096c75c72977b data/forge/tags/items/dusts.json
+84f79bb17ab402dc89e80a0d29e47ef5a1647eee data/forge/tags/items/dusts/salt.json
 064f051db0983f3430807bc8e91432bfedfb1c87 data/forge/tags/items/fence_gates/wooden.json
-12f2d4749b0aadd4a0411d0439022de522c8a8f6 data/homespun/tags/items/copper_nuggets.json
+12f2d4749b0aadd4a0411d0439022de522c8a8f6 data/forge/tags/items/nuggets.json
+12f2d4749b0aadd4a0411d0439022de522c8a8f6 data/forge/tags/items/nuggets/copper.json
+84f79bb17ab402dc89e80a0d29e47ef5a1647eee data/forge/tags/items/salt.json
 1e9435b731b98acee240d86b6af2838c2a8085af data/homespun/tags/items/ironwood_logs.json
 1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/items/ironwood_wood.json
 09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/items/olive_logs.json
@@ -9,8 +12,11 @@ c3bf46fe21ec862bd896b9038b4205b21a94ec72 data/homespun/tags/items/olive_wood.jso
 1ba176153abe0ef2fc2d4b4e25011c606816ff97 data/minecraft/tags/items/leaves.json
 4e96a9b1e3ae8906e3c1046967acf15418467bba data/minecraft/tags/items/logs.json
 c64960ffc25032e94df55b8ac4b1066533e94c6d data/minecraft/tags/items/logs_that_burn.json
+aaec94b4a062416266bbd48047835938ede2b0c0 data/minecraft/tags/items/overworld_natural_logs.json
 d212a31d00a09f548fe68170a69790cecf93e94f data/minecraft/tags/items/planks.json
 368e692d75bcc70e29ba82183de186b3ebc756f0 data/minecraft/tags/items/saplings.json
+acb10393b4df2fcfdcdf18033c806be1a126ef18 data/minecraft/tags/items/slabs.json
+8fe11d4b881a73d2824044561d08983332dd8acc data/minecraft/tags/items/stairs.json
 be55ba27ecb4e7dbb541b9d9504634e9e5df74d1 data/minecraft/tags/items/wooden_buttons.json
 c9a47cf192ef025a3bf75944c6fe84180f65f1fe data/minecraft/tags/items/wooden_doors.json
 a2fb5dbf6167c7dce6af4ecbe93d36d2248a1f31 data/minecraft/tags/items/wooden_fences.json

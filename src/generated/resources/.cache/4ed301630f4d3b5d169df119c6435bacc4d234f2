@@ -1,21 +1,26 @@
-// 1.19.2	2023-03-07T20:41:42.3293788	Rustic Tags
-1e9435b731b98acee240d86b6af2838c2a8085af data/homespun/tags/blocks/ironwood_logs.json
-1c187543982a817ae87fe1fff8894bfc9ed1d47c data/homespun/tags/blocks/ironwood_wood.json
-09ed824dce838dac847e1453d0c8a578d2520eb5 data/homespun/tags/blocks/olive_logs.json
-c3bf46fe21ec862bd896b9038b4205b21a94ec72 data/homespun/tags/blocks/olive_wood.json
+// 1.19.2	2023-03-07T22:58:48.2027825	Rustic Tags
+064f051db0983f3430807bc8e91432bfedfb1c87 data/forge/tags/blocks/fence_gates/wooden.json
+10501b653325e845b0d1186b46014d79a8398092 data/homespun/tags/blocks/ironwood_logs.json
+926e8e124d78cbc836e0de53147231751d0385e7 data/homespun/tags/blocks/olive_logs.json
 064f051db0983f3430807bc8e91432bfedfb1c87 data/minecraft/tags/blocks/fence_gates.json
 c15e6a374ce2e63654289ace75c4a732336000e5 data/minecraft/tags/blocks/flower_pots.json
 1ba176153abe0ef2fc2d4b4e25011c606816ff97 data/minecraft/tags/blocks/leaves.json
-4e96a9b1e3ae8906e3c1046967acf15418467bba data/minecraft/tags/blocks/logs.json
-f5c75da3ac124ff8b69e8f4b159b7f8488ab9414 data/minecraft/tags/blocks/mineable/axe.json
+605c1f33f2abf116c604db104b8f6f30a9d67edb data/minecraft/tags/blocks/logs.json
+605c1f33f2abf116c604db104b8f6f30a9d67edb data/minecraft/tags/blocks/logs_that_burn.json
+28f2726e139f63bb7ae92a7685513df39ada8901 data/minecraft/tags/blocks/mineable/axe.json
 8755a67c300487452e9bff57e2264d2faf710922 data/minecraft/tags/blocks/mineable/hoe.json
 69ce117302abc311e4d33441cdc9bf417686bd73 data/minecraft/tags/blocks/mineable/pickaxe.json
+aaec94b4a062416266bbd48047835938ede2b0c0 data/minecraft/tags/blocks/overworld_natural_logs.json
+605c1f33f2abf116c604db104b8f6f30a9d67edb data/minecraft/tags/blocks/parrots_spawnable_on.json
 d212a31d00a09f548fe68170a69790cecf93e94f data/minecraft/tags/blocks/planks.json
-0f762b9237c2f3d711fabeb6437ee163ca83b55b data/minecraft/tags/blocks/saplings.json
+368e692d75bcc70e29ba82183de186b3ebc756f0 data/minecraft/tags/blocks/saplings.json
+acb10393b4df2fcfdcdf18033c806be1a126ef18 data/minecraft/tags/blocks/slabs.json
+aaec94b4a062416266bbd48047835938ede2b0c0 data/minecraft/tags/blocks/snaps_goat_horn.json
+8fe11d4b881a73d2824044561d08983332dd8acc data/minecraft/tags/blocks/stairs.json
 de31d6251c56d6b7c42e5eb19e7e8d6967d5e4f3 data/minecraft/tags/blocks/walls.json
 be55ba27ecb4e7dbb541b9d9504634e9e5df74d1 data/minecraft/tags/blocks/wooden_buttons.json
 c9a47cf192ef025a3bf75944c6fe84180f65f1fe data/minecraft/tags/blocks/wooden_doors.json
-58d3973ee555ec1b930eead892fb9e75020ed32b data/minecraft/tags/blocks/wooden_fences.json
+a2fb5dbf6167c7dce6af4ecbe93d36d2248a1f31 data/minecraft/tags/blocks/wooden_fences.json
 09d940eff72a92ccb348958621dd300e8cd00b86 data/minecraft/tags/blocks/wooden_pressure_plates.json
 e48571b43fa24de3e8b497fc91ae32d77e2c450a data/minecraft/tags/blocks/wooden_slabs.json
 80ed10053d0df256cb7132b339871332aaea4aac data/minecraft/tags/blocks/wooden_stairs.json

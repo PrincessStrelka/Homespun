@@ -7,6 +7,7 @@ import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -21,6 +22,10 @@ public class ModItemTags extends ItemTagsProvider{
   @Override
   protected void addTags(){
     //------------------------------- tagging blocks -------------------------------//
+    tag(ItemTags.OVERWORLD_NATURAL_LOGS)
+            .add(ModBlocks.IRONWOOD_LOG.get().asItem())
+            .add(ModBlocks.OLIVE_LOG.get().asItem());
+
     tag(TagInit.Items.IRONWOOD_LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get().asItem())
             .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get().asItem());
@@ -83,10 +88,27 @@ public class ModItemTags extends ItemTagsProvider{
     tag(ItemTags.SAPLINGS)
             .add(ModBlocks.IRONWOOD_SAPLING.get().asItem())
             .add(ModBlocks.OLIVE_SAPLING.get().asItem());
+    tag(ItemTags.SLABS)
+            .add(ModBlocks.TUFF_TILE_SLAB.get().asItem())
+            .add(ModBlocks.CALCITE_BRICK_SLAB.get().asItem());
+    tag(ItemTags.STAIRS)
+            .add(ModBlocks.TUFF_TILE_STAIRS.get().asItem())
+            .add(ModBlocks.CALCITE_BRICK_STAIRS.get().asItem());
     //------------------------------- tagging items -------------------------------//
     tag(Tags.Items.DUSTS)
-            .add(ModItems.TINY_IRON_DUST.get());
-    tag(TagInit.Items.COPPER_NUGGETS)
+            .add(ModItems.TINY_IRON_DUST.get())
+            .add(ModItems.SALT.get());
+
+    tag(TagInit.Items.FORGE_SALT)
+            .add(ModItems.SALT.get());
+
+    tag(TagInit.Items.FORGE_SALT_SALT)
+            .add(ModItems.SALT.get());
+
+    tag(Tags.Items.NUGGETS)
+            .add(ModItems.COPPER_NUGGET.get());
+
+    tag(TagInit.Items.FORGE_NUGGETS_COPPER)
             .add(ModItems.COPPER_NUGGET.get());
 
   }
