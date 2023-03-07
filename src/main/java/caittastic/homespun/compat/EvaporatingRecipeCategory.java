@@ -7,6 +7,7 @@ import caittastic.homespun.recipes.EvaporatingBasinRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -26,6 +27,7 @@ public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBas
   public EvaporatingRecipeCategory(IGuiHelper helper){
     this.background = helper.createDrawable(TEXTURE, 0, 0, 108, 68);
     this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.EVAPORATING_BASIN.get()));
+
   }
 
   @Override
