@@ -29,7 +29,9 @@ public class ModBlockTags extends BlockTagsProvider{
 
             .add(ModBlocks.TUFF_TILES.get())
             .add(ModBlocks.TUFF_TILE_STAIRS.get())
-            .add(ModBlocks.TUFF_TILE_SLAB.get());
+            .add(ModBlocks.TUFF_TILE_SLAB.get())
+
+            .add(ModBlocks.EVAPORATING_BASIN.get());
     tag(BlockTags.MINEABLE_WITH_HOE)
             .add(ModBlocks.IRONWOOD_LEAVES.get())
             .add(ModBlocks.OLIVE_LEAVES.get());
@@ -60,7 +62,9 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_BUTTON.get())
             .add(ModBlocks.OLIVE_PRESSURE_PLATE.get())
             .add(ModBlocks.OLIVE_DOOR.get())
-            .add(ModBlocks.OLIVE_TRAPDOOR.get());
+            .add(ModBlocks.OLIVE_TRAPDOOR.get())
+
+            .add(ModBlocks.CRUSHING_TUB.get());
     //------------------------------------- block tags -------------------------------------//
     tag(TagInit.Blocks.IRONWOOD_LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get())

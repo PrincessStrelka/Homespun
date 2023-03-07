@@ -89,6 +89,8 @@ public class ModItemModels extends ItemModelProvider{
     /*     industry     */
     registerWithExistingParent(ModBlocks.CRUSHING_TUB);
     registerWithExistingParent(ModBlocks.EVAPORATING_BASIN);
+
+    /*     deco wood     */
   }
 
   //------------------------------------- methods -------------------------------------//

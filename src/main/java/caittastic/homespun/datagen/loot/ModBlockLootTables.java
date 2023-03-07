@@ -80,17 +80,19 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
     simpleSlabBlock(ModBlocks.CALCITE_BRICK_SLAB);
-
     simpleDropSelf(ModBlocks.CALCITE_BRICK_STAIRS);
     simpleDropSelf(ModBlocks.CALCITE_BRICK_WALL);
+
     simpleDropSelf(ModBlocks.TUFF_TILES);
     simpleSlabBlock(ModBlocks.TUFF_TILE_SLAB);
-
     simpleDropSelf(ModBlocks.TUFF_TILE_STAIRS);
     simpleDropSelf(ModBlocks.TUFF_TILE_WALL);
+
     /*     industry     */
     simpleDropSelf(ModBlocks.CRUSHING_TUB);
     simpleDropSelf(ModBlocks.EVAPORATING_BASIN);
+
+    /*     deco wood     */
   }
 
   private void simpleSlabBlock(RegistryObject<Block> slabBlock){

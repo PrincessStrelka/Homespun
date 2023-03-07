@@ -3,6 +3,9 @@ package caittastic.homespun.datagen.models;
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -65,6 +68,8 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerStairWithBaseBlock(ModBlocks.TUFF_TILE_STAIRS, ModBlocks.TUFF_TILES);
     registerSlabWithBaseBlock(ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILES);
     registerWall(ModBlocks.TUFF_TILE_WALL, ModBlocks.TUFF_TILES);
+
+    /*     deco wood     */
 
   }
   //------------------------------------- methods -------------------------------------//
