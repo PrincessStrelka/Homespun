@@ -55,10 +55,9 @@ public class CrushingTubRecipeCategory implements IRecipeCategory<CrushingTubRec
     if(!recipe.getResultFluidStack().isEmpty()){
       float scale = 34f /CrushingTubBE.getCapacity();
       int scaledAmount = (int)(recipe.getResultFluidStack().getAmount() * scale);
-      builder.addSlot(RecipeIngredientRole.INPUT, 71, 5+(34-scaledAmount))
+      builder.addSlot(RecipeIngredientRole.OUTPUT, 71, 5+(34-scaledAmount))
               .addFluidStack(recipe.getResultFluidStack().getFluid(), recipe.getResultFluidStack().getAmount())
               .setFluidRenderer(recipe.getResultFluidStack().getAmount(), true, 16, scaledAmount);
     }
-    //todo output fluid rendering
   }
 }
