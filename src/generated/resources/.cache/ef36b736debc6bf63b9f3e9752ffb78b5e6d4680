@@ -1,4 +1,4 @@
-// 1.19.2	2023-03-19T01:49:30.5679899	Item Models: homespun
+// 1.19.2	2023-03-19T16:58:40.1499482	Item Models: homespun
 1c4dcc3b9b26ea18af242e0666ce4afb8a693319 assets/homespun/models/item/calcite_bricks.json
 20fe2c4567c9b0cf7fff93f8e532b5ece5257f9f assets/homespun/models/item/calcite_brick_slab.json
 06a762d93f3a78457349fa0e12641a8dd11a8811 assets/homespun/models/item/calcite_brick_stairs.json
@@ -39,6 +39,7 @@ c55bdaf61ff0a33baa628b2205637c8637d4d4bc assets/homespun/models/item/olive_plank
 571f511ba3f71f2141222cf1244de8b1543b59ec assets/homespun/models/item/olive_stairs.json
 abd38063da98ea518164278144c5a55c50a1e43e assets/homespun/models/item/olive_trapdoor.json
 74bfd6f22e319586b8b59aa332ede88b3dc9f219 assets/homespun/models/item/olive_wood.json
+87f026a5a268b582dbbd4d87426f64356fcb35c1 assets/homespun/models/item/redstone_acid.json
 c38d227bf715c4c3feae39be3cb575e8b2a3a53f assets/homespun/models/item/salt.json
 51f742e10f2ad7836f4554da917079ad2949cff0 assets/homespun/models/item/smooth_stone_pillar.json
 28597db06e583027ede6fdf0ed58542796a9f1f4 assets/homespun/models/item/stripped_ironwood_log.json

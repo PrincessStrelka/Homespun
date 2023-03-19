@@ -8,10 +8,14 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -56,6 +60,15 @@ public class ModRecipes extends RecipeProvider{
             .group(Homespun.MOD_ID)
             .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA))
             .save(consumer);
+    ItemStack potionStack = PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
+    ShapelessRecipeBuilder
+            .shapeless(ModItems.REDSTONE_ACID.get(), 1)
+            .requires(Items.REDSTONE)
+            .requires(potionStack.getItem())
+            .group("redstone_acid")
+            .unlockedBy("has_redstone", has(Items.REDSTONE))
+            .save(consumer, "redstone_acid_crafting");
+
 
     /*     IRONWOOD     */
     woodFromLogs(consumer, ModBlocks.IRONWOOD_WOOD.get(), ModBlocks.IRONWOOD_LOG.get());
@@ -83,7 +96,7 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.OLIVE_DOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
-   /*     metallurgy     */
+    /*     metallurgy     */
     ShapelessRecipeBuilder.shapeless(ModItems.COPPER_NUGGET.get(), 9).requires(Tags.Items.INGOTS_COPPER).unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT)).save(consumer);
     ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
             .pattern("xxx")
@@ -102,7 +115,7 @@ public class ModRecipes extends RecipeProvider{
             ModBlocks.CALCITE_BRICKS,
             ModBlocks.CALCITE_BRICK_SLAB,
             ModBlocks.CALCITE_BRICK_STAIRS
-            ,ModBlocks.CALCITE_BRICK_WALL
+            , ModBlocks.CALCITE_BRICK_WALL
     );
     //tuff
     registerBrickSet(consumer,
@@ -112,7 +125,7 @@ public class ModRecipes extends RecipeProvider{
             ModBlocks.TUFF_TILES,
             ModBlocks.TUFF_TILE_SLAB,
             ModBlocks.TUFF_TILE_STAIRS
-            ,ModBlocks.TUFF_TILE_WALL
+            , ModBlocks.TUFF_TILE_WALL
     );
     //smooth stone pillar
     ShapedRecipeBuilder.shaped(ModBlocks.SMOOTH_STONE_PILLAR.get(), 3)
@@ -127,16 +140,18 @@ public class ModRecipes extends RecipeProvider{
             .stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.SMOOTH_STONE_PILLAR.get())
             .unlockedBy("has_stone", has(Blocks.STONE))
             .save(consumer, "smooth_stone_pillar_from_stonecutting");
+
     /*     metallurgy     */
     chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, consumer);
     chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.FORGE_NUGGETS_COPPER, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
-
     postRecipe(consumer, ModBlocks.IRON_POST, Tags.Items.INGOTS_IRON, "has_iron");
     postRecipe(consumer, ModBlocks.WOODEN_POST, ItemTags.PLANKS, "has_planks");
 
 
   }
 
+
+  //------------------------------------- methods -------------------------------------//
   private void postRecipe(@NotNull Consumer<FinishedRecipe> consumer, RegistryObject<Block> post, TagKey<Item> materialTag, String criterion){
     ShapedRecipeBuilder.shaped(post.get(), 3)
             .pattern("x")
@@ -148,7 +163,6 @@ public class ModRecipes extends RecipeProvider{
             .save(consumer);
   }
 
-  //------------------------------------- methods -------------------------------------//
   private void planksFromWood(Consumer<FinishedRecipe> consumer, Block plankBlock, TagKey<Item> woodTag, String name){
     ShapelessRecipeBuilder.shapeless(plankBlock, 4).requires(woodTag).group("planks").unlockedBy("has_wood", has(woodTag)).save(consumer, name);
   }
@@ -161,7 +175,7 @@ public class ModRecipes extends RecipeProvider{
           RegistryObject<Block> bricks,
           RegistryObject<Block> brickSlab,
           RegistryObject<Block> brickStairs
-          ,RegistryObject<Block> brickWall
+          , RegistryObject<Block> brickWall
   ){
     ShapedRecipeBuilder.shaped(bricks.get(), 4)
             .pattern("xx")

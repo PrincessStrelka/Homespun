@@ -21,10 +21,11 @@ public class ModItemModels extends ItemModelProvider{
   @Override
   protected void registerModels(){
     //------------------------------------- items -------------------------------------//
-    /*     metallurgy     */
+    /*     industry     */
     registerFlatItemModel(ModItems.TINY_IRON_DUST);
     registerFlatItemModel(ModItems.COPPER_NUGGET);
     registerFlatItemModel(ModItems.SALT);
+    registerFlatItemModel(ModItems.REDSTONE_ACID);
 
     /*     crops     */
     registerFlatItemModel(ModItems.IRONBERRIES);
@@ -34,6 +35,7 @@ public class ModItemModels extends ItemModelProvider{
     /*     fluids     */
     registerFlatItemModel(ModItems.IRONBERRY_JUICE_BOTTLE);
     registerFlatItemModel(ModItems.IRONBERRY_JUICE_BUCKET);
+
     //------------------------------------- blocks -------------------------------------//
     /*     ironwood     */
     registerFlatBlockWithBlockTexture(ModBlocks.IRONWOOD_SAPLING);

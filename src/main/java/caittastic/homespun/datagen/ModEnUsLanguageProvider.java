@@ -16,10 +16,11 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
   @Override
   protected void addTranslations(){
     //------------------------------------- items -------------------------------------//
-    /*     metallurgy     */
+    /*     industry     */
     add(ModItems.TINY_IRON_DUST.get(), "Tiny Pile Of Iron Dust");
     add(ModItems.COPPER_NUGGET.get(), "Copper Nugget");
     add(ModItems.SALT.get(), "Salt Rocks");
+    add(ModItems.REDSTONE_ACID.get(), "Redstone Acid");
     /*     crops     */
     add(ModItems.IRONBERRIES.get(), "Ironberries");
     add(ModItems.OLIVES.get(), "Olives");
