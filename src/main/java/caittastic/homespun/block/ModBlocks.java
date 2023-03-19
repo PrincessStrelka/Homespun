@@ -79,6 +79,11 @@ public class ModBlocks{
   public static final RegistryObject<Block> COPPER_CHAIN = registerBlockAndItem("copper_chain", () -> new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRON_POST = registerBlockAndItem("iron_post", () -> new PostBlock(BlockBehaviour.Properties.copy(Blocks.LIGHTNING_ROD).noOcclusion()), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> WOODEN_POST = registerBlockAndItem("wooden_post", () -> new PostBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion()), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_BLOCK = registerBlockAndItem("cast_iron_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILES = registerBlockAndItem("cast_iron_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
+
+  public static final RegistryObject<Block> CAST_IRON_TILE_STAIRS = registerBlockAndItem("cast_iron_tile_stairs", () -> new StairBlock(() -> ModBlocks.CAST_IRON_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILE_SLAB = registerBlockAndItem("cast_iron_tiles_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
 
 
 

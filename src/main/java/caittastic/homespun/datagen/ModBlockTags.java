@@ -22,6 +22,10 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.GOLD_CHAIN.get())
             .add(ModBlocks.COPPER_CHAIN.get())
             .add(ModBlocks.IRON_POST.get())
+            .add(ModBlocks.CAST_IRON_BLOCK.get())
+            .add(ModBlocks.CAST_IRON_TILES.get())
+            .add(ModBlocks.CAST_IRON_TILE_STAIRS.get())
+            .add(ModBlocks.CAST_IRON_TILE_SLAB.get())
 
             .add(ModBlocks.SMOOTH_STONE_PILLAR.get())
 

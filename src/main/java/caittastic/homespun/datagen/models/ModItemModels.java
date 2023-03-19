@@ -93,6 +93,10 @@ public class ModItemModels extends ItemModelProvider{
     registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
     registerWithExistingParent(ModBlocks.IRON_POST);
     registerWithExistingParent(ModBlocks.WOODEN_POST);
+    registerWithExistingParent(ModBlocks.CAST_IRON_BLOCK);
+    registerWithExistingParent(ModBlocks.CAST_IRON_TILES);
+    registerWithExistingParent(ModBlocks.CAST_IRON_TILE_STAIRS);
+    registerWithExistingParent(ModBlocks.CAST_IRON_TILE_SLAB);
 
 
   }

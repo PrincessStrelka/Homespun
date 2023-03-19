@@ -7,12 +7,12 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_tuff": {
+    "has_tuff_tiles": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:tuff"
+              "homespun:tuff_tiles"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_tuff",
+      "has_tuff_tiles",
       "has_the_recipe"
     ]
   ],

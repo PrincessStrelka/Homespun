@@ -80,6 +80,10 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
     add(ModBlocks.IRON_POST.get(), "Iron Post");
     add(ModBlocks.WOODEN_POST.get(), "Wooden Post");
+    add(ModBlocks.CAST_IRON_BLOCK.get(), "Wrought Tile");
+    add(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile");
+    add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
+    add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");

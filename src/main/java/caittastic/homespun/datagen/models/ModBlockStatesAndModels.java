@@ -69,7 +69,12 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerSlabWithBaseBlock(ModBlocks.TUFF_TILE_SLAB, ModBlocks.TUFF_TILES);
     registerWall(ModBlocks.TUFF_TILE_WALL, ModBlocks.TUFF_TILES);
 
-    /*     deco wood     */
+    /*     metallurgy     */
+    simpleBlock(ModBlocks.CAST_IRON_BLOCK.get());
+    simpleBlock(ModBlocks.CAST_IRON_TILES.get());
+    registerStairWithBaseBlock(ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES);
+    registerSlabWithBaseBlock(ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES);
+
 
   }
   //------------------------------------- methods -------------------------------------//

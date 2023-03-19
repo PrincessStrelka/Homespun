@@ -1,9 +1,0 @@
-{
-  "type": "homespun:weathering",
-  "input_block_item": {
-    "item": "minecraft:cobblestone"
-  },
-  "output_block_item": {
-    "item": "minecraft:gravel"
-  }
-}

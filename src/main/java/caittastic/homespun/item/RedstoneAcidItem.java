@@ -44,8 +44,7 @@ public class RedstoneAcidItem extends Item{
             {Blocks.WEATHERED_COPPER, Blocks.OXIDIZED_COPPER},
             {Blocks.WEATHERED_CUT_COPPER, Blocks.OXIDIZED_CUT_COPPER},
             {Blocks.WEATHERED_CUT_COPPER_SLAB, Blocks.OXIDIZED_CUT_COPPER_SLAB},
-            {Blocks.WEATHERED_CUT_COPPER_STAIRS, Blocks.OXIDIZED_CUT_COPPER_STAIRS},
-
+            {Blocks.WEATHERED_CUT_COPPER_STAIRS, Blocks.OXIDIZED_CUT_COPPER_STAIRS}
     };
 
 

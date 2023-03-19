@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "homespun",
   "key": {
     "x": {
       "item": "homespun:tuff_tiles"

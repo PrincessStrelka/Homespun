@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_redstone": {
+    "has_calcite_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:redstone"
+              "homespun:calcite_bricks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:redstone_acid_crafting"
+        "recipe": "minecraft:calcite_brick_stairs_stairs_from_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_calcite_bricks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:redstone_acid_crafting"
+      "minecraft:calcite_brick_stairs_stairs_from_stonecutting"
     ]
   }
 }

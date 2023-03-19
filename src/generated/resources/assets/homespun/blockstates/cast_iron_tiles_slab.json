@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "homespun:block/cast_iron_tiles_slab"
+    },
+    "type=double": {
+      "model": "homespun:block/cast_iron_tiles"
+    },
+    "type=top": {
+      "model": "homespun:block/cast_iron_tiles_slab_top"
+    }
+  }
+}

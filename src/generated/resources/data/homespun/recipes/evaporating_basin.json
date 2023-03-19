@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "homespun",
   "key": {
     "t": {
       "tag": "minecraft:terracotta"

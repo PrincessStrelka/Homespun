@@ -1,15 +1,19 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "redstone_acid",
   "ingredients": [
     {
       "item": "minecraft:redstone"
     },
     {
-      "item": "minecraft:potion"
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "nbt": {
+        "Potion": "minecraft:water"
+      }
     }
   ],
   "result": {
     "item": "homespun:redstone_acid"
   }
 }
+

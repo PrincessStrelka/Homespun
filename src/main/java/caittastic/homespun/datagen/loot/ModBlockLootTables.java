@@ -94,6 +94,10 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.COPPER_CHAIN);
     simpleDropSelf(ModBlocks.IRON_POST);
     simpleDropSelf(ModBlocks.WOODEN_POST);
+    simpleDropSelf(ModBlocks.CAST_IRON_BLOCK);
+    simpleDropSelf(ModBlocks.CAST_IRON_TILES);
+    simpleDropSelf(ModBlocks.CAST_IRON_TILE_STAIRS);
+    simpleSlabBlock(ModBlocks.CAST_IRON_TILE_SLAB);
 
   }
 

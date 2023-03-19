@@ -1,18 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "homespun",
   "key": {
-    "x": {
+    "#": {
       "item": "homespun:calcite_bricks"
     }
   },
   "pattern": [
-    "x  ",
-    "xx ",
-    "xxx"
+    "#  ",
+    "## ",
+    "###"
   ],
   "result": {
-    "count": 6,
+    "count": 4,
     "item": "homespun:calcite_brick_stairs"
   }
 }
