@@ -61,9 +61,6 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.OLIVE_PRESSURE_PLATE.get(), "Olive Pressure Plate");
     add(ModBlocks.OLIVE_DOOR.get(), "Olive Door");
     add(ModBlocks.OLIVE_TRAPDOOR.get(), "Olive Trapdoor");
-    /*     chain     */
-    add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
-    add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
     /*     deco stone     */
     add(ModBlocks.SMOOTH_STONE_PILLAR.get(), "Smooth Stone Pillar");
     add(ModBlocks.CALCITE_BRICKS.get(), "Calcite Bricks");
@@ -77,6 +74,11 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     industry     */
     add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
     add(ModBlocks.EVAPORATING_BASIN.get(), "Evaporating Basin");
+    /*     metallurgy     */
+    add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
+    add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
+    add(ModBlocks.IRON_POST.get(), "Iron Post");
+    add(ModBlocks.WOODEN_POST.get(), "Wooden Post");
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");

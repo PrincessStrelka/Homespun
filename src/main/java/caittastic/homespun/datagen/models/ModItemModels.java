@@ -69,10 +69,6 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
     registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
 
-    /*     chain     */
-    registerFlatBlockModelWithItemTexture(ModBlocks.GOLD_CHAIN);
-    registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
-
     /*     deco stone     */
     registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
 
@@ -90,7 +86,13 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CRUSHING_TUB);
     registerWithExistingParent(ModBlocks.EVAPORATING_BASIN);
 
-    /*     deco wood     */
+    /*     metallurgy     */
+    registerFlatBlockModelWithItemTexture(ModBlocks.GOLD_CHAIN);
+    registerFlatBlockModelWithItemTexture(ModBlocks.COPPER_CHAIN);
+    registerWithExistingParent(ModBlocks.IRON_POST);
+    registerWithExistingParent(ModBlocks.WOODEN_POST);
+
+
   }
 
   //------------------------------------- methods -------------------------------------//

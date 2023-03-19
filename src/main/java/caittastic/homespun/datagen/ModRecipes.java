@@ -83,10 +83,7 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.OLIVE_DOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
-    /*     chain     */
-    chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, consumer);
-    chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.FORGE_NUGGETS_COPPER, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
-    /*     metallurgy     */
+   /*     metallurgy     */
     ShapelessRecipeBuilder.shapeless(ModItems.COPPER_NUGGET.get(), 9).requires(Tags.Items.INGOTS_COPPER).unlockedBy("copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT)).save(consumer);
     ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
             .pattern("xxx")
@@ -130,8 +127,25 @@ public class ModRecipes extends RecipeProvider{
             .stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.SMOOTH_STONE_PILLAR.get())
             .unlockedBy("has_stone", has(Blocks.STONE))
             .save(consumer, "smooth_stone_pillar_from_stonecutting");
+    /*     metallurgy     */
+    chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, consumer);
+    chainRecipe(ModBlocks.COPPER_CHAIN, TagInit.Items.FORGE_NUGGETS_COPPER, Tags.Items.INGOTS_COPPER, "copper_ingot", Items.COPPER_INGOT, consumer);
+
+    postRecipe(consumer, ModBlocks.IRON_POST, Tags.Items.INGOTS_IRON, "has_iron");
+    postRecipe(consumer, ModBlocks.WOODEN_POST, ItemTags.PLANKS, "has_planks");
 
 
+  }
+
+  private void postRecipe(@NotNull Consumer<FinishedRecipe> consumer, RegistryObject<Block> post, TagKey<Item> materialTag, String criterion){
+    ShapedRecipeBuilder.shaped(post.get(), 3)
+            .pattern("x")
+            .pattern("x")
+            .pattern("x")
+            .define('x', materialTag)
+            .group(Homespun.MOD_ID)
+            .unlockedBy(criterion, has(materialTag))
+            .save(consumer);
   }
 
   //------------------------------------- methods -------------------------------------//

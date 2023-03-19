@@ -21,6 +21,7 @@ public class ModBlockTags extends BlockTagsProvider{
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.GOLD_CHAIN.get())
             .add(ModBlocks.COPPER_CHAIN.get())
+            .add(ModBlocks.IRON_POST.get())
 
             .add(ModBlocks.SMOOTH_STONE_PILLAR.get())
 
@@ -67,7 +68,8 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_TRAPDOOR.get())
             .add(ModBlocks.OLIVE_SAPLING.get())
 
-            .add(ModBlocks.CRUSHING_TUB.get());
+            .add(ModBlocks.CRUSHING_TUB.get())
+            .add(ModBlocks.WOODEN_POST.get());
     //------------------------------------- block tags -------------------------------------//
     tag(BlockTags.SLABS)
             .add(ModBlocks.TUFF_TILE_SLAB.get())

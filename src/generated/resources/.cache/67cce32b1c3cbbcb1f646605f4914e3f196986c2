@@ -1,4 +1,4 @@
-// 1.19.2	2023-03-07T20:41:42.3323713	LootTables
+// 1.19.2	2023-03-19T01:49:30.5729834	LootTables
 cdceccc3956430ac5fd85f64ce86f92fdcdc3b26 data/homespun/loot_tables/blocks/calcite_bricks.json
 2c333714c61222d27b17c88fa5a17997b8fca35c data/homespun/loot_tables/blocks/calcite_brick_slab.json
 2d18d4c51f388315ff3ae6d2f2d4c598abdea899 data/homespun/loot_tables/blocks/calcite_brick_stairs.json
@@ -20,6 +20,7 @@ f3c00d292a36aaea03746b3a2e4afb3b82055762 data/homespun/loot_tables/blocks/ironwo
 bb9146da93afb798a9777642c2d9eea66fd24c26 data/homespun/loot_tables/blocks/ironwood_stairs.json
 0ff9526d0f5e2468d145b37a3062929aa17d63be data/homespun/loot_tables/blocks/ironwood_trapdoor.json
 0bccc4cd307b8913424c63382e222598916b7699 data/homespun/loot_tables/blocks/ironwood_wood.json
+6fe745b7dcfa06bdab91bfbf33458e0b2eeaf209 data/homespun/loot_tables/blocks/iron_post.json
 4d8788dda82c90a08e2450a5cb88d06621772ca7 data/homespun/loot_tables/blocks/olive_button.json
 72e094fcfc5a1d449b4178458c6a9882f31b26c9 data/homespun/loot_tables/blocks/olive_door.json
 d62eb7bc25199a27ab6dd1418a854edaf6564013 data/homespun/loot_tables/blocks/olive_fence.json
@@ -44,3 +45,4 @@ af75522251a9af9d4bfd229323e9461d36818fab data/homespun/loot_tables/blocks/tuff_t
 7fb1dc69ae56f2da6c4884d7f5f8af4bc1fe03fb data/homespun/loot_tables/blocks/tuff_tile_slab.json
 a5e4c4d7e8661458cd1890d77de9c0cd10bce114 data/homespun/loot_tables/blocks/tuff_tile_stairs.json
 c2968fbbc0a1a5ed64281ac119a8803578941221 data/homespun/loot_tables/blocks/tuff_tile_wall.json
+efd63982c0d1a1bb1ac4e62c31145bc7159588e6 data/homespun/loot_tables/blocks/wooden_post.json

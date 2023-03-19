@@ -73,9 +73,6 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.OLIVE_BUTTON);
     simpleDropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.OLIVE_TRAPDOOR);
-    /*     chain     */
-    simpleDropSelf(ModBlocks.GOLD_CHAIN);
-    simpleDropSelf(ModBlocks.COPPER_CHAIN);
     /*     deco stone     */
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
@@ -92,7 +89,12 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.CRUSHING_TUB);
     simpleDropSelf(ModBlocks.EVAPORATING_BASIN);
 
-    /*     deco wood     */
+    /*     metallurgy     */
+    simpleDropSelf(ModBlocks.GOLD_CHAIN);
+    simpleDropSelf(ModBlocks.COPPER_CHAIN);
+    simpleDropSelf(ModBlocks.IRON_POST);
+    simpleDropSelf(ModBlocks.WOODEN_POST);
+
   }
 
   private void simpleSlabBlock(RegistryObject<Block> slabBlock){

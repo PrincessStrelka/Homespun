@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "connected=true": {
+      "model": "homespun:block/iron_post_connected"
+    },
+    "connected=false": {
+      "model": "homespun:block/iron_post"
+    }
+  }
+}

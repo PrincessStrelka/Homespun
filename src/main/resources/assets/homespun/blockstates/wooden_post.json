@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "connected=true": {
+      "model": "homespun:block/wooden_post_connected"
+    },
+    "connected=false": {
+      "model": "homespun:block/wooden_post"
+    }
+  }
+}
