@@ -1,0 +1,8 @@
+{
+  "parent": "homespun:block/base_ceramic_vessel",
+  "textures": {
+    "bottom": "homespun:block/vessels/ashen_ceramic_vessel_bottom",
+    "side": "homespun:block/vessels/ashen_ceramic_vessel_side",
+    "top": "homespun:block/vessels/ashen_ceramic_vessel_top"
+  }
+}
