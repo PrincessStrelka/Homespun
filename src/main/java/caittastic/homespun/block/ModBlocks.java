@@ -14,6 +14,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static caittastic.homespun.Homespun.MOD_ID;
@@ -85,9 +87,29 @@ public class ModBlocks{
   public static final RegistryObject<Block> CAST_IRON_TILE_STAIRS = registerBlockAndItem("cast_iron_tile_stairs", () -> new StairBlock(() -> ModBlocks.CAST_IRON_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> CAST_IRON_TILE_SLAB = registerBlockAndItem("cast_iron_tiles_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
 
+  /*     ceramic vessels     */
+  public static final RegistryObject<Block> CERAMIC_VESSEL = registerBlockAndItem("ceramic_vessel", () -> new CeramicVesselBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)), ModTabRegistry.DECORATION);
 
+  public static final Map<String, RegistryObject<Block>> VESSEL_MAP = new HashMap<>();
+  public static final String[] vessels = {
+          "ashen", //nb
+          "cerulean", //pan
+          "ivory", //trans
+          "roseate", //lesbian
+          "verdant", //agender/aromantic can work for both
+          "violaceous" //lgbt
+  };
 
-
+  static{
+    for(String name: vessels){
+      VESSEL_MAP.put(
+              name,
+              registerBlockAndItem(
+                      name + "_ceramic_vessel",
+                      () -> new CeramicVesselBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)),
+                      ModTabRegistry.DECORATION));
+    }
+  }
 
   //CONDENSER = new BlockCondenser();
   //RETORT = new BlockRetort("retort");

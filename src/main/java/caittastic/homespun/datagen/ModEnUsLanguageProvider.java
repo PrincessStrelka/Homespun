@@ -3,10 +3,11 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.Homespun;
 import caittastic.homespun.ModTabRegistry;
 import caittastic.homespun.block.ModBlocks;
-import caittastic.homespun.fluid.ModFluids;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+
+import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 public class ModEnUsLanguageProvider extends LanguageProvider{
   public ModEnUsLanguageProvider(DataGenerator gen, String locale){
@@ -84,6 +85,11 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile");
     add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
     add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
+    /*     ceramic vessels     */
+    add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
+    for(String name: ModBlocks.vessels){
+      add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
+    }
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");

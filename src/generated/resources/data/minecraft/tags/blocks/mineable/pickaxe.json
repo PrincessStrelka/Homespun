@@ -1,5 +1,11 @@
 {
   "values": [
+    "homespun:ashen_ceramic_vessel",
+    "homespun:cerulean_ceramic_vessel",
+    "homespun:ivory_ceramic_vessel",
+    "homespun:roseate_ceramic_vessel",
+    "homespun:verdant_ceramic_vessel",
+    "homespun:violaceous_ceramic_vessel",
     "homespun:gold_chain",
     "homespun:copper_chain",
     "homespun:iron_post",
@@ -14,6 +20,7 @@
     "homespun:tuff_tiles",
     "homespun:tuff_tile_stairs",
     "homespun:tuff_tile_slab",
+    "homespun:ceramic_vessel",
     "homespun:evaporating_basin"
   ]
 }

@@ -18,6 +18,12 @@ public class ModBlockTags extends BlockTagsProvider{
   @Override
   protected void addTags(){
     //------------------------------------- mining tool -------------------------------------//
+    //vessels
+    for(String name: ModBlocks.vessels){
+      tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.VESSEL_MAP.get(name).get());
+    }
+
+
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.GOLD_CHAIN.get())
             .add(ModBlocks.COPPER_CHAIN.get())
@@ -36,6 +42,8 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.TUFF_TILES.get())
             .add(ModBlocks.TUFF_TILE_STAIRS.get())
             .add(ModBlocks.TUFF_TILE_SLAB.get())
+
+            .add(ModBlocks.CERAMIC_VESSEL.get())
 
             .add(ModBlocks.EVAPORATING_BASIN.get());
     tag(BlockTags.MINEABLE_WITH_HOE)

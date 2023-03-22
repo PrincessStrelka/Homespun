@@ -13,8 +13,10 @@ public class ModBlockEntities{
   public static final RegistryObject<BlockEntityType<CrushingTubBE>> CRUSHING_TUB =
           BLOCK_ENTITIES.register("crushing_tub_block_entity", () ->
                   BlockEntityType.Builder.of(CrushingTubBE::new, ModBlocks.CRUSHING_TUB.get()).build(null));
+
   public static final RegistryObject<BlockEntityType<EvaporatingBasinBE>> EVAPORATING_BASIN =
           BLOCK_ENTITIES.register("evaporating_basin_block_entity", () ->
                   BlockEntityType.Builder.of(EvaporatingBasinBE::new, ModBlocks.EVAPORATING_BASIN.get()).build(null));
+
 
 }

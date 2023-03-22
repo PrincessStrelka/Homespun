@@ -3,7 +3,6 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -81,7 +80,7 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.OLIVE_DOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
-    
+
     /*     deco stone     */
     //calcite
     registerBrickSet(consumer,
@@ -143,6 +142,65 @@ public class ModRecipes extends RecipeProvider{
     brickLikeRecipe(consumer, ModBlocks.CAST_IRON_BLOCK.get(), ModBlocks.CAST_IRON_TILES, true);
     stairRecipe(consumer, ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES, true);
     slabRecipe(consumer, ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES, true);
+
+    /*     ceramic vessels     */
+    //default
+    ShapedRecipeBuilder.shaped(ModBlocks.CERAMIC_VESSEL.get(), 1)
+            .pattern(" t ")
+            .pattern("t t")
+            .pattern("ttt")
+            .define('t', ItemTags.TERRACOTTA)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA))
+            .save(consumer);
+
+    //ashen
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("ashen").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_BLACK)
+            .requires(Tags.Items.DYES_PURPLE)
+            .requires(Tags.Items.DYES_WHITE)
+            .requires(Tags.Items.DYES_YELLOW)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
+    //cerulean
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("cerulean").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_LIGHT_BLUE)
+            .requires(Tags.Items.DYES_MAGENTA)
+            .requires(Tags.Items.DYES_YELLOW)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
+    //ivory
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("ivory").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_WHITE)
+            .requires(Tags.Items.DYES_LIGHT_BLUE)
+            .requires(Tags.Items.DYES_PINK)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
+    //roseate
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("roseate").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_MAGENTA)
+            .requires(Tags.Items.DYES_ORANGE)
+            .requires(Tags.Items.DYES_WHITE)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
+    //verdant
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("verdant").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_LIME)
+            .requires(Tags.Items.DYES_BLACK)
+            .requires(Tags.Items.DYES_WHITE)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
+    //violaceous
+    ShapelessRecipeBuilder.shapeless(ModBlocks.VESSEL_MAP.get("violaceous").get(), 1).requires(ModBlocks.CERAMIC_VESSEL.get())
+            .requires(Tags.Items.DYES_PURPLE)
+            .requires(Tags.Items.DYES_RED)
+            .requires(Tags.Items.DYES_ORANGE)
+            .requires(Tags.Items.DYES_YELLOW)
+            .requires(Tags.Items.DYES_GREEN)
+            .requires(Tags.Items.DYES_BLUE)
+            .requires(Tags.Items.DYES_BROWN)
+            .requires(Tags.Items.DYES_BLACK)
+            .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
+
 
   }
 

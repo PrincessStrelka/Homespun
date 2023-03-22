@@ -1,21 +1,20 @@
 package caittastic.homespun.datagen.models;
 
-import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static caittastic.homespun.Homespun.MOD_ID;
+
 public class ModBlockStatesAndModels extends BlockStateProvider{
   public ModBlockStatesAndModels(DataGenerator gen, ExistingFileHelper helper){
-    super(gen, Homespun.MOD_ID, helper);
+    super(gen, MOD_ID, helper);
   }
 
   @Override
@@ -75,9 +74,30 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerStairWithBaseBlock(ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES);
     registerSlabWithBaseBlock(ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES);
 
+    /*     ceramic vessels     */
+    registerVesselModel(ModBlocks.CERAMIC_VESSEL);
+    for(String name: ModBlocks.vessels){
+      registerVesselModel(ModBlocks.VESSEL_MAP.get(name));
+    }
 
   }
+
+
   //------------------------------------- methods -------------------------------------//
+  private void registerVesselModel(RegistryObject<Block> vessel){
+    simpleBlock(
+            vessel.get(),
+            models().withExistingParent(vessel.getId().getPath(), new ResourceLocation(MOD_ID, "block/base_ceramic_vessel"))
+                    .texture("top", vesselTexture(vessel.get()) + "_top")
+                    .texture("bottom", vesselTexture(vessel.get()) + "_bottom")
+                    .texture("side", vesselTexture(vessel.get()) + "_side")
+    );
+  }
+
+  public ResourceLocation vesselTexture(Block block){
+    ResourceLocation name = ForgeRegistries.BLOCKS.getKey(block);
+    return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + "vessels/" + name.getPath());
+  }
 
   private void registerLeavesBlock(RegistryObject<Block> leavesBlock){
     simpleBlock(
@@ -108,8 +128,8 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
   private void registerDoor(RegistryObject<Block> doorBlock){
     doorBlock(
             (DoorBlock)doorBlock.get(),
-            new ResourceLocation(Homespun.MOD_ID, "block/" + doorBlock.getId().getPath() + "_bottom"),
-            new ResourceLocation(Homespun.MOD_ID, "block/" + doorBlock.getId().getPath() + "_top")
+            new ResourceLocation(MOD_ID, "block/" + doorBlock.getId().getPath() + "_bottom"),
+            new ResourceLocation(MOD_ID, "block/" + doorBlock.getId().getPath() + "_top")
     );
   }
 

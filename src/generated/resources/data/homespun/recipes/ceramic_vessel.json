@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "t": {
+      "tag": "minecraft:terracotta"
+    }
+  },
+  "pattern": [
+    " t ",
+    "t t",
+    "ttt"
+  ],
+  "result": {
+    "item": "homespun:ceramic_vessel"
+  }
+}

@@ -72,18 +72,7 @@ public class CrushingTubBlock extends BaseEntityBlock{
 
   @Override
   public @NotNull VoxelShape getShape(BlockState state, BlockGetter pLevel, BlockPos pos, CollisionContext context){
-    //single cuboid
     return Shapes.or(Block.box(0, 0, 0, 16, 9, 16));
-    //two thick walls, means flallOn doesnt work but aesthetically feels better
-    /*
-    return Shapes.or(
-            Block.box(0, 0, 0, 16, 2, 16),
-            Block.box(0, 2, 0, 16, 9, 2),
-            Block.box(0, 2, 14, 16, 9, 16),
-            Block.box(0, 2, 2, 2, 9, 14),
-            Block.box(14, 2, 2, 16, 9, 14)
-    );
-     */
   }
 
   @Override
