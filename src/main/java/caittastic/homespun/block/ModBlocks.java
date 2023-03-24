@@ -88,6 +88,7 @@ public class ModBlocks{
   public static final RegistryObject<Block> CAST_IRON_TILE_SLAB = registerBlockAndItem("cast_iron_tiles_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
 
   /*     ceramic vessels     */
+  /*
   public static final RegistryObject<Block> CERAMIC_VESSEL = registerBlockAndItem("ceramic_vessel", () -> new CeramicVesselBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)), ModTabRegistry.DECORATION);
 
   public static final Map<String, RegistryObject<Block>> VESSEL_MAP = new HashMap<>();
@@ -110,6 +111,7 @@ public class ModBlocks{
                       ModTabRegistry.DECORATION));
     }
   }
+   */
 
   //CONDENSER = new BlockCondenser();
   //RETORT = new BlockRetort("retort");

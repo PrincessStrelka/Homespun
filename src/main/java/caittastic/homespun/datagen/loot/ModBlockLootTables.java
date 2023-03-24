@@ -100,10 +100,13 @@ public class ModBlockLootTables extends BlockLoot{
     simpleSlabBlock(ModBlocks.CAST_IRON_TILE_SLAB);
 
     /*     ceramic vessels     */
+    /*
     simpleDropSelf(ModBlocks.CERAMIC_VESSEL);
     for (String name : ModBlocks.vessels) {
       this.dropSelf(ModBlocks.VESSEL_MAP.get(name).get());
     }
+
+     */
 
 
   }

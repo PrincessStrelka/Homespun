@@ -144,6 +144,7 @@ public class ModRecipes extends RecipeProvider{
     slabRecipe(consumer, ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES, true);
 
     /*     ceramic vessels     */
+    /*
     //default
     ShapedRecipeBuilder.shaped(ModBlocks.CERAMIC_VESSEL.get(), 1)
             .pattern(" t ")
@@ -200,7 +201,7 @@ public class ModRecipes extends RecipeProvider{
             .requires(Tags.Items.DYES_BROWN)
             .requires(Tags.Items.DYES_BLACK)
             .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
-
+     */
 
   }
 

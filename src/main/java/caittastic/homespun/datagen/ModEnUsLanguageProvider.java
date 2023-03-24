@@ -86,10 +86,12 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
     add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
     /*     ceramic vessels     */
+    /*
     add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
     for(String name: ModBlocks.vessels){
       add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
     }
+     */
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");

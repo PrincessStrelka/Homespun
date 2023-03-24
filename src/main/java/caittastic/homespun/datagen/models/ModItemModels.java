@@ -99,10 +99,13 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_SLAB);
 
     /*     ceramic vessels     */
+    /*
     registerWithExistingParent(ModBlocks.CERAMIC_VESSEL);
     for (String name : ModBlocks.vessels) {
       registerWithExistingParent(ModBlocks.VESSEL_MAP.get(name));
     }
+
+     */
   }
 
   //------------------------------------- methods -------------------------------------//

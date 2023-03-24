@@ -22,9 +22,7 @@ public class CeramicVesselBlock extends Block{
             Block.box(5, 12, 5, 11, 14, 11),
             Block.box(4, 14, 4, 12, 16, 12)
     );
-
   }
-
 
   @Override
   public RenderShape getRenderShape(BlockState pState){
