@@ -36,6 +36,9 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerPressurePlate(ModBlocks.IRONWOOD_PRESSURE_PLATE, ModBlocks.IRONWOOD_PLANKS);
     registerDoor(ModBlocks.IRONWOOD_DOOR);
     registerTrapdoor(ModBlocks.IRONWOOD_TRAPDOOR);
+    simpleBlock(ModBlocks.IRONWOOD_MOSAIC.get());
+    registerStairWithBaseBlock(ModBlocks.IRONWOOD_MOSAIC_STAIRS, ModBlocks.IRONWOOD_MOSAIC);
+    registerSlabWithBaseBlock(ModBlocks.IRONWOOD_MOSAIC_SLAB, ModBlocks.IRONWOOD_MOSAIC);
 
     /*     olive     */
     registerCrossBlock(ModBlocks.OLIVE_SAPLING);
@@ -54,6 +57,9 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerPressurePlate(ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS);
     registerDoor(ModBlocks.OLIVE_DOOR);
     registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
+    simpleBlock(ModBlocks.OLIVE_MOSAIC.get());
+    registerStairWithBaseBlock(ModBlocks.OLIVE_MOSAIC_STAIRS, ModBlocks.OLIVE_MOSAIC);
+    registerSlabWithBaseBlock(ModBlocks.OLIVE_MOSAIC_SLAB, ModBlocks.OLIVE_MOSAIC);
 
     /*     deco stone     */
     axisBlock((RotatedPillarBlock)ModBlocks.SMOOTH_STONE_PILLAR.get(), blockTexture(ModBlocks.SMOOTH_STONE_PILLAR.get()), blockTexture(Blocks.SMOOTH_STONE));
@@ -75,13 +81,13 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     registerSlabWithBaseBlock(ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES);
 
     /*     ceramic vessels     */
-    /*
+
     registerVesselModel(ModBlocks.CERAMIC_VESSEL);
     for(String name: ModBlocks.vessels){
       registerVesselModel(ModBlocks.VESSEL_MAP.get(name));
     }
 
-     */
+
 
   }
 

@@ -53,6 +53,9 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.IRONWOOD_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.IRONWOOD_BUTTON);
     registerWithExistingParent(ModBlocks.IRONWOOD_PRESSURE_PLATE);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC_STAIRS);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC_SLAB);
 
     /*     olive     */
     registerFlatBlockWithBlockTexture(ModBlocks.OLIVE_SAPLING);
@@ -70,6 +73,9 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.OLIVE_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
     registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC_STAIRS);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC_SLAB);
 
     /*     deco stone     */
     registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
@@ -99,13 +105,13 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_SLAB);
 
     /*     ceramic vessels     */
-    /*
+
     registerWithExistingParent(ModBlocks.CERAMIC_VESSEL);
     for (String name : ModBlocks.vessels) {
       registerWithExistingParent(ModBlocks.VESSEL_MAP.get(name));
     }
 
-     */
+
   }
 
   //------------------------------------- methods -------------------------------------//

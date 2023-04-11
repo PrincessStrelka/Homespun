@@ -50,6 +50,10 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.IRONWOOD_BUTTON);
     simpleDropSelf(ModBlocks.IRONWOOD_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.IRONWOOD_TRAPDOOR);
+    simpleDropSelf(ModBlocks.IRONWOOD_MOSAIC);
+    simpleDropSelf(ModBlocks.IRONWOOD_MOSAIC_STAIRS);
+    simpleSlabBlock(ModBlocks.IRONWOOD_MOSAIC_SLAB);
+
     /*     olive     */
     leafWithExtra(
             ModBlocks.OLIVE_LEAVES,
@@ -67,12 +71,15 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.OLIVE_PLANKS);
     simpleDropSelf(ModBlocks.OLIVE_STAIRS);
     simpleSlabBlock(ModBlocks.OLIVE_SLAB);
-
     simpleDropSelf(ModBlocks.OLIVE_FENCE);
     simpleDropSelf(ModBlocks.OLIVE_FENCE_GATE);
     simpleDropSelf(ModBlocks.OLIVE_BUTTON);
     simpleDropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.OLIVE_TRAPDOOR);
+    simpleDropSelf(ModBlocks.OLIVE_MOSAIC);
+    simpleDropSelf(ModBlocks.OLIVE_MOSAIC_STAIRS);
+    simpleSlabBlock(ModBlocks.OLIVE_MOSAIC_SLAB);
+
     /*     deco stone     */
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
@@ -100,13 +107,13 @@ public class ModBlockLootTables extends BlockLoot{
     simpleSlabBlock(ModBlocks.CAST_IRON_TILE_SLAB);
 
     /*     ceramic vessels     */
-    /*
+
     simpleDropSelf(ModBlocks.CERAMIC_VESSEL);
     for (String name : ModBlocks.vessels) {
       this.dropSelf(ModBlocks.VESSEL_MAP.get(name).get());
     }
 
-     */
+
 
 
   }

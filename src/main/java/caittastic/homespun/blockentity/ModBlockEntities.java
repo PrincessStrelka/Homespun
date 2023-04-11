@@ -18,5 +18,9 @@ public class ModBlockEntities{
           BLOCK_ENTITIES.register("evaporating_basin_block_entity", () ->
                   BlockEntityType.Builder.of(EvaporatingBasinBE::new, ModBlocks.EVAPORATING_BASIN.get()).build(null));
 
+  public static final RegistryObject<BlockEntityType<VesselBE>> VESSEL =
+          BLOCK_ENTITIES.register("vessel_block_entity", () ->
+                  BlockEntityType.Builder.of(VesselBE::new, ModBlocks.CERAMIC_VESSEL.get()).build(null));
+
 
 }

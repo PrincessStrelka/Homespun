@@ -16,11 +16,14 @@ import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.fluid.ModFluidTypes;
 import caittastic.homespun.fluid.ModFluids;
+import caittastic.homespun.gui.VesselScreen;
+import caittastic.homespun.gui.ModMenuRegistry;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.ModRecipes;
 import caittastic.homespun.world.feature.ModConfiguredFeatures;
 import caittastic.homespun.world.feature.ModPlacedFeatures;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -42,6 +45,8 @@ public class Homespun{
     ModBlocks.BLOCKS.register(bus);
     ModBlockEntities.BLOCK_ENTITIES.register(bus);
 
+    ModMenuRegistry.MENUS.register(bus);
+
     ModRecipes.SERIALIZERS.register(bus);
 
     ModFluids.FLUIDS.register(bus);
@@ -51,8 +56,15 @@ public class Homespun{
     ModPlacedFeatures.PLACED_FEATURES.register(bus);
 
     bus.addListener(this::setup);
+    bus.addListener(this::clientSetup);
     MinecraftForge.EVENT_BUS.register(this);
 
+  }
+
+  private void clientSetup(final FMLCommonSetupEvent event) {
+    MenuScreens.register(ModMenuRegistry.VESSEL_MENU.get(), VesselScreen::new);
+    event.enqueueWork(() -> {
+    });
   }
 
   private void setup(final FMLCommonSetupEvent event){

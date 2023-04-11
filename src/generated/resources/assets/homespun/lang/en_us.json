@@ -21,6 +21,9 @@
   "block.homespun.ironwood_fence_gate": "Ironwood Fence Gate",
   "block.homespun.ironwood_leaves": "Ironwood Leaves",
   "block.homespun.ironwood_log": "Ironwood Log",
+  "block.homespun.ironwood_mosaic": "Ironwood Mosaic",
+  "block.homespun.ironwood_mosaic_slab": "Ironwood Mosaic Slab",
+  "block.homespun.ironwood_mosaic_stairs": "Ironwood Mosaic Stairs",
   "block.homespun.ironwood_planks": "Ironwood Planks",
   "block.homespun.ironwood_pressure_plate": "Ironwood Pressure Plate",
   "block.homespun.ironwood_sapling": "Ironwood Sapling",
@@ -35,6 +38,9 @@
   "block.homespun.olive_fence_gate": "Olive Fence Gate",
   "block.homespun.olive_leaves": "Olive Leaves",
   "block.homespun.olive_log": "Olive Log",
+  "block.homespun.olive_mosaic": "Olive Mosaic",
+  "block.homespun.olive_mosaic_slab": "Olive Mosaic Slab",
+  "block.homespun.olive_mosaic_stairs": "Olive Mosaic Stairs",
   "block.homespun.olive_planks": "Olive Planks",
   "block.homespun.olive_pressure_plate": "Olive Pressure Plate",
   "block.homespun.olive_sapling": "Olive Sapling",
@@ -71,5 +77,6 @@
   "itemGroup.production_tab": "Homespun Industry",
   "jei.homespun.crushing_tub_recipe": "Tub Crushing",
   "jei.homespun.evaporating_recipe": "Evaporating",
-  "tooltip.homespun.crushing_tub": "§8§oPut stuff in then jump on it"
+  "tooltip.homespun.crushing_tub": "§8§oPut stuff in then jump on it",
+  "tooltip.homespun.evaporating_basin": "§8§oA Magma Block underneath speeds it up"
 }

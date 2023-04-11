@@ -46,6 +46,10 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.IRONWOOD_PRESSURE_PLATE.get(), "Ironwood Pressure Plate");
     add(ModBlocks.IRONWOOD_DOOR.get(), "Ironwood Door");
     add(ModBlocks.IRONWOOD_TRAPDOOR.get(), "Ironwood Trapdoor");
+    add(ModBlocks.IRONWOOD_MOSAIC.get(), "Ironwood Mosaic");
+    add(ModBlocks.IRONWOOD_MOSAIC_STAIRS.get(), "Ironwood Mosaic Stairs");
+    add(ModBlocks.IRONWOOD_MOSAIC_SLAB.get(), "Ironwood Mosaic Slab");
+
     /*     olive     */
     add(ModBlocks.OLIVE_SAPLING.get(), "Olive Sapling");
     add(ModBlocks.POTTED_OLIVE_SAPLING.get(), "Potted Olive Sapling");
@@ -63,6 +67,10 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.OLIVE_PRESSURE_PLATE.get(), "Olive Pressure Plate");
     add(ModBlocks.OLIVE_DOOR.get(), "Olive Door");
     add(ModBlocks.OLIVE_TRAPDOOR.get(), "Olive Trapdoor");
+    add(ModBlocks.OLIVE_MOSAIC.get(), "Olive Mosaic");
+    add(ModBlocks.OLIVE_MOSAIC_STAIRS.get(), "Olive Mosaic Stairs");
+    add(ModBlocks.OLIVE_MOSAIC_SLAB.get(), "Olive Mosaic Slab");
+
     /*     deco stone     */
     add(ModBlocks.SMOOTH_STONE_PILLAR.get(), "Smooth Stone Pillar");
     add(ModBlocks.CALCITE_BRICKS.get(), "Calcite Bricks");
@@ -86,12 +94,12 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
     add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
     /*     ceramic vessels     */
-    /*
+
     add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
     for(String name: ModBlocks.vessels){
       add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
     }
-     */
+
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
@@ -100,6 +108,7 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
 
     //------------------------------------ tooltips ------------------------------------//
     add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");
+    add("tooltip.homespun.evaporating_basin", "§8§oA Magma Block underneath speeds it up");
 
     //------------------------------------- fluids -------------------------------------//
     add("fluid_type.homespun.ironberry_juice", "Ironberry Juice");

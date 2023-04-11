@@ -3,6 +3,7 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -54,6 +55,7 @@ public class ModRecipes extends RecipeProvider{
             .save(consumer);
 
     /*     IRONWOOD     */
+
     woodFromLogs(consumer, ModBlocks.IRONWOOD_WOOD.get(), ModBlocks.IRONWOOD_LOG.get());
     woodFromLogs(consumer, ModBlocks.STRIPPED_IRONWOOD_WOOD.get(), ModBlocks.STRIPPED_IRONWOOD_LOG.get());
     planksFromLog(consumer, ModBlocks.IRONWOOD_PLANKS.get(), TagInit.Items.IRONWOOD_LOGS);
@@ -66,6 +68,12 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.IRONWOOD_PRESSURE_PLATE, ModBlocks.IRONWOOD_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.IRONWOOD_DOOR, ModBlocks.IRONWOOD_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.IRONWOOD_TRAPDOOR, ModBlocks.IRONWOOD_PLANKS, hasPlanksCriterion);
+
+    registerMosaics(consumer, "ironwood", ModBlocks.IRONWOOD_MOSAIC.get(), ModBlocks.IRONWOOD_SLAB.get(), ModBlocks.IRONWOOD_PLANKS.get(), ModBlocks.IRONWOOD_MOSAIC_SLAB.get(), ModBlocks.IRONWOOD_MOSAIC_STAIRS.get());
+
+
+
+
 
     /*     OLIVE     */
     woodFromLogs(consumer, ModBlocks.OLIVE_WOOD.get(), ModBlocks.OLIVE_LOG.get());
@@ -80,7 +88,9 @@ public class ModRecipes extends RecipeProvider{
     pressurePlateRecipe(consumer, ModBlocks.OLIVE_PRESSURE_PLATE, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     doorRecipe(consumer, ModBlocks.OLIVE_DOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
+    registerMosaics(consumer, "olive", ModBlocks.OLIVE_MOSAIC.get(), ModBlocks.OLIVE_SLAB.get(), ModBlocks.OLIVE_PLANKS.get(), ModBlocks.OLIVE_MOSAIC_SLAB.get(), ModBlocks.OLIVE_MOSAIC_STAIRS.get());
 
+    
     /*     deco stone     */
     //calcite
     registerBrickSet(consumer,
@@ -144,7 +154,7 @@ public class ModRecipes extends RecipeProvider{
     slabRecipe(consumer, ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES, true);
 
     /*     ceramic vessels     */
-    /*
+
     //default
     ShapedRecipeBuilder.shaped(ModBlocks.CERAMIC_VESSEL.get(), 1)
             .pattern(" t ")
@@ -201,8 +211,34 @@ public class ModRecipes extends RecipeProvider{
             .requires(Tags.Items.DYES_BROWN)
             .requires(Tags.Items.DYES_BLACK)
             .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
-     */
 
+
+  }
+
+  private void registerMosaics(@NotNull Consumer<FinishedRecipe> consumer, String woodType, Block mosaicBlock, Block slabBlock, Block plankBlock, Block mosaicSlabBlock, Block mosaicStairsBlock){
+    //mosaic
+    ShapedRecipeBuilder.shaped(mosaicBlock)
+            .define('#', Ingredient.of(slabBlock))
+            .pattern("#")
+            .pattern("#")
+            .unlockedBy("has_" + woodType + "_mosaic", has(mosaicBlock))
+            .unlockedBy("has_" + woodType + "_plank", has(plankBlock))
+            .unlockedBy("has_" + woodType + "_slab", has(slabBlock))
+            .save(consumer);
+    //slabs
+    ShapedRecipeBuilder.shaped(mosaicSlabBlock, 6)
+            .define('#', Ingredient.of(mosaicBlock))
+            .pattern("###")
+            .unlockedBy("has_" + woodType + "_mosaic", has(mosaicBlock))
+            .save(consumer);
+    //stairs
+    ShapedRecipeBuilder.shaped(mosaicStairsBlock, 4)
+            .define('#', Ingredient.of(mosaicBlock))
+            .pattern("#  ")
+            .pattern("## ")
+            .pattern("###")
+            .unlockedBy("has_" + woodType + "_mosaic", has(mosaicBlock))
+            .save(consumer);
   }
 
 

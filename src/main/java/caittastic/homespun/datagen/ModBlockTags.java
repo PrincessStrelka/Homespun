@@ -19,11 +19,11 @@ public class ModBlockTags extends BlockTagsProvider{
   protected void addTags(){
     //------------------------------------- mining tool -------------------------------------//
     //vessels
-    /*
+
     for(String name: ModBlocks.vessels){
       tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.VESSEL_MAP.get(name).get());
     }
-     */
+
 
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.GOLD_CHAIN.get())
@@ -65,7 +65,10 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.IRONWOOD_DOOR.get())
             .add(ModBlocks.IRONWOOD_TRAPDOOR.get())
             .add(ModBlocks.IRONWOOD_SAPLING.get())
-
+            .add(ModBlocks.IRONWOOD_MOSAIC.get())
+            .add(ModBlocks.IRONWOOD_MOSAIC_STAIRS.get())
+            .add(ModBlocks.IRONWOOD_MOSAIC_SLAB.get())
+            
             .add(ModBlocks.OLIVE_LOG.get())
             .add(ModBlocks.STRIPPED_OLIVE_LOG.get())
             .add(ModBlocks.OLIVE_WOOD.get())
@@ -80,6 +83,9 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_DOOR.get())
             .add(ModBlocks.OLIVE_TRAPDOOR.get())
             .add(ModBlocks.OLIVE_SAPLING.get())
+            .add(ModBlocks.OLIVE_MOSAIC.get())
+            .add(ModBlocks.OLIVE_MOSAIC_STAIRS.get())
+            .add(ModBlocks.OLIVE_MOSAIC_SLAB.get())
 
             .add(ModBlocks.CRUSHING_TUB.get())
             .add(ModBlocks.WOODEN_POST.get());
