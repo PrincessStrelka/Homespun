@@ -59,9 +59,9 @@
   "item.homespun.redstone_acid": "红石酸",
   "item.homespun.salt": "盐块堆",
   "item.homespun.tiny_iron_dust": "铁屑",
-  "itemGroup.agriculture_tab": "乡土 | 农业",
-  "itemGroup.decoration_tab": "乡土 | 装饰",
-  "itemGroup.production_tab": "乡土 | 工业",
+  "itemGroup.agriculture_tab": "乡朴 | 农业",
+  "itemGroup.decoration_tab": "乡朴 | 装饰",
+  "itemGroup.production_tab": "乡朴 | 工业",
   "jei.homespun.crushing_tub_recipe": "木盘压榨",
   "jei.homespun.evaporating_recipe": "蒸发",
   "tooltip.homespun.crushing_tub": "§8§o将物品放入盆后站在上方进行跳跃"
