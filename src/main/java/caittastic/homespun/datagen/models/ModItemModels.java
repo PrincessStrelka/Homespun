@@ -103,13 +103,17 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CAST_IRON_TILES);
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_STAIRS);
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_SLAB);
+    registerWithExistingInventoryModel(ModBlocks.CAST_IRON_TILE_WALL);
 
-    /*     ceramic vessels     */
-
+    /*     storage     */
     registerWithExistingParent(ModBlocks.CERAMIC_VESSEL);
-    for (String name : ModBlocks.vessels) {
+    for (String name : ModBlocks.vessel_patterns)
       registerWithExistingParent(ModBlocks.VESSEL_MAP.get(name));
-    }
+    String id = ModBlocks.FLUID_STORAGE.getId().toString();
+    registerWithExistingParentAtRegistryLocation(
+            ModBlocks.FLUID_STORAGE,
+            "block/" + id.substring(id.indexOf(":") + 1) + "_inventory");
+    //registerWithExistingParent(ModBlocks.CABINET);
 
 
   }

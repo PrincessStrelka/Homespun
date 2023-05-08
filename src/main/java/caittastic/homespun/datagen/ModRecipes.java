@@ -152,9 +152,9 @@ public class ModRecipes extends RecipeProvider{
     brickLikeRecipe(consumer, ModBlocks.CAST_IRON_BLOCK.get(), ModBlocks.CAST_IRON_TILES, true);
     stairRecipe(consumer, ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES, true);
     slabRecipe(consumer, ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES, true);
+    wallRecipe(consumer, ModBlocks.CAST_IRON_TILES, ModBlocks.CAST_IRON_TILE_WALL.get());
 
     /*     ceramic vessels     */
-
     //default
     ShapedRecipeBuilder.shaped(ModBlocks.CERAMIC_VESSEL.get(), 1)
             .pattern(" t ")
@@ -212,7 +212,42 @@ public class ModRecipes extends RecipeProvider{
             .requires(Tags.Items.DYES_BLACK)
             .unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(consumer);
 
+    /*     storage     */
+    ShapedRecipeBuilder.shaped(ModBlocks.FLUID_STORAGE.get())
+            .pattern("w w")
+            .pattern("i i")
+            .pattern("www")
+            .define('w', ModBlocks.IRONWOOD_PLANKS.get())
+            .define('i', Tags.Items.INGOTS_IRON)
+            .unlockedBy("ironwood_log", has(ModBlocks.IRONWOOD_LOG.get()))
+            .save(consumer);
 
+    /*
+    ShapedRecipeBuilder.shaped(ModBlocks.CABINET.get())
+            .pattern("ppp")
+            .pattern("p t")
+            .pattern("ppp")
+            .define('p', ItemTags.PLANKS)
+            .define('t', ItemTags.WOODEN_TRAPDOORS)
+            .unlockedBy("has_planks", has(ItemTags.PLANKS))
+            .save(consumer);
+     */
+  }
+
+  private void wallRecipe(@NotNull Consumer<FinishedRecipe> consumer, RegistryObject<Block> parentBlock, Block wallBlock){
+    String id = parentBlock.getId().toString();
+    String materialID = parentBlock.toString();
+    String criterionName = "has_" + materialID.substring(materialID.indexOf(":") + 1);
+    ShapedRecipeBuilder.shaped(wallBlock)
+            .pattern("xxx")
+            .pattern("xxx")
+            .define('x', parentBlock.get())
+            .unlockedBy(criterionName, has(parentBlock.get()))
+            .save(consumer);
+    SingleItemRecipeBuilder
+            .stonecutting(Ingredient.of(parentBlock.get()), wallBlock)
+            .unlockedBy(criterionName, has(parentBlock.get()))
+            .save(consumer, id.substring(id.indexOf(":") + 1) + "_wall_from_stonecutting");
   }
 
   private void registerMosaics(@NotNull Consumer<FinishedRecipe> consumer, String woodType, Block mosaicBlock, Block slabBlock, Block plankBlock, Block mosaicSlabBlock, Block mosaicStairsBlock){
@@ -318,20 +353,16 @@ public class ModRecipes extends RecipeProvider{
           RegistryObject<Block> brickStairs
           , RegistryObject<Block> brickWall
   ){
+
+
+    brickLikeRecipe(consumer, parent, bricks, true); //bricks
+    slabRecipe(consumer, brickSlab, bricks, true); //slabs
+    stairRecipe(consumer, brickStairs, bricks, true); //stairs
+    //walls
+
     String id = bricks.getId().toString();
     String materialID = parent.toString();
     String criterionName = "has_" + materialID.substring(materialID.indexOf(":") + 1);
-
-    //bricks
-    brickLikeRecipe(consumer, parent, bricks, true);
-
-    //slabs
-    slabRecipe(consumer, brickSlab, bricks, true);
-
-    //stairs
-    stairRecipe(consumer, brickStairs, bricks, true);
-
-    //walls
     ShapedRecipeBuilder.shaped(brickWall.get())
             .pattern("xxx")
             .pattern("xxx")

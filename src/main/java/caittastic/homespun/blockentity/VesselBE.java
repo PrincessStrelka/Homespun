@@ -7,11 +7,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.Nameable;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,11 +26,12 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class VesselBE extends BlockEntity implements MenuProvider{
+public class VesselBE extends BlockEntity implements MenuProvider, Nameable{
   public static int SLOT_COUNT = 12; //the amount of slots in our inventory
   public static int DATA_COUNT = 2; //the amount in the container data
   protected final ContainerData data; //something to do with transfering NBT data between block entity, menu, and screen
-  private Component name;
+  public static String ITEMS_KEY = "inventory";
+  public static String NAME_KEY = "CustomName";
   //-------------------------------------------------------variables-------------------------------------------------------//
   //"is important" but i dont know why or what for
   //the size is for every number of slots in the inventory
@@ -38,6 +41,7 @@ public class VesselBE extends BlockEntity implements MenuProvider{
       setChanged();
     }
   };
+  private Component name;
   private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty(); //no clue what this does
 
   //-------------------------------------------------------constructor-------------------------------------------------------//
@@ -69,13 +73,12 @@ public class VesselBE extends BlockEntity implements MenuProvider{
   //-------------------------------------------------------base methods-------------------------------------------------------//
   @Override //this is the name that shows up in the block gui
   public Component getDisplayName(){
-    //todo make this return the name of the block if renamed
-    return this.name != null ? this.name : Component.translatable("container.vessel");
+    return this.getName();
   }
 
 
   @Nullable
-  @Override
+  @Override //todo remove unnecisary data
   public AbstractContainerMenu createMenu(int containerID, Inventory inventory, Player player){
     return new VesselMenu(containerID, inventory, this, this.data);
   }
@@ -106,9 +109,9 @@ public class VesselBE extends BlockEntity implements MenuProvider{
 
   @Override //saves stuff to NBT on saving the game
   protected void saveAdditional(@NotNull CompoundTag tag){
-    tag.put("inventory", inventory.serializeNBT());
-    if (this.name != null) {
-      tag.putString("CustomName", Component.Serializer.toJson(this.name));
+    tag.put(ITEMS_KEY, this.inventory.serializeNBT());
+    if(this.name != null){
+      tag.putString(NAME_KEY, Component.Serializer.toJson(this.name));
     }
     super.saveAdditional(tag);
   }
@@ -117,12 +120,11 @@ public class VesselBE extends BlockEntity implements MenuProvider{
   @Override
   public void load(CompoundTag nbt){
     super.load(nbt);
-    inventory.deserializeNBT(nbt.getCompound("inventory"));
-    if (nbt.contains("CustomName", 8)) {
-      this.name = Component.Serializer.fromJson(nbt.getString("CustomName"));
+    inventory.deserializeNBT(nbt.getCompound(ITEMS_KEY));
+    if(nbt.contains(NAME_KEY, 8)){
+      this.name = Component.Serializer.fromJson(nbt.getString(NAME_KEY));
     }
   }
-
 
 
   //-------------------------------------------------------custom methods-------------------------------------------------------//
@@ -134,5 +136,36 @@ public class VesselBE extends BlockEntity implements MenuProvider{
     }
 
     Containers.dropContents(this.level, this.worldPosition, inventory); //drops the contents of the simplecontainer
+  }
+
+  public boolean isEmpty(){
+    boolean isAllEmpty = true;
+    for(int i = 0; i < this.inventory.getSlots(); i++){
+      if(!this.inventory.getStackInSlot(i).isEmpty()) isAllEmpty = false;
+    }
+    return isAllEmpty;
+  }
+
+  @Override
+  public Component getName(){
+    return this.name != null ? this.name : Component.translatable("container.ceramic_vessel");
+  }
+
+  public void setCustomName(Component hoverName){
+    this.name = hoverName;
+  }
+
+  @Nullable
+  @Override
+  public Component getCustomName(){
+    return this.name;
+  }
+
+  public boolean stillValid(Player pPlayer) {
+    if (this.level.getBlockEntity(this.worldPosition) != this) {
+      return false;
+    } else {
+      return !(pPlayer.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) > 64.0D);
+    }
   }
 }

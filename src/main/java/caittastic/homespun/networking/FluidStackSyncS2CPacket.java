@@ -2,6 +2,7 @@ package caittastic.homespun.networking;
 
 import caittastic.homespun.blockentity.CrushingTubBE;
 import caittastic.homespun.blockentity.EvaporatingBasinBE;
+import caittastic.homespun.blockentity.FluidStorageBE;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,6 +41,9 @@ public class FluidStackSyncS2CPacket{
         blockEntity.setFluid(this.fluidStack);
       }
       if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof EvaporatingBasinBE blockEntity){
+        blockEntity.setFluid(this.fluidStack);
+      }
+      if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof FluidStorageBE blockEntity){
         blockEntity.setFluid(this.fluidStack);
       }
     });

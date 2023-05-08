@@ -13,6 +13,7 @@
     "homespun:cast_iron_tiles",
     "homespun:cast_iron_tile_stairs",
     "homespun:cast_iron_tiles_slab",
+    "homespun:cast_iron_tile_wall",
     "homespun:smooth_stone_pillar",
     "homespun:calcite_bricks",
     "homespun:calcite_brick_slab",
@@ -20,6 +21,7 @@
     "homespun:tuff_tiles",
     "homespun:tuff_tile_stairs",
     "homespun:tuff_tile_slab",
+    "homespun:ceramic_vessel",
     "homespun:evaporating_basin"
   ]
 }

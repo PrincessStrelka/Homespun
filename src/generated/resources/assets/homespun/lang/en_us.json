@@ -6,6 +6,7 @@
   "block.homespun.calcite_bricks": "Calcite Bricks",
   "block.homespun.cast_iron_block": "Wrought Tile",
   "block.homespun.cast_iron_tile_stairs": "Cut Wrought Tile Stairs",
+  "block.homespun.cast_iron_tile_wall": "Cut Wrought Tile Wall",
   "block.homespun.cast_iron_tiles": "Cut Wrought Tile",
   "block.homespun.cast_iron_tiles_slab": "Cut Wrought Tile Slab",
   "block.homespun.ceramic_vessel": "Ceramic Vessel",
@@ -13,6 +14,7 @@
   "block.homespun.copper_chain": "Copper Chain",
   "block.homespun.crushing_tub": "Crushing Tub",
   "block.homespun.evaporating_basin": "Evaporating Basin",
+  "block.homespun.fluid_storage": "Rundlet",
   "block.homespun.gold_chain": "Gold Chain",
   "block.homespun.iron_post": "Iron Post",
   "block.homespun.ironwood_button": "Ironwood Button",
@@ -63,6 +65,7 @@
   "block.homespun.verdant_ceramic_vessel": "Verdant Ceramic Vessel",
   "block.homespun.violaceous_ceramic_vessel": "Violaceous Ceramic Vessel",
   "block.homespun.wooden_post": "Wooden Post",
+  "container.ceramic_vessel": "Ceramic Vessel",
   "fluid_type.homespun.ironberry_juice": "Ironberry Juice",
   "item.homespun.copper_nugget": "Copper Nugget",
   "item.homespun.ironberries": "Ironberries",
@@ -77,6 +80,8 @@
   "itemGroup.production_tab": "Homespun Industry",
   "jei.homespun.crushing_tub_recipe": "Tub Crushing",
   "jei.homespun.evaporating_recipe": "Evaporating",
+  "tooltip.ceramic_vessel.more": "SHIFT to show %s more...",
+  "tooltip.fluid_storage.count": "%s mb ",
   "tooltip.homespun.crushing_tub": "§8§oPut stuff in then jump on it",
   "tooltip.homespun.evaporating_basin": "§8§oA Magma Block underneath speeds it up"
 }

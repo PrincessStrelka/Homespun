@@ -93,13 +93,17 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile");
     add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
     add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
-    /*     ceramic vessels     */
+    add(ModBlocks.CAST_IRON_TILE_WALL.get(), "Cut Wrought Tile Wall");
 
+    /*     storage     */
     add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
-    for(String name: ModBlocks.vessels){
+    for(String name: ModBlocks.vessel_patterns)
       add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
-    }
+    add(ModBlocks.FLUID_STORAGE.get(), "Rundlet");
+    //add(ModBlocks.CABINET.get(), "Cabinet");
 
+    //------------------------------- containers -------------------------------//
+    add("container.ceramic_vessel", "Ceramic Vessel");
 
     //------------------------------- creative mode tabs -------------------------------//
     add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
@@ -109,6 +113,8 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     //------------------------------------ tooltips ------------------------------------//
     add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");
     add("tooltip.homespun.evaporating_basin", "§8§oA Magma Block underneath speeds it up");
+    add("tooltip.ceramic_vessel.more", "SHIFT to show %s more...");
+    add("tooltip.fluid_storage.count", "%s mb ");
 
     //------------------------------------- fluids -------------------------------------//
     add("fluid_type.homespun.ironberry_juice", "Ironberry Juice");

@@ -1,0 +1,22 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"2": "homespun:block/fluid_storage_side",
+		"3": "homespun:block/fluid_storage_bottom",
+		"particle": "homespun:block/fluid_storage_side"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 16], "texture": "#2"},
+				"east": {"uv": [2, 0, 14, 16], "texture": "#2"},
+				"south": {"uv": [2, 0, 14, 16], "texture": "#2"},
+				"west": {"uv": [2, 0, 14, 16], "texture": "#2"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#3"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#3"}
+			}
+		}
+	]
+}

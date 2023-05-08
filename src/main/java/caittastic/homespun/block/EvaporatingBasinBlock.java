@@ -141,7 +141,6 @@ public class EvaporatingBasinBlock extends BaseEntityBlock{
 
   @Override
   public void animateTick(BlockState pState, Level level, BlockPos pos, RandomSource pRandom){
-    // TODO: 06/03/2023 make particles happen, iscrafting does not correctly return
     if(level.getBlockEntity(pos) instanceof EvaporatingBasinBE entity){
       if(entity.isCrafting()){
         level.addParticle(ParticleTypes.EFFECT,
@@ -163,6 +162,4 @@ public class EvaporatingBasinBlock extends BaseEntityBlock{
     }
     super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
   }
-  
-  
 }

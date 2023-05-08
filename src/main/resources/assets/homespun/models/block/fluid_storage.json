@@ -1,0 +1,62 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"0": "homespun:block/fluid_storage_side",
+		"1": "homespun:block/fluid_storage_bottom",
+		"particle": "homespun:block/fluid_storage_side"
+	},
+	"elements": [
+		{
+			"from": [12, 2, 4],
+			"to": [14, 16, 12],
+			"faces": {
+				"east": {"uv": [4, 0, 12, 14], "texture": "#0"},
+				"west": {"uv": [4, 0, 12, 14], "texture": "#0"},
+				"up": {"uv": [12, 4, 14, 12], "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, 0, 2],
+			"to": [14, 2, 14],
+			"faces": {
+				"north": {"uv": [2, 14, 14, 16], "texture": "#0"},
+				"east": {"uv": [2, 14, 14, 16], "texture": "#0"},
+				"south": {"uv": [2, 14, 14, 16], "texture": "#0"},
+				"west": {"uv": [2, 14, 14, 16], "texture": "#0"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#1"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, 2, 2],
+			"to": [14, 16, 4],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 14], "texture": "#0"},
+				"east": {"uv": [12, 0, 14, 14], "texture": "#0"},
+				"south": {"uv": [2, 0, 14, 14], "texture": "#0"},
+				"west": {"uv": [2, 0, 4, 14], "texture": "#0"},
+				"up": {"uv": [2, 2, 14, 4], "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, 2, 12],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 14], "texture": "#0"},
+				"east": {"uv": [2, 0, 4, 14], "texture": "#0"},
+				"south": {"uv": [2, 0, 14, 14], "texture": "#0"},
+				"west": {"uv": [12, 0, 14, 14], "texture": "#0"},
+				"up": {"uv": [2, 12, 14, 14], "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, 2, 4],
+			"to": [4, 16, 12],
+			"faces": {
+				"east": {"uv": [4, 0, 12, 14], "texture": "#0"},
+				"west": {"uv": [4, 0, 12, 14], "texture": "#0"},
+				"up": {"uv": [2, 4, 4, 12], "texture": "#1"}
+			}
+		}
+	]
+}

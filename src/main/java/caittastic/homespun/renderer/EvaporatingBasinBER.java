@@ -30,9 +30,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class EvaporatingBasinBER implements BlockEntityRenderer<EvaporatingBasinBE>{
-  public EvaporatingBasinBER(BlockEntityRendererProvider.Context context){
-
-  }
+  public EvaporatingBasinBER(BlockEntityRendererProvider.Context context){}
 
   @Override
   public void render(

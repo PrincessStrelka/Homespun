@@ -20,7 +20,7 @@ public class ModBlockTags extends BlockTagsProvider{
     //------------------------------------- mining tool -------------------------------------//
     //vessels
 
-    for(String name: ModBlocks.vessels){
+    for(String name: ModBlocks.vessel_patterns){
       tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.VESSEL_MAP.get(name).get());
     }
 
@@ -33,6 +33,7 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.CAST_IRON_TILES.get())
             .add(ModBlocks.CAST_IRON_TILE_STAIRS.get())
             .add(ModBlocks.CAST_IRON_TILE_SLAB.get())
+            .add(ModBlocks.CAST_IRON_TILE_WALL.get())
 
             .add(ModBlocks.SMOOTH_STONE_PILLAR.get())
 
@@ -44,7 +45,7 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.TUFF_TILE_STAIRS.get())
             .add(ModBlocks.TUFF_TILE_SLAB.get())
 
-            //.add(ModBlocks.CERAMIC_VESSEL.get())
+            .add(ModBlocks.CERAMIC_VESSEL.get())
 
             .add(ModBlocks.EVAPORATING_BASIN.get());
     tag(BlockTags.MINEABLE_WITH_HOE)
@@ -88,7 +89,10 @@ public class ModBlockTags extends BlockTagsProvider{
             .add(ModBlocks.OLIVE_MOSAIC_SLAB.get())
 
             .add(ModBlocks.CRUSHING_TUB.get())
-            .add(ModBlocks.WOODEN_POST.get());
+            .add(ModBlocks.WOODEN_POST.get())
+
+            .add(ModBlocks.FLUID_STORAGE.get());
+            //.add(ModBlocks.CABINET.get());
     //------------------------------------- block tags -------------------------------------//
     tag(BlockTags.SLABS)
             .add(ModBlocks.TUFF_TILE_SLAB.get())
@@ -201,7 +205,8 @@ public class ModBlockTags extends BlockTagsProvider{
 
     tag(BlockTags.WALLS)
             .add(ModBlocks.CALCITE_BRICK_WALL.get())
-            .add(ModBlocks.TUFF_TILE_WALL.get());
+            .add(ModBlocks.TUFF_TILE_WALL.get())
+            .add(ModBlocks.CAST_IRON_TILE_WALL.get());
 
     tag(Tags.Blocks.FENCE_GATES_WOODEN)
             .add(ModBlocks.IRONWOOD_FENCE_GATE.get())

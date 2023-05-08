@@ -1,6 +1,7 @@
 {
   "values": [
     "homespun:calcite_brick_wall",
-    "homespun:tuff_tile_wall"
+    "homespun:tuff_tile_wall",
+    "homespun:cast_iron_tile_wall"
   ]
 }

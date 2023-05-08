@@ -37,7 +37,7 @@ public class ModPlacedFeatures{
           PLACED_FEATURES.register("olive_placed",
                   () -> new PlacedFeature(
                           ModConfiguredFeatures.OLIVE_SPAWN.getHolder().get(),
-                          VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01F, 5))));
+                          VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.05F, 5))));
   
 
 }

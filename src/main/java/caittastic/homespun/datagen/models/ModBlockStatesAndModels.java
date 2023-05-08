@@ -79,19 +79,14 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     simpleBlock(ModBlocks.CAST_IRON_TILES.get());
     registerStairWithBaseBlock(ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES);
     registerSlabWithBaseBlock(ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES);
+    registerWall(ModBlocks.CAST_IRON_TILE_WALL, ModBlocks.CAST_IRON_TILES);
 
-    /*     ceramic vessels     */
-
+    /*     storage     */
     registerVesselModel(ModBlocks.CERAMIC_VESSEL);
-    for(String name: ModBlocks.vessels){
+    for(String name: ModBlocks.vessel_patterns)
       registerVesselModel(ModBlocks.VESSEL_MAP.get(name));
-    }
-
-
 
   }
-
-
   //------------------------------------- methods -------------------------------------//
   private void registerVesselModel(RegistryObject<Block> vessel){
     simpleBlock(

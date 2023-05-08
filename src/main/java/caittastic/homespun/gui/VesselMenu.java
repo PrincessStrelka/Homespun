@@ -2,6 +2,7 @@ package caittastic.homespun.gui;
 
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.blockentity.VesselBE;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +25,7 @@ public class VesselMenu extends AbstractContainerMenu{
   /* variables */
   private final VesselBE blockEntity;
   private final Level level;
+  private BlockPos worldPosition;
 
   /* constructor */
   //im not really sure what this stuff means
@@ -48,7 +50,7 @@ public class VesselMenu extends AbstractContainerMenu{
         int rowWidth = 4;
         int xOffs = (slot % rowWidth) * 18;
         int yOffs = slot / rowWidth * 18;
-        this.addSlot(new SlotItemHandler(handler, slot, xStar + xOffs, yStar + yOffs));
+        this.addSlot(new VesselSlot(handler, slot, xStar + xOffs, yStar + yOffs));
       }
     });
 
@@ -95,8 +97,7 @@ public class VesselMenu extends AbstractContainerMenu{
 
   @Override
   public boolean stillValid(Player player){
-    return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-            player, ModBlocks.CERAMIC_VESSEL.get());
+    return blockEntity.stillValid(player);
   }
 
   /* custom methods */

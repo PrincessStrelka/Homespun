@@ -10,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
@@ -103,26 +102,30 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.WOODEN_POST);
     simpleDropSelf(ModBlocks.CAST_IRON_BLOCK);
     simpleDropSelf(ModBlocks.CAST_IRON_TILES);
+    simpleDropSelf(ModBlocks.CAST_IRON_TILE_WALL);
     simpleDropSelf(ModBlocks.CAST_IRON_TILE_STAIRS);
     simpleSlabBlock(ModBlocks.CAST_IRON_TILE_SLAB);
 
-    /*     ceramic vessels     */
+    /*     storage     */
+    dropAir(ModBlocks.CERAMIC_VESSEL.get());
+    for(String name: ModBlocks.vessel_patterns)
+      dropAir(ModBlocks.VESSEL_MAP.get(name).get());
+    dropAir(ModBlocks.FLUID_STORAGE.get());
+    //simpleSlabBlock(ModBlocks.CABINET);
 
-    simpleDropSelf(ModBlocks.CERAMIC_VESSEL);
-    for (String name : ModBlocks.vessels) {
-      this.dropSelf(ModBlocks.VESSEL_MAP.get(name).get());
-    }
+  }
 
-
-
-
+  //------------------------------------- methods -------------------------------------//
+  private void dropAir(Block block){
+    this.dropOther(block, Items.AIR);
   }
 
   private void simpleSlabBlock(RegistryObject<Block> slabBlock){
     this.add(slabBlock.get(), BlockLoot::createSlabItemTable);
   }
 
-  //------------------------------------- methods -------------------------------------//
+
+
   private void simpleDropSelf(RegistryObject<Block> self){
     this.dropSelf(self.get());
   }
