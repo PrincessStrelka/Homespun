@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,type=single": {
+      "model": "homespun:block/cabinet"
+    },
+    "facing=north,type=top": {
+      "model": "homespun:block/cabinet_top"
+    },
+    "facing=north,type=bottom": {
+      "model": "homespun:block/cabinet_bottom"
+    },
+    "facing=east,type=single": {
+      "model": "homespun:block/cabinet",
+      "y": 90
+    },
+    "facing=east,type=top": {
+      "model": "homespun:block/cabinet_top",
+      "y": 90
+    },
+    "facing=east,type=bottom": {
+      "model": "homespun:block/cabinet_bottom",
+      "y": 90
+    },
+    "facing=south,type=single": {
+      "model": "homespun:block/cabinet",
+      "y": 180
+    },
+    "facing=south,type=top": {
+      "model": "homespun:block/cabinet_top",
+      "y": 180
+    },
+    "facing=south,type=bottom": {
+      "model": "homespun:block/cabinet_bottom",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "homespun:block/cabinet",
+      "y": 270
+    },
+    "facing=west,type=top": {
+      "model": "homespun:block/cabinet_top",
+      "y": 270
+    },
+    "facing=west,type=bottom": {
+      "model": "homespun:block/cabinet_bottom",
+      "y": 270
+    }
+  }
+}

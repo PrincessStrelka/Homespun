@@ -33,6 +33,9 @@ public class ModBlocks{
   public static final RegistryObject<Block> STRIPPED_IRONWOOD_WOOD = registerBlockAndItem("stripped_ironwood_wood", () -> new FlammableLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_PLANKS = registerBlockAndItem("ironwood_planks", () -> new FlammableWoodBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_STAIRS = registerBlockAndItem("ironwood_stairs", () -> new StairBlock(() -> ModBlocks.IRONWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> IRONWOOD_MOSAIC = registerBlockAndItem("ironwood_mosaic", () -> new FlammableWoodBlock(BlockBehaviour.Properties.copy(ModBlocks.IRONWOOD_PLANKS.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> IRONWOOD_MOSAIC_STAIRS = registerBlockAndItem("ironwood_mosaic_stairs", () -> new StairBlock(() -> ModBlocks.IRONWOOD_MOSAIC.get().defaultBlockState(), BlockBehaviour.Properties.copy(ModBlocks.IRONWOOD_MOSAIC.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> IRONWOOD_MOSAIC_SLAB = registerBlockAndItem("ironwood_mosaic_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.IRONWOOD_MOSAIC.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_SLAB = registerBlockAndItem("ironwood_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_FENCE = registerBlockAndItem("ironwood_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_FENCE_GATE = registerBlockAndItem("ironwood_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
@@ -40,7 +43,6 @@ public class ModBlocks{
   public static final RegistryObject<Block> IRONWOOD_PRESSURE_PLATE = registerBlockAndItem("ironwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_DOOR = registerBlockAndItem("ironwood_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRONWOOD_TRAPDOOR = registerBlockAndItem("ironwood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)), ModTabRegistry.DECORATION);
-
   /*     olive     */
   public static final RegistryObject<Block> OLIVE_SAPLING = registerBlockAndItem("olive_sapling", () -> new SaplingBlock(new OliveTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModTabRegistry.AGRICULTURE);
   public static final RegistryObject<Block> POTTED_OLIVE_SAPLING = BLOCKS.register("potted_olive_sapling", () -> new FlowerPotBlock(OLIVE_SAPLING.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
@@ -51,6 +53,9 @@ public class ModBlocks{
   public static final RegistryObject<Block> STRIPPED_OLIVE_WOOD = registerBlockAndItem("stripped_olive_wood", () -> new FlammableLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_PLANKS = registerBlockAndItem("olive_planks", () -> new FlammableWoodBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_STAIRS = registerBlockAndItem("olive_stairs", () -> new StairBlock(() -> ModBlocks.OLIVE_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> OLIVE_MOSAIC = registerBlockAndItem("olive_mosaic", () -> new FlammableWoodBlock(BlockBehaviour.Properties.copy(ModBlocks.OLIVE_PLANKS.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> OLIVE_MOSAIC_STAIRS = registerBlockAndItem("olive_mosaic_stairs", () -> new StairBlock(() -> ModBlocks.OLIVE_MOSAIC.get().defaultBlockState(), BlockBehaviour.Properties.copy(ModBlocks.OLIVE_MOSAIC.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> OLIVE_MOSAIC_SLAB = registerBlockAndItem("olive_mosaic_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.OLIVE_MOSAIC.get())), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_SLAB = registerBlockAndItem("olive_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_FENCE = registerBlockAndItem("olive_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_FENCE_GATE = registerBlockAndItem("olive_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModTabRegistry.DECORATION);
@@ -58,7 +63,6 @@ public class ModBlocks{
   public static final RegistryObject<Block> OLIVE_PRESSURE_PLATE = registerBlockAndItem("olive_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_DOOR = registerBlockAndItem("olive_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> OLIVE_TRAPDOOR = registerBlockAndItem("olive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)), ModTabRegistry.DECORATION);
-
   /*     deco stone     */
   public static final RegistryObject<Block> SMOOTH_STONE_PILLAR = registerBlockAndItem("smooth_stone_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.SMOOTH_STONE)), ModTabRegistry.DECORATION);
 
@@ -81,18 +85,21 @@ public class ModBlocks{
   public static final RegistryObject<Block> COPPER_CHAIN = registerBlockAndItem("copper_chain", () -> new ChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> IRON_POST = registerBlockAndItem("iron_post", () -> new PostBlock(BlockBehaviour.Properties.copy(Blocks.LIGHTNING_ROD).noOcclusion()), ModTabRegistry.DECORATION);
   public static final RegistryObject<Block> WOODEN_POST = registerBlockAndItem("wooden_post", () -> new PostBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion()), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CAST_IRON_BLOCK = registerBlockAndItem("cast_iron_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CAST_IRON_TILES = registerBlockAndItem("cast_iron_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
 
-  public static final RegistryObject<Block> CAST_IRON_TILE_STAIRS = registerBlockAndItem("cast_iron_tile_stairs", () -> new StairBlock(() -> ModBlocks.CAST_IRON_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
-  public static final RegistryObject<Block> CAST_IRON_TILE_SLAB = registerBlockAndItem("cast_iron_tiles_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_BLOCK = registerBlockAndItem("cast_iron_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILES = registerBlockAndItem("cast_iron_tiles", () -> new Block(BlockBehaviour.Properties.copy(CAST_IRON_BLOCK.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILE_WALL = registerBlockAndItem("cast_iron_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILE_STAIRS = registerBlockAndItem("cast_iron_tile_stairs", () -> new StairBlock(() -> CAST_IRON_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CAST_IRON_TILE_SLAB = registerBlockAndItem("cast_iron_tiles_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(CAST_IRON_TILES.get())), ModTabRegistry.DECORATION);
 
   /*     ceramic vessels     */
-  /*
-  public static final RegistryObject<Block> CERAMIC_VESSEL = registerBlockAndItem("ceramic_vessel", () -> new CeramicVesselBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)), ModTabRegistry.DECORATION);
+  public static final RegistryObject<Block> CERAMIC_VESSEL =
+          registerVesselBlockAndItem("ceramic_vessel",
+                  () -> new VesselBlock(null,
+                          BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)), ModTabRegistry.DECORATION);
 
   public static final Map<String, RegistryObject<Block>> VESSEL_MAP = new HashMap<>();
-  public static final String[] vessels = {
+  public static final String[] vessel_patterns = {
           "ashen", //nb
           "cerulean", //pan
           "ivory", //trans
@@ -102,16 +109,21 @@ public class ModBlocks{
   };
 
   static{
-    for(String name: vessels){
+    for(String pattern: vessel_patterns){
       VESSEL_MAP.put(
-              name,
-              registerBlockAndItem(
-                      name + "_ceramic_vessel",
-                      () -> new CeramicVesselBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)),
+              pattern,
+              registerVesselBlockAndItem(
+                      pattern + "_ceramic_vessel",
+                      () -> new VesselBlock(pattern, BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)),
                       ModTabRegistry.DECORATION));
     }
   }
-   */
+
+  /*     other storage     */
+  public static final RegistryObject<Block> FLUID_STORAGE = registerBlockAndItem("fluid_storage", () -> new FluidStorageBlock(BlockBehaviour.Properties.copy(ModBlocks.IRONWOOD_PLANKS.get())), ModTabRegistry.INDUSTRY);
+  //public static final RegistryObject<Block> CABINET = registerBlockAndItem("cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.copy(Blocks.CHEST)), ModTabRegistry.INDUSTRY);
+
+
 
   //CONDENSER = new BlockCondenser();
   //RETORT = new BlockRetort("retort");
@@ -127,13 +139,7 @@ public class ModBlocks{
   // public static BlockRope ROPE;
   // public static BlockStakeTied STAKE_TIED;
   //ROPE = new BlockRope("rope");
-  //    STAKE_TIED = new BlockStakeTied();
-
-  /*     storage     */
-  // public static BlockLiquidBarrel LIQUID_BARREL;
-  // public static BlockBarrel BARREL;
-  //  BARREL = new BlockBarrel();
-  //LIQUID_BARREL = new BlockLiquidBarrel();
+  // STAKE_TIED = new BlockStakeTied();
 
   /*     bees     */
   // public static BlockBeehive BEEHIVE;
@@ -188,6 +194,17 @@ public class ModBlocks{
   //GRAPE_LEAVES = new BlockGrapeLeaves();
 
   //------------------------------------- utility -------------------------------------//
+  private static <T extends Block> RegistryObject<T> registerVesselBlockAndItem(
+          String name,
+          Supplier<T> block,
+          CreativeModeTab tab
+  ){
+    RegistryObject<T> toReturn = BLOCKS.register(name, block);
+    ModItems.ITEMS.register(name, () -> new ContainerBlockItem(toReturn.get(),
+            new Item.Properties().tab(tab)));
+    return toReturn;
+  }
+
   private static <T extends Block> RegistryObject<T> registerBlockAndItem(String name, Supplier<T> block, CreativeModeTab tab){
     RegistryObject<T> toReturn = BLOCKS.register(name, block);
     registerBlockItem(name, toReturn, tab);

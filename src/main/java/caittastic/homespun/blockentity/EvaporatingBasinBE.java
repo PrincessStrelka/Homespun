@@ -118,6 +118,13 @@ public class EvaporatingBasinBE extends BlockEntity{
     return saveWithoutMetadata();
   }
 
+  @Override
+  public void invalidateCaps(){
+    super.invalidateCaps();
+    lazyItemHandler.invalidate();
+    lazyFluidHandler.invalidate();
+  }
+
   //save and load
   @Override
   public void onLoad(){
@@ -134,13 +141,6 @@ public class EvaporatingBasinBE extends BlockEntity{
     progress = nbt.getInt("evaporating_basin.progress");
     super.load(nbt);
 
-  }
-
-  @Override
-  public void invalidateCaps(){
-    super.invalidateCaps();
-    lazyItemHandler.invalidate();
-    lazyFluidHandler.invalidate();
   }
 
   @Override

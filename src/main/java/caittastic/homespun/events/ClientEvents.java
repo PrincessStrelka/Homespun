@@ -2,9 +2,11 @@ package caittastic.homespun.events;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.blockentity.EvaporatingBasinBE;
+import caittastic.homespun.blockentity.FluidStorageBE;
 import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.renderer.CrushingTubBER;
 import caittastic.homespun.renderer.EvaporatingBasinBER;
+import caittastic.homespun.renderer.FluidStorageBER;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +24,7 @@ public class ClientEvents{
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
       event.registerBlockEntityRenderer(ModBlockEntities.CRUSHING_TUB.get(), CrushingTubBER::new);
       event.registerBlockEntityRenderer(ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBER::new);
+      event.registerBlockEntityRenderer(ModBlockEntities.FLUID_STORAGE.get(), FluidStorageBER::new);
     }
 
   }

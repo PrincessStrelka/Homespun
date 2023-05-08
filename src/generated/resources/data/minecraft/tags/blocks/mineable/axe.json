@@ -14,6 +14,9 @@
     "homespun:ironwood_door",
     "homespun:ironwood_trapdoor",
     "homespun:ironwood_sapling",
+    "homespun:ironwood_mosaic",
+    "homespun:ironwood_mosaic_stairs",
+    "homespun:ironwood_mosaic_slab",
     "homespun:olive_log",
     "homespun:stripped_olive_log",
     "homespun:olive_wood",
@@ -28,7 +31,11 @@
     "homespun:olive_door",
     "homespun:olive_trapdoor",
     "homespun:olive_sapling",
+    "homespun:olive_mosaic",
+    "homespun:olive_mosaic_stairs",
+    "homespun:olive_mosaic_slab",
     "homespun:crushing_tub",
-    "homespun:wooden_post"
+    "homespun:wooden_post",
+    "homespun:fluid_storage"
   ]
 }

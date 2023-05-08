@@ -10,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
@@ -50,6 +49,10 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.IRONWOOD_BUTTON);
     simpleDropSelf(ModBlocks.IRONWOOD_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.IRONWOOD_TRAPDOOR);
+    simpleDropSelf(ModBlocks.IRONWOOD_MOSAIC);
+    simpleDropSelf(ModBlocks.IRONWOOD_MOSAIC_STAIRS);
+    simpleSlabBlock(ModBlocks.IRONWOOD_MOSAIC_SLAB);
+
     /*     olive     */
     leafWithExtra(
             ModBlocks.OLIVE_LEAVES,
@@ -67,12 +70,15 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.OLIVE_PLANKS);
     simpleDropSelf(ModBlocks.OLIVE_STAIRS);
     simpleSlabBlock(ModBlocks.OLIVE_SLAB);
-
     simpleDropSelf(ModBlocks.OLIVE_FENCE);
     simpleDropSelf(ModBlocks.OLIVE_FENCE_GATE);
     simpleDropSelf(ModBlocks.OLIVE_BUTTON);
     simpleDropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
     simpleDropSelf(ModBlocks.OLIVE_TRAPDOOR);
+    simpleDropSelf(ModBlocks.OLIVE_MOSAIC);
+    simpleDropSelf(ModBlocks.OLIVE_MOSAIC_STAIRS);
+    simpleSlabBlock(ModBlocks.OLIVE_MOSAIC_SLAB);
+
     /*     deco stone     */
     simpleDropSelf(ModBlocks.SMOOTH_STONE_PILLAR);
     simpleDropSelf(ModBlocks.CALCITE_BRICKS);
@@ -96,26 +102,30 @@ public class ModBlockLootTables extends BlockLoot{
     simpleDropSelf(ModBlocks.WOODEN_POST);
     simpleDropSelf(ModBlocks.CAST_IRON_BLOCK);
     simpleDropSelf(ModBlocks.CAST_IRON_TILES);
+    simpleDropSelf(ModBlocks.CAST_IRON_TILE_WALL);
     simpleDropSelf(ModBlocks.CAST_IRON_TILE_STAIRS);
     simpleSlabBlock(ModBlocks.CAST_IRON_TILE_SLAB);
 
-    /*     ceramic vessels     */
-    /*
-    simpleDropSelf(ModBlocks.CERAMIC_VESSEL);
-    for (String name : ModBlocks.vessels) {
-      this.dropSelf(ModBlocks.VESSEL_MAP.get(name).get());
-    }
+    /*     storage     */
+    dropAir(ModBlocks.CERAMIC_VESSEL.get());
+    for(String name: ModBlocks.vessel_patterns)
+      dropAir(ModBlocks.VESSEL_MAP.get(name).get());
+    dropAir(ModBlocks.FLUID_STORAGE.get());
+    //simpleSlabBlock(ModBlocks.CABINET);
 
-     */
+  }
 
-
+  //------------------------------------- methods -------------------------------------//
+  private void dropAir(Block block){
+    this.dropOther(block, Items.AIR);
   }
 
   private void simpleSlabBlock(RegistryObject<Block> slabBlock){
     this.add(slabBlock.get(), BlockLoot::createSlabItemTable);
   }
 
-  //------------------------------------- methods -------------------------------------//
+
+
   private void simpleDropSelf(RegistryObject<Block> self){
     this.dropSelf(self.get());
   }

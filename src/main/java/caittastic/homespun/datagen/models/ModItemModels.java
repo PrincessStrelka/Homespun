@@ -53,6 +53,9 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.IRONWOOD_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.IRONWOOD_BUTTON);
     registerWithExistingParent(ModBlocks.IRONWOOD_PRESSURE_PLATE);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC_STAIRS);
+    registerWithExistingParent(ModBlocks.IRONWOOD_MOSAIC_SLAB);
 
     /*     olive     */
     registerFlatBlockWithBlockTexture(ModBlocks.OLIVE_SAPLING);
@@ -70,6 +73,9 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.OLIVE_FENCE_GATE);
     registerWithExistingInventoryModel(ModBlocks.OLIVE_BUTTON);
     registerWithExistingParent(ModBlocks.OLIVE_PRESSURE_PLATE);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC_STAIRS);
+    registerWithExistingParent(ModBlocks.OLIVE_MOSAIC_SLAB);
 
     /*     deco stone     */
     registerWithExistingParent(ModBlocks.SMOOTH_STONE_PILLAR);
@@ -97,15 +103,19 @@ public class ModItemModels extends ItemModelProvider{
     registerWithExistingParent(ModBlocks.CAST_IRON_TILES);
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_STAIRS);
     registerWithExistingParent(ModBlocks.CAST_IRON_TILE_SLAB);
+    registerWithExistingInventoryModel(ModBlocks.CAST_IRON_TILE_WALL);
 
-    /*     ceramic vessels     */
-    /*
+    /*     storage     */
     registerWithExistingParent(ModBlocks.CERAMIC_VESSEL);
-    for (String name : ModBlocks.vessels) {
+    for (String name : ModBlocks.vessel_patterns)
       registerWithExistingParent(ModBlocks.VESSEL_MAP.get(name));
-    }
+    String id = ModBlocks.FLUID_STORAGE.getId().toString();
+    registerWithExistingParentAtRegistryLocation(
+            ModBlocks.FLUID_STORAGE,
+            "block/" + id.substring(id.indexOf(":") + 1) + "_inventory");
+    //registerWithExistingParent(ModBlocks.CABINET);
 
-     */
+
   }
 
   //------------------------------------- methods -------------------------------------//

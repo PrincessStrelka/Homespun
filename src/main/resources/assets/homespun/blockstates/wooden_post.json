@@ -1,10 +1,28 @@
 {
   "variants": {
-    "connected=true": {
+    "connected=true,axis=x": {
+      "model": "homespun:block/wooden_post_connected",
+      "x": 90,
+      "y": 90
+    },
+    "connected=true,axis=y": {
       "model": "homespun:block/wooden_post_connected"
     },
-    "connected=false": {
+    "connected=true,axis=z": {
+      "model": "homespun:block/wooden_post_connected",
+      "x": 90
+    },
+    "connected=false,axis=x": {
+      "model": "homespun:block/wooden_post",
+      "x": 90,
+      "y": 90
+    },
+    "connected=false,axis=y": {
       "model": "homespun:block/wooden_post"
+    },
+    "connected=false,axis=z": {
+      "model": "homespun:block/wooden_post",
+      "x": 90
     }
   }
 }

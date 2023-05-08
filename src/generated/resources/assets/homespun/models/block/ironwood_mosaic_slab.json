@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "homespun:block/ironwood_mosaic",
+    "side": "homespun:block/ironwood_mosaic",
+    "top": "homespun:block/ironwood_mosaic"
+  }
+}
