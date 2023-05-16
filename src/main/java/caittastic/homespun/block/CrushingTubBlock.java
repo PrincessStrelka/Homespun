@@ -44,7 +44,7 @@ import java.util.Optional;
 
 import static caittastic.homespun.blockentity.CrushingTubBE.CRAFT_SLOT;
 
-public class CrushingTubBlock extends BaseEntityBlock{
+public class CrushingTubBlock extends FluidInteractingBase{
   public CrushingTubBlock(Properties pProperties){
     super(pProperties);
   }
@@ -164,16 +164,7 @@ public class CrushingTubBlock extends BaseEntityBlock{
 
   }
 
-  private void removeStackAndReplaceWith(Player player, InteractionHand hand, ItemStack stackToRemove, ItemStack stackToGive){
-    if(!player.isCreative()){
-      stackToRemove.shrink(1);
-      if(player.getItemInHand(hand).isEmpty()){
-        player.setItemInHand(hand, stackToGive);
-      }
-      else if(!player.getInventory().add(stackToGive))
-        player.drop(stackToGive, false);
-    }
-  }
+  
 
   @Nullable
   @Override
@@ -181,8 +172,5 @@ public class CrushingTubBlock extends BaseEntityBlock{
     return ModBlockEntities.CRUSHING_TUB.get().create(pos, state);
   }
 
-  @Override
-  public RenderShape getRenderShape(BlockState pState){
-    return RenderShape.MODEL;
-  }
+  
 }

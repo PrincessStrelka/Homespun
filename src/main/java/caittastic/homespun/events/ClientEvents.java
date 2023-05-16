@@ -13,11 +13,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 public class ClientEvents{
-  @Mod.EventBusSubscriber(modid = Homespun.MOD_ID, value = Dist.CLIENT)
-  public static class ClientForgeEvents{
-
-  }
-
   @Mod.EventBusSubscriber(modid = Homespun.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents{
     @SubscribeEvent
@@ -26,6 +21,5 @@ public class ClientEvents{
       event.registerBlockEntityRenderer(ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBER::new);
       event.registerBlockEntityRenderer(ModBlockEntities.FLUID_STORAGE.get(), FluidStorageBER::new);
     }
-
   }
 }

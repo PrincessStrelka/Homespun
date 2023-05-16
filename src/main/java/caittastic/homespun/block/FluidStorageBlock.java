@@ -42,15 +42,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class FluidStorageBlock extends BaseEntityBlock{
+public class FluidStorageBlock extends FluidInteractingBase{
   public FluidStorageBlock(Properties pProperties){
     super(pProperties);
   }
 
-  @Override
-  public RenderShape getRenderShape(BlockState pState){
-    return RenderShape.MODEL;
-  }
+
 
   @Override
   public @NotNull VoxelShape getShape(BlockState state, BlockGetter pLevel, BlockPos pos, CollisionContext context){
@@ -142,14 +139,5 @@ public class FluidStorageBlock extends BaseEntityBlock{
     return InteractionResult.sidedSuccess(level.isClientSide);
   }
 
-  private void removeStackAndReplaceWith(Player player, InteractionHand hand, ItemStack stackToRemove, ItemStack stackToGive){
-    if(!player.isCreative()){
-      stackToRemove.shrink(1);
-      if(player.getItemInHand(hand).isEmpty()){
-        player.setItemInHand(hand, stackToGive);
-      }
-      else if(!player.getInventory().add(stackToGive))
-        player.drop(stackToGive, false);
-    }
-  }
+  
 }

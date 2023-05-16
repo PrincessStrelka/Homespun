@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class EvaporatingBasinBlock extends BaseEntityBlock{
+public class EvaporatingBasinBlock extends FluidInteractingBase{
   public EvaporatingBasinBlock(Properties pProperties){
     super(pProperties);
   }
@@ -52,11 +52,6 @@ public class EvaporatingBasinBlock extends BaseEntityBlock{
   public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag){
     pTooltip.add(Component.translatable("tooltip.homespun.evaporating_basin"));
     super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
-  }
-
-  @Override
-  public RenderShape getRenderShape(BlockState pState){
-    return RenderShape.MODEL;
   }
 
   @Override
@@ -128,16 +123,7 @@ public class EvaporatingBasinBlock extends BaseEntityBlock{
     return createTickerHelper(pBlockEntityType, ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBE::tick);
   }
 
-  private void removeStackAndReplaceWith(Player player, InteractionHand hand, ItemStack stackToRemove, ItemStack stackToGive){
-    if(!player.isCreative()){
-      stackToRemove.shrink(1);
-      if(player.getItemInHand(hand).isEmpty()){
-        player.setItemInHand(hand, stackToGive);
-      }
-      else if(!player.getInventory().add(stackToGive))
-        player.drop(stackToGive, false);
-    }
-  }
+
 
   @Override
   public void animateTick(BlockState pState, Level level, BlockPos pos, RandomSource pRandom){
