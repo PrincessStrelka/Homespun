@@ -99,8 +99,11 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
 
     /*     storage     */
     addWithKeywords(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel", "pot vase item storage");
-    for(String name: ModBlocks.vessel_patterns)
-      addWithKeywords(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel", "pot vase item storage");
+    for(String[] patternKeyword: ModBlocks.vessel_patterns){
+      String name = patternKeyword[0];
+      String dyedPotKeywords = "pot vase item storage pride queer lgbt" + patternKeyword[1];
+      addWithKeywords(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel", dyedPotKeywords);
+    }
     addWithKeywords(ModBlocks.FLUID_STORAGE.get(), "Rundlet", "tank barrel fluid storage");
 
     //------------------------------- containers -------------------------------//

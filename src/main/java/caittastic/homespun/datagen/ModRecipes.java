@@ -221,17 +221,6 @@ public class ModRecipes extends RecipeProvider{
             .define('i', Tags.Items.INGOTS_IRON)
             .unlockedBy("ironwood_log", has(ModBlocks.IRONWOOD_LOG.get()))
             .save(consumer);
-
-    /*
-    ShapedRecipeBuilder.shaped(ModBlocks.CABINET.get())
-            .pattern("ppp")
-            .pattern("p t")
-            .pattern("ppp")
-            .define('p', ItemTags.PLANKS)
-            .define('t', ItemTags.WOODEN_TRAPDOORS)
-            .unlockedBy("has_planks", has(ItemTags.PLANKS))
-            .save(consumer);
-     */
   }
 
   private void wallRecipe(@NotNull Consumer<FinishedRecipe> consumer, RegistryObject<Block> parentBlock, Block wallBlock){

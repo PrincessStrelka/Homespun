@@ -20,7 +20,8 @@ public class ModBlockTags extends BlockTagsProvider{
     //------------------------------------- mining tool -------------------------------------//
     //vessels
 
-    for(String name: ModBlocks.vessel_patterns){
+    for(String[] patternKeyword: ModBlocks.vessel_patterns){
+      String name = patternKeyword[0];
       tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.VESSEL_MAP.get(name).get());
     }
 

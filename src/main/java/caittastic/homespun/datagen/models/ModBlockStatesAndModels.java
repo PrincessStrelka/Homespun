@@ -83,10 +83,13 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
 
     /*     storage     */
     registerVesselModel(ModBlocks.CERAMIC_VESSEL);
-    for(String name: ModBlocks.vessel_patterns)
+    for(String[] patternKeyword: ModBlocks.vessel_patterns){
+      String name = patternKeyword[0];
       registerVesselModel(ModBlocks.VESSEL_MAP.get(name));
+    }
 
   }
+
   //------------------------------------- methods -------------------------------------//
   private void registerVesselModel(RegistryObject<Block> vessel){
     simpleBlock(

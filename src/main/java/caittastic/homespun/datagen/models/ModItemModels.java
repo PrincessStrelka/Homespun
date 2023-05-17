@@ -107,8 +107,10 @@ public class ModItemModels extends ItemModelProvider{
 
     /*     storage     */
     registerWithExistingParent(ModBlocks.CERAMIC_VESSEL);
-    for (String name : ModBlocks.vessel_patterns)
+    for(String[] patternKeyword: ModBlocks.vessel_patterns){
+      String name = patternKeyword[0];
       registerWithExistingParent(ModBlocks.VESSEL_MAP.get(name));
+    }
     String id = ModBlocks.FLUID_STORAGE.getId().toString();
     registerWithExistingParentAtRegistryLocation(
             ModBlocks.FLUID_STORAGE,

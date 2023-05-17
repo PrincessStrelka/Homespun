@@ -108,8 +108,9 @@ public class ModBlockLootTables extends BlockLoot{
 
     /*     storage     */
     dropAir(ModBlocks.CERAMIC_VESSEL.get());
-    for(String name: ModBlocks.vessel_patterns)
-      dropAir(ModBlocks.VESSEL_MAP.get(name).get());
+    for(String[] patternKeyword: ModBlocks.vessel_patterns){
+      String name = patternKeyword[0];
+      dropAir(ModBlocks.VESSEL_MAP.get(name).get());}
     dropAir(ModBlocks.FLUID_STORAGE.get());
     //simpleSlabBlock(ModBlocks.CABINET);
 
