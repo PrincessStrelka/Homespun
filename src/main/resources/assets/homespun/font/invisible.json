@@ -2,7 +2,7 @@
   "providers": [
     {
       "type": "bitmap",
-      "file": "homespun:font/ascii_invis.png",
+      "file": "homespun:font/ascii_invisible.png",
       "height": 0,
       "ascent": 0,
       "chars": [
