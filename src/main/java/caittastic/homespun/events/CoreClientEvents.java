@@ -4,6 +4,7 @@ import caittastic.homespun.Homespun;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Style;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,6 +35,19 @@ public class CoreClientEvents{
         }
       }
 
+  }
+
+  @SubscribeEvent
+  public static void handleRenderTooltipEvent(RenderTooltipEvent.GatherComponents event) {
+
+    if (event.getTooltipElements().isEmpty()) {
+      return;
+    }
+    event.getTooltipElements().get(0).left().ifPresent((text) -> {
+      if (text instanceof MutableComponent mutable) {
+        mutable.getSiblings().removeIf(string -> string.getStyle().equals(INVISIBLE_STYLE));
+      }
+    });
   }
 
   public static MutableComponent getKeywordTextComponent(String key) {

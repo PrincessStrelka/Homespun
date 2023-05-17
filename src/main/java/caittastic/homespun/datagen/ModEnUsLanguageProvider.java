@@ -84,23 +84,23 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.TUFF_TILE_SLAB.get(), "Tuff Tile Slab");
     add(ModBlocks.TUFF_TILE_WALL.get(), "Tuff Tile Wall");
     /*     industry     */
-    add(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub");
-    add(ModBlocks.EVAPORATING_BASIN.get(), "Evaporating Basin");
+    addWithKeywords(ModBlocks.CRUSHING_TUB.get(), "Crushing Tub", "squeezer squeezing pressing");
+    addWithKeywords(ModBlocks.EVAPORATING_BASIN.get(), "Evaporating Basin", "drying");
     /*     metallurgy     */
     add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
     add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
     addWithKeywords(ModBlocks.IRON_POST.get(), "Iron Post", "lattice");
     addWithKeywords(ModBlocks.WOODEN_POST.get(), "Wooden Post", "stake");
-    add(ModBlocks.CAST_IRON_BLOCK.get(), "Wrought Tile");
-    add(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile");
-    add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
-    add(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab");
-    add(ModBlocks.CAST_IRON_TILE_WALL.get(), "Cut Wrought Tile Wall");
+    addWithKeywords(ModBlocks.CAST_IRON_BLOCK.get(), "Wrought Tile", "cast iron steel metal");
+    addWithKeywords(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile", "cast iron steel metal");
+    addWithKeywords(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs", "cast iron steel metal");
+    addWithKeywords(ModBlocks.CAST_IRON_TILE_SLAB.get(), "Cut Wrought Tile Slab", "cast iron steel metal");
+    addWithKeywords(ModBlocks.CAST_IRON_TILE_WALL.get(), "Cut Wrought Tile Wall", "cast iron steel metal");
 
     /*     storage     */
-    add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
+    addWithKeywords(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel", "pot vase item storage");
     for(String name: ModBlocks.vessel_patterns)
-      add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
+      addWithKeywords(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel", "pot vase item storage");
     addWithKeywords(ModBlocks.FLUID_STORAGE.get(), "Rundlet", "tank barrel fluid storage");
 
     //------------------------------- containers -------------------------------//
