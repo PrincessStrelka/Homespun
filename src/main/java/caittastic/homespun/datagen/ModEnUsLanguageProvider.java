@@ -5,6 +5,8 @@ import caittastic.homespun.ModTabRegistry;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
@@ -87,8 +89,8 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     /*     metallurgy     */
     add(ModBlocks.GOLD_CHAIN.get(), "Gold Chain");
     add(ModBlocks.COPPER_CHAIN.get(), "Copper Chain");
-    add(ModBlocks.IRON_POST.get(), "Iron Post");
-    add(ModBlocks.WOODEN_POST.get(), "Wooden Post");
+    addWithKeywords(ModBlocks.IRON_POST.get(), "Iron Post", "lattice");
+    addWithKeywords(ModBlocks.WOODEN_POST.get(), "Wooden Post", "stake");
     add(ModBlocks.CAST_IRON_BLOCK.get(), "Wrought Tile");
     add(ModBlocks.CAST_IRON_TILES.get(), "Cut Wrought Tile");
     add(ModBlocks.CAST_IRON_TILE_STAIRS.get(), "Cut Wrought Tile Stairs");
@@ -99,8 +101,7 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add(ModBlocks.CERAMIC_VESSEL.get(), "Ceramic Vessel");
     for(String name: ModBlocks.vessel_patterns)
       add(ModBlocks.VESSEL_MAP.get(name).get(), capitalizeFully(name) + " Ceramic Vessel");
-    add(ModBlocks.FLUID_STORAGE.get(), "Rundlet");
-    //add(ModBlocks.CABINET.get(), "Cabinet");
+    addWithKeywords(ModBlocks.FLUID_STORAGE.get(), "Rundlet", "tank barrel fluid storage");
 
     //------------------------------- containers -------------------------------//
     add("container.ceramic_vessel", "Ceramic Vessel");
@@ -122,5 +123,15 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     //-------------------------------------- jei --------------------------------------//
     add("jei.homespun.crushing_tub_recipe", "Tub Crushing");
     add("jei.homespun.evaporating_recipe", "Evaporating");
+  }
+
+  private void addWithKeywords(Block block, String name, String jeiKeywords){
+    add(block, name);
+    add(block.getDescriptionId() + ".keyword", jeiKeywords);
+  }
+
+  private void addWithKeywords(Item item, String name, String jeiKeywords){
+    add(item, name);
+    add(item.getDescriptionId() + ".keyword", jeiKeywords);
   }
 }

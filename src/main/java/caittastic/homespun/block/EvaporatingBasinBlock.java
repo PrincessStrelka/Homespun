@@ -123,8 +123,6 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
     return createTickerHelper(pBlockEntityType, ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBE::tick);
   }
 
-
-
   @Override
   public void animateTick(BlockState pState, Level level, BlockPos pos, RandomSource pRandom){
     if(level.getBlockEntity(pos) instanceof EvaporatingBasinBE entity){

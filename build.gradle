@@ -175,8 +175,6 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:CTM-267602:4393695")
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:4385637")
     runtimeOnly fg.deobf("curse.maven:pams_core-372534:4434697")
-    //runtimeOnly fg.deobf("curse.maven:farming_for_blockheads-261924:4414058")
-    //runtimeOnly fg.deobf("curse.maven:balm-531761:4418651")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
