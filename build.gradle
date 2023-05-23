@@ -2,6 +2,7 @@ plugins {
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = "${mc_version}-${homespun_version}"
@@ -50,6 +51,8 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'homespun'
+
+            args '--username', 'Dev####'
 
             mods {
                 homespun {
@@ -117,9 +120,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
     }
     maven {
         // location of a maven mirror for JEI files, as a fallback
@@ -140,6 +143,7 @@ repositories {
         }
     }
 }
+
 
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
@@ -175,8 +179,11 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:CTM-267602:4393695")
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:4385637")
     runtimeOnly fg.deobf("curse.maven:pams_core-372534:4434697")
+    runtimeOnly fg.deobf("curse.maven:flywheel-486392:4341471")
+    runtimeOnly fg.deobf("curse.maven:create-328085:4547147")
+    implementation fg.deobf("curse.maven:balm-531761:4442591")
+    implementation fg.deobf("curse.maven:farming-for-blockheads-261924:4510519")
 }
-
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
