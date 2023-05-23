@@ -1,7 +1,6 @@
 package caittastic.homespun.block;
 
 import caittastic.homespun.blockentity.EvaporatingBasinBE;
-import caittastic.homespun.blockentity.EvaporatingBasinBE;
 import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.recipes.InsertFluidUsingItemRecipe;
 import caittastic.homespun.recipes.SimpleContainerWithTank;
@@ -19,13 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -44,8 +43,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class EvaporatingBasinBlock extends FluidInteractingBase{
+  public static final BooleanProperty EVAPORATING = BooleanProperty.create("evaporating");
+
   public EvaporatingBasinBlock(Properties pProperties){
     super(pProperties);
+    this.registerDefaultState(this.stateDefinition.any().setValue(EVAPORATING, Boolean.FALSE));
   }
 
   @Override
@@ -99,13 +101,11 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
             player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
             fluidTank.drain(takeOutRecipe.get().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
             removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().filledItem().copy());
-          }
-          else if(insertFluidUsingRecipe.isPresent()){ // try insert fluid using item
+          } else if(insertFluidUsingRecipe.isPresent()){ // try insert fluid using item
             player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
             fluidTank.fill(insertFluidUsingRecipe.get().fluid(), IFluidHandler.FluidAction.EXECUTE);
             removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().emptyItem().copy());
-          }
-          else if(!internalStack.isEmpty()){
+          } else if(!internalStack.isEmpty()){
             player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.PLAYERS, 1.0F, 1.0F);
             if(!player.isCreative())
               popResourceFromFace(player.getLevel(), entity.getBlockPos(), player.getDirection().getOpposite(), internalStack);
@@ -117,6 +117,7 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
     return InteractionResult.sidedSuccess(level.isClientSide);
   }
 
+
   @Nullable
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType){
@@ -124,15 +125,17 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
   }
 
   @Override
+  protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
+    pBuilder.add(EVAPORATING);
+  }
+
+  @Override
   public void animateTick(BlockState pState, Level level, BlockPos pos, RandomSource pRandom){
-    if(level.getBlockEntity(pos) instanceof EvaporatingBasinBE entity){
-      if(entity.isCrafting()){
-        level.addParticle(ParticleTypes.EFFECT,
-                pos.getX() + level.random.nextDouble(), pos.getY() + 0.3125, pos.getZ() + level.random.nextDouble(),
-                0, 0, 0);
-      }
+    if(pState.getValue(EVAPORATING)){
+      level.addParticle(ParticleTypes.EFFECT,
+              pos.getX() + level.random.nextDouble(), pos.getY() + 0.3125, pos.getZ() + level.random.nextDouble(),
+              0, 0, 0);
     }
-    super.animateTick(pState, level, pos, pRandom);
   }
 
   //makes sure when the block is broken the inventory drops with it

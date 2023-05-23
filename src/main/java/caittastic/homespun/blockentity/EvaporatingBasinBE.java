@@ -1,6 +1,6 @@
 package caittastic.homespun.blockentity;
 
-import caittastic.homespun.networking.BooleanSyncS2CPacket;
+import caittastic.homespun.block.EvaporatingBasinBlock;
 import caittastic.homespun.networking.FluidStackSyncS2CPacket;
 import caittastic.homespun.networking.ItemStackSyncS2CPacket;
 import caittastic.homespun.networking.ModPackets;
@@ -66,34 +66,27 @@ public class EvaporatingBasinBE extends BlockEntity{
 
   //crafting stuff
   public static void tick(Level level, BlockPos blockPos, BlockState state, EvaporatingBasinBE entity){
-
-
     Optional<EvaporatingBasinRecipe> recipe = level.getRecipeManager().getRecipeFor(
             EvaporatingBasinRecipe.Type.INSTANCE,
             new SimpleContainerWithTank(entity.fluidTank, entity.itemHandler.getStackInSlot(OUTPUT_SLOT)),
             level);
-
-
-    ModPackets.sendToClients(new BooleanSyncS2CPacket(entity.progress > 0, blockPos));
 
     if(recipe.isPresent()){
       if(level.getBlockState(blockPos.offset(0, -1, 0)).is(Blocks.MAGMA_BLOCK))
         entity.progress += 2;
       else
         entity.progress++;
-
       if(entity.progress >= recipe.get().getTime()){
         level.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.1F, (1.0F + level.getRandom().nextFloat() * 0.2F) * 0.7F);
         entity.itemHandler.insertItem(OUTPUT_SLOT, recipe.get().getResultItem(), false);
         entity.fluidTank.drain(recipe.get().inputFluidStack().getAmount(), IFluidHandler.FluidAction.EXECUTE);
         setChanged(level, blockPos, state);
         entity.progress = 0;
-      }
-
-
-    }
-    else{
+      } else
+        level.setBlock(blockPos, state.setValue(EvaporatingBasinBlock.EVAPORATING, true), 3);
+    } else{
       entity.progress = 0;
+      level.setBlock(blockPos, state.setValue(EvaporatingBasinBlock.EVAPORATING, false), 3);
     }
   }
 
