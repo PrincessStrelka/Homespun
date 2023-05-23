@@ -7,7 +7,6 @@ import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,6 +28,14 @@ public class ModItemTags extends ItemTagsProvider{
     tag(TagInit.Items.IRONWOOD_LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get().asItem())
             .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get().asItem());
+
+    tag(TagInit.Items.STRIPPED_IRONWOOD)
+            .add(ModBlocks.STRIPPED_IRONWOOD_LOG.get().asItem())
+            .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
+    tag(TagInit.Items.STRIPPED_OLIVE)
+            .add(ModBlocks.STRIPPED_OLIVE_LOG.get().asItem())
+            .add(ModBlocks.STRIPPED_OLIVE_WOOD.get().asItem());
+
     tag(TagInit.Items.IRONWOOD_WOOD)
             .add(ModBlocks.IRONWOOD_WOOD.get().asItem())
             .add(ModBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());

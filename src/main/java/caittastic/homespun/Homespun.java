@@ -16,8 +16,8 @@ import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.fluid.ModFluidTypes;
 import caittastic.homespun.fluid.ModFluids;
-import caittastic.homespun.gui.VesselScreen;
 import caittastic.homespun.gui.ModMenuRegistry;
+import caittastic.homespun.gui.VesselScreen;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.ModRecipes;
@@ -27,11 +27,14 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Homespun.MOD_ID)
@@ -56,12 +59,12 @@ public class Homespun{
     ModPlacedFeatures.PLACED_FEATURES.register(bus);
 
     bus.addListener(this::setup);
-    bus.addListener(this::clientSetup);
+    if(FMLEnvironment.dist == Dist.CLIENT)
+      bus.addListener(this::clientSetup);
     MinecraftForge.EVENT_BUS.register(this);
-
   }
 
-  private void clientSetup(final FMLCommonSetupEvent event) {
+  private void clientSetup(final FMLClientSetupEvent event){
     MenuScreens.register(ModMenuRegistry.VESSEL_MENU.get(), VesselScreen::new);
     event.enqueueWork(() -> {
     });

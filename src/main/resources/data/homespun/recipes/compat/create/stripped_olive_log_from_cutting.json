@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "homespun:olive_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "homespun:stripped_olive_log"
+    }
+  ],
+  "processingTime": 50
+}

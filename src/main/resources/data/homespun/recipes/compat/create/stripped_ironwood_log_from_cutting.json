@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "homespun:ironwood_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "homespun:stripped_ironwood_log"
+    }
+  ],
+  "processingTime": 50
+}

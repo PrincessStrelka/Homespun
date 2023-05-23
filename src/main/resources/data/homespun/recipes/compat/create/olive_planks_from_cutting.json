@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "tag": "homespun:stripped_olive"
+    }
+  ],
+  "results": [
+    {
+      "item": "homespun:olive_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

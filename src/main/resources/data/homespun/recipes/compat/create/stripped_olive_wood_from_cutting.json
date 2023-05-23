@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "homespun:olive_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "homespun:stripped_olive_wood"
+    }
+  ],
+  "processingTime": 50
+}

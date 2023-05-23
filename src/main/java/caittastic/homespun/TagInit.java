@@ -21,8 +21,10 @@ public class TagInit{
 
   public static class Items{
     public static final TagKey<Item> IRONWOOD_LOGS = CreateItemTag("ironwood_logs");
+    public static final TagKey<Item> STRIPPED_IRONWOOD = CreateItemTag("stripped_ironwood");
     public static final TagKey<Item> IRONWOOD_WOOD = CreateItemTag("ironwood_wood");
     public static final TagKey<Item> OLIVE_LOGS = CreateItemTag("olive_logs");
+    public static final TagKey<Item> STRIPPED_OLIVE = CreateItemTag("stripped_olive");
     public static final TagKey<Item> OLIVE_WOOD = CreateItemTag("olive_wood");
 
     public static final TagKey<Item> FORGE_NUGGETS_COPPER = CreateForgeItemTag("nuggets/copper");

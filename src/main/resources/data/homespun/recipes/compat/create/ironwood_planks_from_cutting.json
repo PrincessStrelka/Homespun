@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "tag": "homespun:stripped_ironwood"
+    }
+  ],
+  "results": [
+    {
+      "item": "homespun:ironwood_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}
