@@ -1,0 +1,34 @@
+{
+  "modId": "homespun",
+  "silent": true,
+  "group": {
+    "name": "Homespun Saplings",
+    "enabledByDefault": true,
+    "defaultPayment": {
+      "item": "minecraft:emerald"
+    },
+    "defaultCategory": "farmingforblockheads:saplings"
+  },
+  "customEntries": [
+    {
+      "output": {
+        "item": "homespun:olive_sapling"
+      },
+      "payment": {
+        "item": "minecraft:emerald",
+        "count": 1
+      },
+      "category": "saplings"
+    },
+    {
+      "output": {
+        "item": "homespun:ironwood_sapling"
+      },
+      "payment": {
+        "item": "minecraft:raw_iron_block",
+        "count": 1
+      },
+      "category": "saplings"
+    }
+  ]
+}
