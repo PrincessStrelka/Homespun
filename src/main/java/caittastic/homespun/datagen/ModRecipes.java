@@ -3,7 +3,6 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -90,7 +89,7 @@ public class ModRecipes extends RecipeProvider{
     trapdoorRecipe(consumer, ModBlocks.OLIVE_TRAPDOOR, ModBlocks.OLIVE_PLANKS, hasPlanksCriterion);
     registerMosaics(consumer, "olive", ModBlocks.OLIVE_MOSAIC.get(), ModBlocks.OLIVE_SLAB.get(), ModBlocks.OLIVE_PLANKS.get(), ModBlocks.OLIVE_MOSAIC_SLAB.get(), ModBlocks.OLIVE_MOSAIC_STAIRS.get());
 
-    
+
     /*     deco stone     */
     //calcite
     registerBrickSet(consumer,
@@ -142,13 +141,17 @@ public class ModRecipes extends RecipeProvider{
     pillarRecipe(consumer, ModBlocks.IRON_POST, Tags.Items.INGOTS_IRON, "has_iron");
     pillarRecipe(consumer, ModBlocks.WOODEN_POST, ItemTags.PLANKS, "has_planks");
     //cast iron
-    ShapedRecipeBuilder.shaped(ModBlocks.CAST_IRON_BLOCK.get(), 1)
+    ShapedRecipeBuilder.shaped(ModBlocks.CAST_IRON_BLOCK.get(), 4)
             .pattern("in")
             .pattern("ni")
             .define('i', Tags.Items.INGOTS_IRON)
             .define('n', Tags.Items.NUGGETS_IRON)
             .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
             .save(consumer);
+    SingleItemRecipeBuilder
+            .stonecutting(Ingredient.of(Tags.Items.INGOTS_IRON), ModBlocks.CAST_IRON_BLOCK.get(), 2)
+            .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+            .save(consumer, getItemName(ModBlocks.CAST_IRON_BLOCK.get()) + "_from_stonecutting");
     brickLikeRecipe(consumer, ModBlocks.CAST_IRON_BLOCK.get(), ModBlocks.CAST_IRON_TILES, true);
     stairRecipe(consumer, ModBlocks.CAST_IRON_TILE_STAIRS, ModBlocks.CAST_IRON_TILES, true);
     slabRecipe(consumer, ModBlocks.CAST_IRON_TILE_SLAB, ModBlocks.CAST_IRON_TILES, true);
