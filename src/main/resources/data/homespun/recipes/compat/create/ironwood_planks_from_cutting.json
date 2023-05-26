@@ -12,4 +12,11 @@
     }
   ],
   "processingTime": 50
+  ,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
 }
