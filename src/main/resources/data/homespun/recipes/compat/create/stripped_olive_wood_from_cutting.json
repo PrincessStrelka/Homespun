@@ -10,5 +10,11 @@
       "item": "homespun:stripped_olive_wood"
     }
   ],
-  "processingTime": 50
+  "processingTime": 50  ,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
 }
