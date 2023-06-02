@@ -11,5 +11,11 @@
       "count": 6
     }
   ],
-  "processingTime": 50
+  "processingTime": 50,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
 }
