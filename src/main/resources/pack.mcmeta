@@ -1,8 +1,8 @@
 {
     "pack": {
-        "description": "Homespun's Resources",
-        "pack_format": 9,
-        "forge:resource_pack_format": 9,
-        "forge:data_pack_format": 10
-    }
+        "description": {
+            "text": "${mod_name}'s Resources"
+        },
+        "pack_format": ${pack_format_number}
+}
 }
