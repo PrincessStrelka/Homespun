@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -47,6 +48,7 @@ public class Homespun{
     ModItems.ITEMS.register(bus);
     ModBlocks.BLOCKS.register(bus);
     ModBlockEntities.BLOCK_ENTITIES.register(bus);
+    ModTabs.CREATIVE_MODE_TABS.register(bus);
 
     ModMenuRegistry.MENUS.register(bus);
 

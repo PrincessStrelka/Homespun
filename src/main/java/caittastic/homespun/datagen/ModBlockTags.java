@@ -25,7 +25,6 @@ public class ModBlockTags extends BlockTagsProvider{
       tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.VESSEL_MAP.get(name).get());
     }
 
-
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.GOLD_CHAIN.get())
             .add(ModBlocks.COPPER_CHAIN.get())

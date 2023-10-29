@@ -3,6 +3,6 @@
         "description": {
             "text": "${mod_name}'s Resources"
         },
-        "pack_format": ${pack_format_number}
+        "pack_format": "${pack_format_number}"
 }
 }

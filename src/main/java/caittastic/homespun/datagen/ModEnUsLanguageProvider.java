@@ -1,7 +1,7 @@
 package caittastic.homespun.datagen;
 
 import caittastic.homespun.Homespun;
-import caittastic.homespun.ModTabRegistry;
+import caittastic.homespun.ModTabs;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -110,9 +110,9 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add("container.ceramic_vessel", "Ceramic Vessel");
 
     //------------------------------- creative mode tabs -------------------------------//
-    add("itemGroup." + ModTabRegistry.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
-    add("itemGroup." + ModTabRegistry.DECORATION.getRecipeFolderName(), "Homespun Decoration");
-    add("itemGroup." + ModTabRegistry.INDUSTRY.getRecipeFolderName(), "Homespun Industry");
+    add("itemGroup." + ModTabs.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
+    add("itemGroup." + ModTabs.DECORATION.getRecipeFolderName(), "Homespun Decoration");
+    add("itemGroup." + ModTabs.INDUSTRY.getRecipeFolderName(), "Homespun Industry");
 
     //------------------------------------ tooltips ------------------------------------//
     add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");
