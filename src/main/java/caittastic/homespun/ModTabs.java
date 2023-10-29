@@ -20,6 +20,11 @@ public class ModTabs{
     pOutput.accept(ModBlocks.OLIVE_SAPLING.get());
     pOutput.accept(ModBlocks.OLIVE_LEAVES.get());
     pOutput.accept(ModBlocks.OLIVE_LOG.get());
+    pOutput.accept(ModItems.IRONBERRIES.get());
+    pOutput.accept(ModItems.OLIVES.get());
+    pOutput.accept(ModItems.IRONBERRY_JUICE_BOTTLE.get());
+    pOutput.accept(ModItems.IRONBERRY_JUICE_BUCKET.get());
+
   });
   public static final RegistryObject<CreativeModeTab> DECORATION = registerTab("decoration_tab", new ItemStack(ModBlocks.IRONWOOD_PLANKS.get()), (pParameters, pOutput) -> {
     pOutput.accept(ModBlocks.STRIPPED_IRONWOOD_LOG.get());
@@ -83,6 +88,10 @@ public class ModTabs{
     pOutput.accept(ModBlocks.CRUSHING_TUB.get());
     pOutput.accept(ModBlocks.EVAPORATING_BASIN.get());
     pOutput.accept(ModBlocks.FLUID_STORAGE.get());
+    pOutput.accept(ModItems.TINY_IRON_DUST.get());
+    pOutput.accept(ModItems.COPPER_NUGGET.get());
+    pOutput.accept(ModItems.SALT.get());
+    pOutput.accept(ModItems.REDSTONE_ACID.get());
   });
 
   private static RegistryObject<CreativeModeTab> registerTab(String name, ItemStack icon, CreativeModeTab.DisplayItemsGenerator items){

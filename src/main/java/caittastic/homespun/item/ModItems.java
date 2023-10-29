@@ -42,26 +42,17 @@ public class ModItems{
 
   //------------------------------------- items -------------------------------------//
   /*     crops     */
-  public static final RegistryObject<Item> IRONBERRIES = ITEMS.register("ironberries", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(IRONBERRIES_FOOD)){
-    @Override
-    public int getUseDuration(@NotNull ItemStack i){
-      return 16;
-    }
-  });
-  public static final RegistryObject<Item> OLIVES = ITEMS.register("olives", () -> new Item(new Item.Properties().tab(AGRICULTURE).food(OLIVES_FOOD)){
-    @Override
-    public int getUseDuration(@NotNull ItemStack i){
-      return 40;
-    }
-  });
+  public static final RegistryObject<Item> IRONBERRIES = ITEMS.register("ironberries", () -> new Item(new Item.Properties().food(IRONBERRIES_FOOD)){
+    @Override public int getUseDuration(@NotNull ItemStack i){return 16;}});
+  public static final RegistryObject<Item> OLIVES = ITEMS.register("olives", () -> new Item(new Item.Properties().food(OLIVES_FOOD)){
+    @Override public int getUseDuration(@NotNull ItemStack i){return 40;}});
   /*     industry     */
-  public static final RegistryObject<Item> TINY_IRON_DUST = ITEMS.register("tiny_iron_dust", () -> new Item(new Item.Properties().tab(INDUSTRY)));
-  public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(INDUSTRY)));
-  public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(INDUSTRY)));
-  public static final RegistryObject<Item> REDSTONE_ACID = ITEMS.register("redstone_acid", () -> new RedstoneAcidItem(new Item.Properties().tab(INDUSTRY).stacksTo(16)));
+  public static final RegistryObject<Item> TINY_IRON_DUST = ITEMS.register("tiny_iron_dust", () -> new Item(new Item.Properties()));
+  public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties()));
+  public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties()));
+  public static final RegistryObject<Item> REDSTONE_ACID = ITEMS.register("redstone_acid", () -> new RedstoneAcidItem(new Item.Properties().stacksTo(16)));
 
   /*     fluid     */
-  public static final RegistryObject<Item> IRONBERRY_JUICE_BOTTLE = ITEMS.register("ironberry_juice_bottle", () -> new Item(new Item.Properties().tab(AGRICULTURE).stacksTo(16)));
-  public static final RegistryObject<Item> IRONBERRY_JUICE_BUCKET = ITEMS.register("ironberry_juice_bucket",
-          () -> new BucketItem(ModFluids.IRONBERRY_JUICE, new Item.Properties().tab(AGRICULTURE).stacksTo(1).craftRemainder(Items.BUCKET)));
+  public static final RegistryObject<Item> IRONBERRY_JUICE_BOTTLE = ITEMS.register("ironberry_juice_bottle", () -> new Item(new Item.Properties().stacksTo(16)));
+  public static final RegistryObject<Item> IRONBERRY_JUICE_BUCKET = ITEMS.register("ironberry_juice_bucket", () -> new BucketItem(ModFluids.IRONBERRY_JUICE, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 }

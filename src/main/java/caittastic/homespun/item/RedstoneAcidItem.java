@@ -56,7 +56,7 @@ public class RedstoneAcidItem extends Item{
         CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, clickedPos, itemInHand);
 
         level.setBlock(clickedPos, outputBlock.defaultBlockState(), 3);
-        player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
         removeStackAndReplaceWith(player, context.getHand(), itemInHand, new ItemStack(Items.GLASS_BOTTLE));
         return InteractionResult.SUCCESS;
       }
