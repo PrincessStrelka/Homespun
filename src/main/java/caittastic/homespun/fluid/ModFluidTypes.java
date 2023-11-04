@@ -2,10 +2,10 @@ package caittastic.homespun.fluid;
 
 import caittastic.homespun.Homespun;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 public class ModFluidTypes{
   public static final ResourceLocation FLUID_STILL = new ResourceLocation(Homespun.MOD_ID, "block/ironberry_juice_still");

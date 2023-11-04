@@ -5,10 +5,10 @@ import caittastic.homespun.datagen.loot.ModLootTableProvider;
 import caittastic.homespun.datagen.models.ModBlockStatesAndModels;
 import caittastic.homespun.datagen.models.ModItemModels;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Homespun.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators{

@@ -2,9 +2,9 @@ package caittastic.homespun.recipes;
 
 import caittastic.homespun.Homespun;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 public class ModRecipes{
   public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister

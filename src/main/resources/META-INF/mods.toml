@@ -9,7 +9,7 @@ logoFile="${logo_file}" #optional
 authors="${mod_authors}" #optional
 description='''${mod_description}''' # The description text for the mod (multi line!) (#mandatory)
 [[dependencies.${mod_id}]]] #optional # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-    modId="forge" #mandatory # the modid of the dependency
+    modId="neoforge" #mandatory # the modid of the dependency
     mandatory=true #mandatory # Does this dependency have to exist - if not, ordering below must be specified
     versionRange="${neo_version_range}" #mandatory # The version range of the dependency
     ordering="NONE" # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
