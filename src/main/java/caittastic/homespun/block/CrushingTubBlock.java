@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -116,25 +117,25 @@ public class CrushingTubBlock extends FluidInteractingBase{
           player.setItemInHand(hand, fluidResult.getResult());
 
         if(!stackInHand.getCapability(Capabilities.FLUID_HANDLER_ITEM).isPresent()){
-          Optional<TakeFluidUsingItemRecipe> takeOutRecipe = level.getRecipeManager().getRecipeFor(
+          Optional<RecipeHolder<TakeFluidUsingItemRecipe>> takeOutRecipe = level.getRecipeManager().getRecipeFor(
                   TakeFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);
 
-          Optional<InsertFluidUsingItemRecipe> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
+          Optional<RecipeHolder<InsertFluidUsingItemRecipe>> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
                   InsertFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);
 
           if(takeOutRecipe.isPresent()){ //try to take out using item
             level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-            fluidTank.drain(takeOutRecipe.get().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
-            removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().filledItem().copy());
+            fluidTank.drain(takeOutRecipe.get().value().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+            removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().value().filledItem().copy());
           }
           else if(insertFluidUsingRecipe.isPresent()){ // try put in fluid using item
             level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-            fluidTank.fill(insertFluidUsingRecipe.get().fluid(), IFluidHandler.FluidAction.EXECUTE);
-            removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().emptyItem().copy());
+            fluidTank.fill(insertFluidUsingRecipe.get().value().fluid(), IFluidHandler.FluidAction.EXECUTE);
+            removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().value().emptyItem().copy());
           }
           else{ //try to insert/remove items
             if(internalStack.isEmpty() || (internalItem == itemInHand && (internalStack.getCount() < internalStack.getMaxStackSize()))){

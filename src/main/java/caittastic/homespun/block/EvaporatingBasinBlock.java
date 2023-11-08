@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -87,12 +88,12 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
           player.setItemInHand(hand, fluidResult.getResult());
 
         if(!stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
-          Optional<TakeFluidUsingItemRecipe> takeOutRecipe = level.getRecipeManager().getRecipeFor(
+          Optional<RecipeHolder<TakeFluidUsingItemRecipe>> takeOutRecipe = level.getRecipeManager().getRecipeFor(
                   TakeFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);
 
-          Optional<InsertFluidUsingItemRecipe> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
+          Optional<RecipeHolder<InsertFluidUsingItemRecipe>> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
                   InsertFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);

@@ -18,24 +18,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidActionResult;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -112,26 +111,26 @@ public class FluidStorageBlock extends FluidInteractingBase{
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
-        if(!stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
-          Optional<TakeFluidUsingItemRecipe> takeOutRecipe = level.getRecipeManager().getRecipeFor(
+        if(!stackInHand.getCapability(Capabilities.FLUID_HANDLER_ITEM).isPresent()){
+          Optional<RecipeHolder<TakeFluidUsingItemRecipe>> takeOutRecipe = level.getRecipeManager().getRecipeFor(
                   TakeFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);
 
-          Optional<InsertFluidUsingItemRecipe> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
+          Optional<RecipeHolder<InsertFluidUsingItemRecipe>> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
                   InsertFluidUsingItemRecipe.Type.INSTANCE,
                   new SimpleContainerWithTank(fluidTank, stackInHand),
                   level);
 
           if(takeOutRecipe.isPresent()){ //try to extract fluid using item
             level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-            fluidTank.drain(takeOutRecipe.get().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
-            removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().filledItem().copy());
+            fluidTank.drain(takeOutRecipe.get().value().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+            removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().value().filledItem().copy());
           }
           else if(insertFluidUsingRecipe.isPresent()){ // try insert fluid using item
             level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-            fluidTank.fill(insertFluidUsingRecipe.get().fluid(), IFluidHandler.FluidAction.EXECUTE);
-            removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().emptyItem().copy());
+            fluidTank.fill(insertFluidUsingRecipe.get().value().fluid(), IFluidHandler.FluidAction.EXECUTE);
+            removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().value().emptyItem().copy());
           }
         }
       }
