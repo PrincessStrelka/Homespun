@@ -4,15 +4,16 @@ import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ModTabs{
   public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Homespun.MOD_ID);
-  public static final RegistryObject<CreativeModeTab> AGRICULTURE = registerTab("agriculture_tab", new ItemStack(ModItems.IRONBERRIES.get()), (pParameters, pOutput) -> {
+  public static final DeferredHolder<CreativeModeTab, CreativeModeTab> AGRICULTURE = registerTab("agriculture_tab", () -> new ItemStack(ModItems.IRONBERRIES.get()), (pParameters, pOutput) -> {
     pOutput.accept(ModBlocks.IRONWOOD_SAPLING.get());
     pOutput.accept(ModBlocks.IRONWOOD_LEAVES.get());
     pOutput.accept(ModBlocks.IRONWOOD_LOG.get());
@@ -26,7 +27,7 @@ public class ModTabs{
     pOutput.accept(ModItems.IRONBERRY_JUICE_BUCKET.get());
 
   });
-  public static final RegistryObject<CreativeModeTab> DECORATION = registerTab("decoration_tab", new ItemStack(ModBlocks.IRONWOOD_PLANKS.get()), (pParameters, pOutput) -> {
+  public static final DeferredHolder<CreativeModeTab, CreativeModeTab> DECORATION = registerTab("decoration_tab", () -> new ItemStack(ModBlocks.IRONWOOD_PLANKS.get()), (pParameters, pOutput) -> {
     pOutput.accept(ModBlocks.STRIPPED_IRONWOOD_LOG.get());
     pOutput.accept(ModBlocks.IRONWOOD_WOOD.get());
     pOutput.accept(ModBlocks.STRIPPED_IRONWOOD_WOOD.get());
@@ -84,7 +85,7 @@ public class ModTabs{
       pOutput.accept(ModBlocks.VESSEL_MAP.get(patternKeyword[0]).get());
     }
   });
-  public static final RegistryObject<CreativeModeTab> INDUSTRY = registerTab("production_tab", new ItemStack(ModItems.TINY_IRON_DUST.get()), (pParameters, pOutput) -> {
+  public static final DeferredHolder<CreativeModeTab, CreativeModeTab> INDUSTRY = registerTab("production_tab", () -> new ItemStack(ModItems.TINY_IRON_DUST.get()), (pParameters, pOutput) -> {
     pOutput.accept(ModBlocks.CRUSHING_TUB.get());
     pOutput.accept(ModBlocks.EVAPORATING_BASIN.get());
     pOutput.accept(ModBlocks.FLUID_STORAGE.get());
@@ -94,7 +95,7 @@ public class ModTabs{
     pOutput.accept(ModItems.REDSTONE_ACID.get());
   });
 
-  private static RegistryObject<CreativeModeTab> registerTab(String name, ItemStack icon, CreativeModeTab.DisplayItemsGenerator items){
-    return CREATIVE_MODE_TABS.register(name, () -> CreativeModeTab.builder().icon(() -> icon).title(Component.translatable("creativetab" + name)).displayItems(items).build());
+  private static DeferredHolder<CreativeModeTab, CreativeModeTab> registerTab(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator items){
+    return CREATIVE_MODE_TABS.register(name, () -> CreativeModeTab.builder().icon(icon).title(Component.translatable("creativetab" + name)).displayItems(items).build());
   }
 }

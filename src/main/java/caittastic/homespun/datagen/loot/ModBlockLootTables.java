@@ -5,7 +5,10 @@ import caittastic.homespun.item.ModItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -13,27 +16,30 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
-public class ModBlockLootTables extends BlockLoot{
-  private static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
-  private static final LootItemCondition.Builder HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
-  private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
-  private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
+import java.util.Collections;
+import java.util.Set;
+
+public class ModBlockLootTables extends BlockLootSubProvider {
+
+  public ModBlockLootTables(HolderLookup.Provider provider) {
+    super(Collections.emptySet(), FeatureFlags.VANILLA_SET, provider);
+  }
 
   //------------------------------------- ===== -------------------------------------//
   @Override
-  protected void addTables(){
+  protected void generate(){
     /*     ironwood     */
     leafWithExtra(
             ModBlocks.IRONWOOD_LEAVES,
             ModBlocks.IRONWOOD_SAPLING,
             ModItems.IRONBERRIES,
             new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F},
-            new float[]{0.30F, 0.40F, 0.68F, 0.76F, 0.64F});
+            new float[]{0.30F, 0.40F, 0.68F, 0.76F, 0.64F}, registries);
     simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);
     simpleDoorTable(ModBlocks.IRONWOOD_DOOR);
     simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);
@@ -59,7 +65,8 @@ public class ModBlockLootTables extends BlockLoot{
             ModBlocks.OLIVE_SAPLING,
             ModItems.OLIVES,
             new float[]{0.08F, 0.106F, 0.132F, 0.16F},
-            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F});
+            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F},
+            registries);
     simplePottedBlock(ModBlocks.POTTED_OLIVE_SAPLING);
     simpleDoorTable(ModBlocks.OLIVE_DOOR);
     simpleDropSelf(ModBlocks.OLIVE_SAPLING);
@@ -121,30 +128,31 @@ public class ModBlockLootTables extends BlockLoot{
     this.dropOther(block, Items.AIR);
   }
 
-  private void simpleSlabBlock(RegistryObject<Block> slabBlock){
-    this.add(slabBlock.get(), BlockLoot::createSlabItemTable);
+  private void simpleSlabBlock(DeferredBlock<?> slabBlock){
+
+    this.add(slabBlock.get(), createSlabItemTable(slabBlock.get()));
   }
 
 
 
-  private void simpleDropSelf(RegistryObject<Block> self){
+  private void simpleDropSelf(DeferredBlock<?> self){
     this.dropSelf(self.get());
   }
 
-  private void simplePottedBlock(RegistryObject<Block> pottedBlock){
+  private void simplePottedBlock(DeferredBlock<?> pottedBlock){
     this.dropPottedContents(pottedBlock.get());
   }
 
-  private void simpleDoorTable(RegistryObject<Block> simpleDoor){
-    this.add(simpleDoor.get(), BlockLoot::createDoorTable);
+  private void simpleDoorTable(DeferredBlock<?> simpleDoor){
+    this.add(simpleDoor.get(), createDoorTable(simpleDoor.get()));
   }
 
   @Override
   protected Iterable<Block> getKnownBlocks(){
-    return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+    return ModBlocks.BLOCKS.getEntries().stream().map(x -> x.getDelegate().value())::iterator;
   }
 
-  private void leafWithExtra(RegistryObject<Block> leafBlock, RegistryObject<Block> saplingBlock, RegistryObject<Item> extraItem, float[] saplingFortuneChances, float[] extraFortuneChances){
+  private void leafWithExtra(DeferredBlock<?> leafBlock, DeferredBlock<?> saplingBlock, DeferredItem<?> extraItem, float[] saplingFortuneChances, float[] extraFortuneChances, HolderLookup.Provider lookup){
     this.add(leafBlock.get(),
             (block) -> createLeavesDrops(
                     block,
@@ -153,10 +161,10 @@ public class ModBlockLootTables extends BlockLoot{
                     .withPool(LootPool
                             .lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                            .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).or(HAS_SHEARS.or(this.hasSilkTouch()).invert()).invert())
                             .add(applyExplosionCondition(block, LootItem.lootTableItem(extraItem.get()))
                                     .when(BonusLevelTableCondition.bonusLevelFlatChance(
-                                            Enchantments.BLOCK_FORTUNE,
+                                            lookup.holderOrThrow(Enchantments.FORTUNE),
                                             extraFortuneChances)))));
   }
 }

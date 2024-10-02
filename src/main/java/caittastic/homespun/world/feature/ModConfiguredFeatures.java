@@ -2,9 +2,8 @@ package caittastic.homespun.world.feature;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -15,16 +14,16 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.List;
 
 public class ModConfiguredFeatures{
   public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
-          DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Homespun.MOD_ID);
+          DeferredRegister.create(Registries.CONFIGURED_FEATURE, Homespun.MOD_ID);
   /*     ironwood     */
-  public static final RegistryObject<ConfiguredFeature<?, ?>> IRONWOOD =
+  public static final DeferredHolder<ConfiguredFeature<?, ?>, ConfiguredFeature<?, ?>> IRONWOOD =
           CONFIGURED_FEATURES.register(
                   "ironwood",
                   () -> new ConfiguredFeature<>(
@@ -40,14 +39,14 @@ public class ModConfiguredFeatures{
                   )
           );
   //does some magic nonsense that mr tutorial man doesnt understand
-  public static final RegistryObject<ConfiguredFeature<?,?>> IRONWOOD_SPAWN =
+  public static final DeferredHolder<ConfiguredFeature<?,?>, ConfiguredFeature<?, ?>> IRONWOOD_SPAWN =
           CONFIGURED_FEATURES.register("ironwood_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
                   new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
-                          ModPlacedFeatures.IRONWOOD_CHECKED.getHolder().get(),
-                          0.5f)), ModPlacedFeatures.IRONWOOD_CHECKED.getHolder().get())));
+                          ModPlacedFeatures.IRONWOOD_CHECKED.getDelegate(),
+                          0.5f)), ModPlacedFeatures.IRONWOOD_CHECKED.getDelegate())));
 
   /*     olive     */
-  public static final RegistryObject<ConfiguredFeature<?, ?>> OLIVE =
+  public static final DeferredHolder<ConfiguredFeature<?, ?>, ConfiguredFeature<?, ?>> OLIVE =
           CONFIGURED_FEATURES.register(
                   "olive",
                   () -> new ConfiguredFeature<>(
@@ -63,10 +62,10 @@ public class ModConfiguredFeatures{
                   )
           );
   //does some magic nonsense that mr tutorial man doesnt understand
-  public static final RegistryObject<ConfiguredFeature<?,?>> OLIVE_SPAWN =
+  public static final DeferredHolder<ConfiguredFeature<?,?>, ConfiguredFeature<?, ?>> OLIVE_SPAWN =
           CONFIGURED_FEATURES.register("olive_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
                   new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
-                          ModPlacedFeatures.OLIVE_CHECKED.getHolder().get(),
-                          0.5f)), ModPlacedFeatures.OLIVE_CHECKED.getHolder().get())));
+                          ModPlacedFeatures.OLIVE_CHECKED.getDelegate(),
+                          0.5f)), ModPlacedFeatures.OLIVE_CHECKED.getDelegate())));
 
 }

@@ -14,6 +14,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class JEIHomespunPlugin implements IModPlugin{
 
   @Override
   public ResourceLocation getPluginUid(){
-    return new ResourceLocation(Homespun.MOD_ID, "jei_plugin");
+    return ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "jei_plugin");
   }
 
   @Override
@@ -40,8 +41,8 @@ public class JEIHomespunPlugin implements IModPlugin{
   @Override
   public void registerRecipes(IRecipeRegistration registration){
     RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-    registration.addRecipes(CRUSHING_TUB_TYPE, rm.getAllRecipesFor(CrushingTubRecipe.Type.INSTANCE));
-    registration.addRecipes(EVAPORATING_TYPE, rm.getAllRecipesFor(EvaporatingBasinRecipe.Type.INSTANCE));
+    registration.addRecipes(CRUSHING_TUB_TYPE, rm.getAllRecipesFor(CrushingTubRecipe.Type.INSTANCE).stream().map(RecipeHolder::value).toList());
+    registration.addRecipes(EVAPORATING_TYPE, rm.getAllRecipesFor(EvaporatingBasinRecipe.Type.INSTANCE).stream().map(RecipeHolder::value).toList());
   }
 
   @Override

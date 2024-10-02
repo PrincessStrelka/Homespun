@@ -1,145 +1,105 @@
 package caittastic.homespun.recipes;
 
-import caittastic.homespun.Homespun;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import caittastic.homespun.recipes.inputs.StackAndTankInput;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.common.crafting.CraftingHelper;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-import javax.swing.*;
-
-public class EvaporatingBasinRecipe implements Recipe<SimpleContainerWithTank>{
-  private final ResourceLocation id;
-  private final FluidStack inputFluidStack;
-  private final ItemStack outputItemStack;
-  private final int craftTime;
-
-  public EvaporatingBasinRecipe(ResourceLocation id, FluidStack inputFluid, ItemStack outputItem, int craftTime){
-    this.id = id;
-    this.inputFluidStack = inputFluid;
-    this.outputItemStack = outputItem;
-    this.craftTime = craftTime;
-  }
-
-  @Override
-  public boolean matches(SimpleContainerWithTank container, Level level){
-    FluidTank tank = container.getTank();
-    ItemStack stack = container.getStack();
-
-    if(level.isClientSide)
-      return false;
-
-    FluidStack storedFluidStack = tank.getFluid();
-    FluidStack inputFluidStack = this.inputFluidStack;
-    ItemStack storedItemStack = stack;
-    ItemStack inputItemStack = this.outputItemStack;
-
-    return storedFluidStack.getFluid() == inputFluidStack.getFluid() &&
-            storedFluidStack.getAmount() >= inputFluidStack.getAmount() &&
-            (storedItemStack.isEmpty() || (storedItemStack.getItem() == inputItemStack.getItem()
-                    && storedItemStack.getCount() + inputItemStack.getCount() <= storedItemStack.getMaxStackSize()));
-
-
-
-  }
-
-  @Override
-  public ItemStack assemble(SimpleContainerWithTank pContainer){
-    return outputItemStack;
-  }
-
-  @Override
-  public boolean canCraftInDimensions(int pWidth, int pHeight){
-    return true;
-  }
-
-  @Override
-  public ItemStack getResultItem(){
-    return outputItemStack.copy();
-  }
-
-  @Override
-  public ResourceLocation getId(){
-    return id;
-  }
-
-  @Override
-  public RecipeSerializer<?> getSerializer(){
-    return Serializer.INSTANCE;
-  }
-
-  @Override
-  public RecipeType<?> getType(){
-    return Type.INSTANCE;
-  }
-
-  public int getTime(){
-    return this.craftTime;
-  }
-
-  public FluidStack inputFluidStack(){
-    return this.inputFluidStack;
-  }
-
-  public static class Type implements RecipeType<EvaporatingBasinRecipe>{
-    public static final Type INSTANCE = new Type();
-    public static final String ID = "evaporating";
-
-    private Type(){}
-  }
-
-  public static class Serializer implements RecipeSerializer<EvaporatingBasinRecipe>{
-    public static final Serializer INSTANCE = new Serializer();
-    public static final ResourceLocation ID = new ResourceLocation(Homespun.MOD_ID, "evaporating");
-
+public record EvaporatingBasinRecipe(FluidStack fluidIngredient, ItemStack resultItem,
+                                     int craftTime) implements Recipe<StackAndTankInput> {
     @Override
-    public EvaporatingBasinRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe){
-      ItemStack outputItem = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(pSerializedRecipe, "output_item"), true, false);
-      FluidStack fluidStack = fluidStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "fluid_stack"));
-      int craftTime = GsonHelper.getAsInt(pSerializedRecipe, "time");
+    public boolean matches(StackAndTankInput container, Level level) {
+        ItemStack stack = container.inputStack();
 
-      return new EvaporatingBasinRecipe(pRecipeId, fluidStack, outputItem, craftTime);
-    }
+        if (level.isClientSide)
+            return false;
 
-    private FluidStack fluidStackFromJson(JsonObject json){
-      String fluidName = GsonHelper.getAsString(json, "fluid");
-      ResourceLocation fluidKey = new ResourceLocation(fluidName);
+        FluidStack storedFluidStack = container.tank().getFluid();
+        FluidStack inputFluidStack = this.fluidIngredient;
 
-      if(!ForgeRegistries.FLUIDS.containsKey(fluidKey))
-        throw new JsonSyntaxException("Uh oh! Unknown fluid '" + fluidName + "'!");
-      Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidKey);
-
-      int amount = GsonHelper.getAsInt(json, "amount", 250);
-
-      return new FluidStack(fluid, amount);
+        return storedFluidStack.getFluid() == inputFluidStack.getFluid() &&
+                storedFluidStack.getAmount() >= inputFluidStack.getAmount()
+                && (stack.isEmpty() || (stack.getItem() == resultItem.getItem()
+                && stack.getCount() + resultItem.getCount() <= stack.getMaxStackSize()));
     }
 
     @Override
-    public @Nullable EvaporatingBasinRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf){
-      FluidStack fluidStack = buf.readFluidStack();
-      ItemStack outputItem = buf.readItem();
-      int time = buf.readInt();
-
-      return new EvaporatingBasinRecipe(id, fluidStack, outputItem, time);
+    public ItemStack assemble(StackAndTankInput p_345149_, HolderLookup.Provider p_346030_) {
+        return resultItem.copy();
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buf, EvaporatingBasinRecipe recipe){
-      buf.writeFluidStack(recipe.inputFluidStack);
-      buf.writeItemStack(recipe.outputItemStack, false);
-      buf.writeInt(recipe.craftTime);
+    public boolean canCraftInDimensions(int pWidth, int pHeight) {
+        return true;
     }
-  }
+
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider registries) {
+        return resultItem.copy();
+    }
+
+    @Override
+    public RecipeSerializer<?> getSerializer() {
+        return Serializer.INSTANCE;
+    }
+
+    @Override
+    public RecipeType<?> getType() {
+        return Type.INSTANCE;
+    }
+
+    public static class Type implements RecipeType<EvaporatingBasinRecipe> {
+        public static final Type INSTANCE = new Type();
+        public static final String ID = "evaporating";
+
+        private Type() {
+        }
+
+        @Override
+        public String toString() {
+            return ID;
+        }
+    }
+
+    public static class Serializer implements RecipeSerializer<EvaporatingBasinRecipe> {
+        public static final Serializer INSTANCE = new Serializer();
+        private static final MapCodec<EvaporatingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
+                FluidStack.CODEC.fieldOf("fluid_stack").forGetter(EvaporatingBasinRecipe::fluidIngredient),
+                ItemStack.CODEC.fieldOf("output_item").forGetter(EvaporatingBasinRecipe::resultItem),
+                Codec.INT.fieldOf("time").forGetter(EvaporatingBasinRecipe::craftTime)
+        ).apply(builder, EvaporatingBasinRecipe::new));
+
+        private static final StreamCodec<RegistryFriendlyByteBuf, EvaporatingBasinRecipe> STREAM_CODEC = StreamCodec.composite(
+                FluidStack.STREAM_CODEC,
+                EvaporatingBasinRecipe::fluidIngredient,
+                ItemStack.STREAM_CODEC,
+                EvaporatingBasinRecipe::resultItem,
+                ByteBufCodecs.INT,
+                EvaporatingBasinRecipe::craftTime,
+                EvaporatingBasinRecipe::new
+        );
+
+        @Override
+        public MapCodec<EvaporatingBasinRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, EvaporatingBasinRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+    }
 }

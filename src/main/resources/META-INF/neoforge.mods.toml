@@ -1,0 +1,25 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license = "${mod_license}"
+
+[[mods]] #mandatory
+modId = "${mod_id}" #mandatory
+version = "${mod_version}" #mandatory
+displayName = "${mod_name}" #mandatory
+logoFile = "${logo_file}" #optional
+authors = "${mod_authors}" #optional
+description = '''${mod_description}''' # The description text for the mod (multi line!) (#mandatory)
+
+[[dependencies.${mod_id}]]
+modId = "neoforge" #mandatory # the modid of the dependency
+type = "required" #mandatory # Does this dependency have to exist - if not, ordering below must be specified
+versionRange = "${neo_version_range}" #mandatory # The version range of the dependency
+ordering = "NONE" # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+side = "BOTH" # Side this dependency is applied on - BOTH, CLIENT or SERVER
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}" # This version range declares a minimum of the current minecraft version up to but not including the next major version
+ordering = "NONE"
+side = "BOTH"

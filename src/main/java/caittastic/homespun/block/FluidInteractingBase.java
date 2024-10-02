@@ -1,5 +1,6 @@
 package caittastic.homespun.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +15,12 @@ public class FluidInteractingBase extends BaseEntityBlock{
   protected FluidInteractingBase(Properties pProperties){
     super(pProperties);
   }
+
+  @Override
+  protected MapCodec<? extends BaseEntityBlock> codec() {
+    return simpleCodec(FluidInteractingBase::new);
+  }
+
   @Override
   public RenderShape getRenderShape(BlockState pState){
     return RenderShape.MODEL;

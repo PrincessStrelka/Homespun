@@ -15,7 +15,7 @@ public class TagInit{
     public static final TagKey<Block> OLIVE_WOOD = CreateBlockTag("olive_wood");
 
     private static TagKey<Block> CreateBlockTag(String PathName){
-      return BlockTags.create(new ResourceLocation(Homespun.MOD_ID, PathName));
+      return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, PathName));
     }
   }
 
@@ -33,11 +33,11 @@ public class TagInit{
 
 
     private static TagKey<Item> CreateForgeItemTag(String key){
-      return ItemTags.create(new ResourceLocation("forge", key));
+      return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", key));
     }
 
     private static TagKey<Item> CreateItemTag(String PathName){
-      return ItemTags.create(new ResourceLocation(Homespun.MOD_ID, PathName));
+      return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, PathName));
     }
   }
 }

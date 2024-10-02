@@ -3,20 +3,25 @@ package caittastic.homespun.datagen;
 import caittastic.homespun.Homespun;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
 
-public class ModBlockTags extends BlockTagsProvider{
+import java.util.concurrent.CompletableFuture;
 
-  public ModBlockTags(DataGenerator generator, ExistingFileHelper helper){
-    super(generator, Homespun.MOD_ID, helper);
+public class ModBlockTags extends BlockTagsProvider {
+
+  public ModBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+    super(output, lookupProvider, Homespun.MOD_ID, existingFileHelper);
   }
 
   @Override
-  protected void addTags(){
+  protected void addTags(HolderLookup.Provider lookup){
     //------------------------------------- mining tool -------------------------------------//
     //vessels
 

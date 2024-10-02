@@ -18,8 +18,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBasinRecipe>{
-  public static final ResourceLocation UID = new ResourceLocation(Homespun.MOD_ID, "evaporating");
-  public static final ResourceLocation TEXTURE = new ResourceLocation(Homespun.MOD_ID, "textures/gui/evaporating_basin_jei.png");
+  public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "evaporating");
+  public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "textures/gui/evaporating_basin_jei.png");
 
   public final IDrawable background;
   public final IDrawable icon;
@@ -41,11 +41,6 @@ public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBas
   }
 
   @Override
-  public IDrawable getBackground(){
-    return this.background;
-  }
-
-  @Override
   public IDrawable getIcon(){
     return this.icon;
   }
@@ -53,13 +48,13 @@ public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBas
   @Override
   public void setRecipe(IRecipeLayoutBuilder builder, EvaporatingBasinRecipe recipe, IFocusGroup focuses){
 
-    int scaledAmount = (int)(recipe.inputFluidStack().getAmount() * (34f / EvaporatingBasinBE.TANK_CAPACITY));
+    int scaledAmount = (int)(recipe.fluidIngredient().getAmount() * (34f / EvaporatingBasinBE.TANK_CAPACITY));
 
     builder.addSlot(RecipeIngredientRole.INPUT, 21, 15 + (34 - scaledAmount))
-            .addFluidStack(recipe.inputFluidStack().getFluid(), recipe.inputFluidStack().getAmount())
-            .setFluidRenderer(recipe.inputFluidStack().getAmount(), true, 16, scaledAmount);
+            .addFluidStack(recipe.fluidIngredient().getFluid(), recipe.fluidIngredient().getAmount())
+            .setFluidRenderer(recipe.fluidIngredient().getAmount(), true, 16, scaledAmount);
 
-    builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 29).addItemStack(recipe.getResultItem());
+    builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 29).addItemStack(recipe.getResultItem(null));
 
   }
 }

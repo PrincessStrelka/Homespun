@@ -5,6 +5,7 @@ import caittastic.homespun.ModTabs;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -12,7 +13,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 public class ModEnUsLanguageProvider extends LanguageProvider{
-  public ModEnUsLanguageProvider(DataGenerator gen, String locale){
+  public ModEnUsLanguageProvider(PackOutput gen, String locale){
     super(gen, Homespun.MOD_ID, locale);
   }
 
@@ -110,9 +111,9 @@ public class ModEnUsLanguageProvider extends LanguageProvider{
     add("container.ceramic_vessel", "Ceramic Vessel");
 
     //------------------------------- creative mode tabs -------------------------------//
-    add("itemGroup." + ModTabs.AGRICULTURE.getRecipeFolderName(), "Homespun Agriculture");
-    add("itemGroup." + ModTabs.DECORATION.getRecipeFolderName(), "Homespun Decoration");
-    add("itemGroup." + ModTabs.INDUSTRY.getRecipeFolderName(), "Homespun Industry");
+    add("itemGroup." + ModTabs.AGRICULTURE.getRegisteredName(), "Homespun Agriculture");
+    add("itemGroup." + ModTabs.DECORATION.getRegisteredName(), "Homespun Decoration");
+    add("itemGroup." + ModTabs.INDUSTRY.getRegisteredName(), "Homespun Industry");
 
     //------------------------------------ tooltips ------------------------------------//
     add("tooltip.homespun.crushing_tub", "§8§oPut stuff in then jump on it");

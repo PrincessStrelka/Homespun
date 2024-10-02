@@ -1,13 +1,11 @@
 package caittastic.homespun.blockentity;
 
 import caittastic.homespun.block.EvaporatingBasinBlock;
-import caittastic.homespun.networking.FluidStackSyncS2CPacket;
-import caittastic.homespun.networking.ItemStackSyncS2CPacket;
-import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.EvaporatingBasinRecipe;
-import caittastic.homespun.recipes.SimpleContainerWithTank;
+import caittastic.homespun.recipes.inputs.StackAndTankInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
@@ -15,13 +13,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -41,23 +37,21 @@ public class EvaporatingBasinBE extends BlockEntity{
     protected void onContentsChanged(int slot){
       setChanged();
       if(!level.isClientSide){
-        ModPackets.sendToClients(new ItemStackSyncS2CPacket(this, worldPosition));
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
       }
     }
   };
   private final FluidTank fluidTank = new FluidTank(TANK_CAPACITY){
     @Override
     protected void onContentsChanged(){
-      if(!level.isClientSide){
-        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
-      }
       setChanged();
+      if(!level.isClientSide){
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+      }
     }
   };
   public boolean isCrafting;
   private int progress = 0;
-  private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-  private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
   //constructor
   public EvaporatingBasinBE(BlockPos pos, BlockState state){
@@ -68,18 +62,18 @@ public class EvaporatingBasinBE extends BlockEntity{
   public static void tick(Level level, BlockPos blockPos, BlockState state, EvaporatingBasinBE entity){
     Optional<EvaporatingBasinRecipe> recipe = level.getRecipeManager().getRecipeFor(
             EvaporatingBasinRecipe.Type.INSTANCE,
-            new SimpleContainerWithTank(entity.fluidTank, entity.itemHandler.getStackInSlot(OUTPUT_SLOT)),
-            level);
+            new StackAndTankInput(entity.itemHandler.getStackInSlot(OUTPUT_SLOT), entity.fluidTank),
+            level).map(RecipeHolder::value);
 
     if(recipe.isPresent()){
       if(level.getBlockState(blockPos.offset(0, -1, 0)).is(Blocks.MAGMA_BLOCK))
         entity.progress += 2;
       else
         entity.progress++;
-      if(entity.progress >= recipe.get().getTime()){
+      if(entity.progress >= recipe.get().craftTime()){
         level.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.1F, (1.0F + level.getRandom().nextFloat() * 0.2F) * 0.7F);
-        entity.itemHandler.insertItem(OUTPUT_SLOT, recipe.get().getResultItem(), false);
-        entity.fluidTank.drain(recipe.get().inputFluidStack().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+        entity.itemHandler.insertItem(OUTPUT_SLOT, recipe.get().getResultItem(null), false);
+        entity.fluidTank.drain(recipe.get().fluidIngredient().getAmount(), IFluidHandler.FluidAction.EXECUTE);
         setChanged(level, blockPos, state);
         entity.progress = 0;
       } else
@@ -107,41 +101,25 @@ public class EvaporatingBasinBE extends BlockEntity{
   }
 
   @Override
-  public @NotNull CompoundTag getUpdateTag(){
-    return saveWithoutMetadata();
+  public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider lookup){
+    return saveWithoutMetadata(lookup);
   }
 
   @Override
-  public void invalidateCaps(){
-    super.invalidateCaps();
-    lazyItemHandler.invalidate();
-    lazyFluidHandler.invalidate();
-  }
-
-  //save and load
-  @Override
-  public void onLoad(){
-    super.onLoad();
-    lazyItemHandler = LazyOptional.of(() -> itemHandler);
-    lazyFluidHandler = LazyOptional.of(() -> fluidTank);
-
-  }
-
-  @Override
-  public void load(CompoundTag nbt){
-    itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-    fluidTank.readFromNBT(nbt);
+  public void loadAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    itemHandler.deserializeNBT(lookup, nbt.getCompound("inventory"));
+    fluidTank.readFromNBT(lookup, nbt);
     progress = nbt.getInt("evaporating_basin.progress");
-    super.load(nbt);
+    super.loadAdditional(nbt, lookup);
 
   }
 
   @Override
-  protected void saveAdditional(CompoundTag nbt){
-    nbt.put("inventory", itemHandler.serializeNBT());
-    nbt = fluidTank.writeToNBT(nbt);
+  protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    nbt.put("inventory", itemHandler.serializeNBT(lookup));
+    nbt = fluidTank.writeToNBT(lookup, nbt);
     nbt.putInt("evaporating_basin.progress", progress);
-    super.saveAdditional(nbt);
+    super.saveAdditional(nbt, lookup);
   }
 
   //for getting data about the things stored
@@ -173,16 +151,5 @@ public class EvaporatingBasinBE extends BlockEntity{
     }
 
     Containers.dropContents(this.level, this.worldPosition, inventory); //drops the contents of the simplecontainer
-  }
-
-  //for making our block interact with other mods blocks
-  @Override
-  public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
-    if(cap == ForgeCapabilities.FLUID_HANDLER)
-      return lazyFluidHandler.cast();
-    if(cap == ForgeCapabilities.ITEM_HANDLER){
-      return lazyItemHandler.cast();
-    }
-    return super.getCapability(cap, side);
   }
 }
