@@ -1,0 +1,12 @@
+{
+  "type": "homespun:tub_crushing",
+  "fluid_stack": {
+    "amount": 250,
+    "id": "homespun:ironberry_juice"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "homespun:ironberries"
+  },
+  "output_item": {}
+}

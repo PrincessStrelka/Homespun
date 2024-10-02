@@ -1,0 +1,15 @@
+{
+  "type": "homespun:take_using_item",
+  "empty_item": {
+    "count": 1,
+    "id": "minecraft:glass_bottle"
+  },
+  "filled_item": {
+    "count": 1,
+    "id": "homespun:ironberry_juice_bottle"
+  },
+  "fluid_stack": {
+    "amount": 250,
+    "id": "homespun:ironberry_juice"
+  }
+}
