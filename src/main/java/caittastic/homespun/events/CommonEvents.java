@@ -2,6 +2,7 @@ package caittastic.homespun.events;
 
 import caittastic.homespun.Homespun;
 import caittastic.homespun.block.ModBlocks;
+import caittastic.homespun.blockentity.*;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -9,6 +10,8 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 @EventBusSubscriber(modid = Homespun.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class CommonEvents {
@@ -30,5 +33,18 @@ public class CommonEvents {
             ComposterBlock.COMPOSTABLES.put(ModItems.IRONBERRIES.get(), 0.65f);
             //85% / 0.85f | processed foods, compressed crop blocks
         });
+    }
+
+    @SubscribeEvent
+    public static void attachCaps(RegisterCapabilitiesEvent event){
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.CRUSHING_TUB.get(), CrushingTubBE::getItemCap);
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.CRUSHING_TUB.get(), CrushingTubBE::getFluidCap);
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBE::getItemCap);
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.EVAPORATING_BASIN.get(), EvaporatingBasinBE::getFluidCap);
+
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.FLUID_STORAGE.get(), FluidStorageBE::getFluidCap);
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.VESSEL.get(), VesselBE::getItemCap);
     }
 }

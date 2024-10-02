@@ -19,8 +19,6 @@ import caittastic.homespun.fluid.ModFluids;
 import caittastic.homespun.gui.ModMenuRegistry;
 import caittastic.homespun.item.ModItems;
 import caittastic.homespun.recipes.ModRecipes;
-import caittastic.homespun.world.feature.ModConfiguredFeatures;
-import caittastic.homespun.world.feature.ModPlacedFeatures;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -42,8 +40,5 @@ public class Homespun{
 
     ModFluids.FLUIDS.register(bus);
     ModFluidTypes.FLUID_TYPES.register(bus);
-
-    ModConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
-    ModPlacedFeatures.PLACED_FEATURES.register(bus);
   }
 }

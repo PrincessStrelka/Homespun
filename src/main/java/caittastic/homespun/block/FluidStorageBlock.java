@@ -130,6 +130,7 @@ public class FluidStorageBlock extends FluidInteractingBase{
             fluidTank.fill(insertFluidUsingRecipe.get().value().inputFluid(), IFluidHandler.FluidAction.EXECUTE);
             removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().value().emptyItem().copy());
           }
+          return ItemInteractionResult.SUCCESS;
         }
       }
     return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;

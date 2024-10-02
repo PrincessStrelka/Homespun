@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "w": {
+      "item": "homespun:ironwood_planks"
+    }
+  },
+  "pattern": [
+    "w w",
+    "i i",
+    "www"
+  ],
+  "result": {
+    "count": 1,
+    "id": "homespun:fluid_storage"
+  }
+}

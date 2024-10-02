@@ -1,5 +1,6 @@
 package caittastic.homespun.blockentity;
 
+import caittastic.homespun.Homespun;
 import caittastic.homespun.block.EvaporatingBasinBlock;
 import caittastic.homespun.recipes.EvaporatingBasinRecipe;
 import caittastic.homespun.recipes.inputs.StackAndTankInput;
@@ -120,6 +121,15 @@ public class EvaporatingBasinBE extends BlockEntity{
     nbt = fluidTank.writeToNBT(lookup, nbt);
     nbt.putInt("evaporating_basin.progress", progress);
     super.saveAdditional(nbt, lookup);
+  }
+
+  public IItemHandler getItemCap(Direction side) {
+    if (side == Direction.DOWN) return getItemHandler();
+    return null;
+  }
+
+  public IFluidHandler getFluidCap(Direction side) {
+    return getFluidTank();
   }
 
   //for getting data about the things stored

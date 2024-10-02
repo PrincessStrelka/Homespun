@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_block / homespun:cast_iron_tiles]}": {
+      "conditions": {
+        "items": [
+          {
+            "items": "homespun:cast_iron_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "homespun:cast_iron_tile_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_block / homespun:cast_iron_tiles]}"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "homespun:cast_iron_tile_wall"
+    ]
+  }
+}

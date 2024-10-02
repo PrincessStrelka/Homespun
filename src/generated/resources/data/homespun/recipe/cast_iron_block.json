@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "n": {
+      "tag": "c:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "in",
+    "ni"
+  ],
+  "result": {
+    "count": 4,
+    "id": "homespun:cast_iron_block"
+  }
+}

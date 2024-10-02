@@ -1,13 +1,9 @@
 package caittastic.homespun.block;
 
-import caittastic.homespun.Homespun;
-import caittastic.homespun.datagen.ModWorldGenProvider;
 import caittastic.homespun.item.ModItems;
-import caittastic.homespun.world.feature.ModConfiguredFeatures;
 import caittastic.homespun.world.feature.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
@@ -49,7 +45,7 @@ public class ModBlocks{
   public static final BlockSetType IRONWOOD_BLOCK_SET = BlockSetType.register(new BlockSetType("ironwood"));
   public static final BlockSetType OLIVE_BLOCK_SET = BlockSetType.register(new BlockSetType("olive"));
   private static final WoodType IRONWOOD_WOOD_TYPE = new WoodType("ironwood", IRONWOOD_BLOCK_SET, SoundType.WOOD, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
-  private static final WoodType OLIVE_WOOD_TYPE = new WoodType("ironwood", OLIVE_BLOCK_SET, SoundType.WOOD, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
+  private static final WoodType OLIVE_WOOD_TYPE = new WoodType("olive", OLIVE_BLOCK_SET, SoundType.WOOD, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
 
   public static final DeferredBlock<Block> IRONWOOD_SAPLING = registerBlockAndItem("ironwood_sapling", () -> new SaplingBlock(ModTreeGrowers.IRONWOOD, commonSapling));
   public static final DeferredBlock<Block> POTTED_IRONWOOD_SAPLING = BLOCKS.register("potted_ironwood_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, IRONWOOD_SAPLING, commonFlowerPot));

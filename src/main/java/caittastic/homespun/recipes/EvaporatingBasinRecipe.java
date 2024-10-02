@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
@@ -22,18 +23,18 @@ public record EvaporatingBasinRecipe(FluidStack fluidIngredient, ItemStack resul
                                      int craftTime) implements Recipe<StackAndTankInput> {
     @Override
     public boolean matches(StackAndTankInput container, Level level) {
+        FluidTank tank = container.tank();
         ItemStack stack = container.inputStack();
 
-        if (level.isClientSide)
-            return false;
-
-        FluidStack storedFluidStack = container.tank().getFluid();
+        FluidStack storedFluidStack = tank.getFluid();
         FluidStack inputFluidStack = this.fluidIngredient;
+        ItemStack storedItemStack = stack;
+        ItemStack inputItemStack = this.resultItem;
 
         return storedFluidStack.getFluid() == inputFluidStack.getFluid() &&
-                storedFluidStack.getAmount() >= inputFluidStack.getAmount()
-                && (stack.isEmpty() || (stack.getItem() == resultItem.getItem()
-                && stack.getCount() + resultItem.getCount() <= stack.getMaxStackSize()));
+                storedFluidStack.getAmount() >= inputFluidStack.getAmount() &&
+                (storedItemStack.isEmpty() || (storedItemStack.getItem() == inputItemStack.getItem()
+                        && storedItemStack.getCount() + inputItemStack.getCount() <= storedItemStack.getMaxStackSize()));
     }
 
     @Override

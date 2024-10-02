@@ -25,13 +25,14 @@ public class DataGenerators{
 
     /*     server     */
     boolean isIncludeServer = event.includeServer();
-    generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(
+    generator.addProvider(isIncludeServer, new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(
             new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)
     ), event.getLookupProvider()));
 
     generator.addProvider(isIncludeServer, blockTags);
     generator.addProvider(isIncludeServer, new ModRecipes(generator.getPackOutput(), event.getLookupProvider()));
     generator.addProvider(isIncludeServer, new ModItemTags(generator.getPackOutput(), event.getLookupProvider(), blockTags.contentsGetter()));
+    generator.addProvider(isIncludeServer, new ModWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
 
     /*     client     */
     boolean isIncludeClient = event.includeClient();

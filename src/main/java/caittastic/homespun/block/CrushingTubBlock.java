@@ -154,6 +154,7 @@ public class CrushingTubBlock extends FluidInteractingBase {
                         itemHandler.extractItem(CRAFT_SLOT, internalStack.getCount(), false);
                     }
                 }
+                return ItemInteractionResult.SUCCESS;
             }
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

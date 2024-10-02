@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "t": {
+      "tag": "minecraft:terracotta"
+    }
+  },
+  "pattern": [
+    "t t",
+    " t "
+  ],
+  "result": {
+    "count": 1,
+    "id": "homespun:evaporating_basin"
+  }
+}

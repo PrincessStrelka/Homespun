@@ -96,6 +96,6 @@ public class ModTabs{
   });
 
   private static DeferredHolder<CreativeModeTab, CreativeModeTab> registerTab(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator items){
-    return CREATIVE_MODE_TABS.register(name, () -> CreativeModeTab.builder().icon(icon).title(Component.translatable("creativetab" + name)).displayItems(items).build());
+    return CREATIVE_MODE_TABS.register(name, () -> CreativeModeTab.builder().icon(icon).title(Component.translatable("itemGroup." + name)).displayItems(items).build());
   }
 }

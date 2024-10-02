@@ -85,6 +85,7 @@ public class VesselBlock extends BaseEntityBlock{
   protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
     if (level.getBlockEntity(pos) instanceof VesselBE vesselBE) {
       player.openMenu(vesselBE, pos);
+      return InteractionResult.SUCCESS;
     }
     return super.useWithoutItem(state, level, pos, player, hitResult);
   }
@@ -141,7 +142,7 @@ public class VesselBlock extends BaseEntityBlock{
 
   @Override
   public void appendHoverText(ItemStack stack, @Nullable Item.TooltipContext pLevel, List<Component> tooltip, TooltipFlag pFlag){
-    CompoundTag nbt = stack.get(DataComponents.BLOCK_ENTITY_DATA).copyTag();
+    CompoundTag nbt = stack.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY).copyTag();
     int shownStacks = 0;
     int maxShown = 4;
 

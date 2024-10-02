@@ -2,21 +2,34 @@ package caittastic.homespun.datagen;
 
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
+import caittastic.homespun.datagen.recipe.CrushingRecipeBuilder;
+import caittastic.homespun.datagen.recipe.EvaporatingRecipeBuilder;
+import caittastic.homespun.datagen.recipe.IORecipeBuilder;
+import caittastic.homespun.fluid.ModFluids;
 import caittastic.homespun.item.ModItems;
+import caittastic.homespun.recipes.CrushingTubRecipe;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jetbrains.annotations.NotNull;
 
@@ -137,6 +150,13 @@ public class ModRecipes extends RecipeProvider {
                 .define('x', TagInit.Items.FORGE_NUGGETS_COPPER)
                 .unlockedBy("copper_ingot", has(Items.COPPER_INGOT))
                 .save(p_recipeOutput);
+        ItemStack waterPotion = Items.POTION.getDefaultInstance();
+        waterPotion.set(DataComponents.POTION_CONTENTS, new PotionContents(holderLookup.holderOrThrow(Potions.WATER.getKey())));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.REDSTONE_ACID)
+                .requires(Ingredient.of(waterPotion))
+                .requires(Items.REDSTONE)
+                .unlockedBy("has_item", has(Items.REDSTONE))
+                .save(p_recipeOutput);
 
         //chains
         chainRecipe(ModBlocks.GOLD_CHAIN, Tags.Items.NUGGETS_GOLD, Tags.Items.INGOTS_GOLD, "gold_ingot", Items.GOLD_INGOT, p_recipeOutput);
@@ -227,6 +247,50 @@ public class ModRecipes extends RecipeProvider {
                 .define('w', ModBlocks.IRONWOOD_PLANKS.get())
                 .define('i', Tags.Items.INGOTS_IRON)
                 .unlockedBy("ironwood_log", has(ModBlocks.IRONWOOD_LOG.get()))
+                .save(p_recipeOutput);
+
+        /* IO Recipes */
+        IORecipeBuilder.of(ModItems.IRONBERRY_JUICE_BOTTLE.toStack())
+                .emptyItem(Items.GLASS_BOTTLE.getDefaultInstance())
+                .fluid(new FluidStack(ModFluids.IRONBERRY_JUICE.get(), 250))
+                .save(p_recipeOutput);
+
+        IORecipeBuilder.of(waterPotion)
+                .emptyItem(Items.GLASS_BOTTLE.getDefaultInstance())
+                .fluid(new FluidStack(Fluids.WATER, 250))
+                .save(p_recipeOutput);
+
+        /* Evaporating */
+        EvaporatingRecipeBuilder.of(ModItems.SALT.toStack())
+                .fluidStack(new FluidStack(Fluids.WATER, 250))
+                .craftTime(100)
+                .save(p_recipeOutput);
+
+        EvaporatingRecipeBuilder.of(ModItems.TINY_IRON_DUST.toStack())
+                .fluidStack(new FluidStack(ModFluids.IRONBERRY_JUICE.get(), 250))
+                .craftTime(100)
+                .save(p_recipeOutput);
+
+        /* Crushing */
+
+        CrushingRecipeBuilder.of(Items.AIR.getDefaultInstance())
+                .fluidStack(new FluidStack(ModFluids.IRONBERRY_JUICE.get(), 250))
+                .inputStack(SizedIngredient.of(ModItems.IRONBERRIES.get(), 1))
+                .save(p_recipeOutput);
+
+        CrushingRecipeBuilder.of(Items.FLINT.getDefaultInstance())
+                .fluidStack(FluidStack.EMPTY)
+                .inputStack(SizedIngredient.of(Tags.Items.GRAVELS, 1))
+                .save(p_recipeOutput);
+
+        CrushingRecipeBuilder.of(Items.SUGAR.getDefaultInstance())
+                .fluidStack(new FluidStack(Fluids.WATER, 250))
+                .inputStack(SizedIngredient.of(Items.BEETROOT, 1))
+                .save(p_recipeOutput);
+
+        CrushingRecipeBuilder.of(ModItems.TINY_IRON_DUST.toStack())
+                .fluidStack(FluidStack.EMPTY)
+                .inputStack(SizedIngredient.of(Items.RAW_IRON, 1))
                 .save(p_recipeOutput);
     }
 

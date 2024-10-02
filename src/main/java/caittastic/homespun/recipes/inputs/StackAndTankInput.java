@@ -14,4 +14,9 @@ public record StackAndTankInput(ItemStack inputStack, FluidTank tank) implements
     public int size() {
         return 1;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return RecipeInput.super.isEmpty() && tank.isEmpty();
+    }
 }

@@ -73,7 +73,7 @@ public class CrushingTubBE extends BlockEntity{
   @Override
   public void loadAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
     itemHandler.deserializeNBT(lookup, nbt.getCompound("inventory"));
-    fluidTank.readFromNBT(lookup, nbt.getCompound("fluidTank"));
+    fluidTank.readFromNBT(lookup, nbt);
 
     super.loadAdditional(nbt, lookup);
   }
@@ -91,7 +91,7 @@ public class CrushingTubBE extends BlockEntity{
   @Override
   protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
     nbt.put("inventory", itemHandler.serializeNBT(lookup));
-    nbt.put("fluidTank", fluidTank.writeToNBT(lookup, nbt));
+    nbt = fluidTank.writeToNBT(lookup, nbt);
     super.saveAdditional(nbt, lookup);
   }
 
@@ -108,13 +108,13 @@ public class CrushingTubBE extends BlockEntity{
     return fluidTank.getFluid();
   }
 
-  public <T> T getCapability(BlockCapability<T, @Nullable Direction> cap, Direction side) {
-    if (cap == Capabilities.FluidHandler.BLOCK) {
-        return (T) fluidTank;
-    } else if (cap == Capabilities.ItemHandler.BLOCK && side == Direction.DOWN) {
-        return (T) itemHandler;
-    }
+  public IItemHandler getItemCap(Direction side) {
+    if (side == Direction.DOWN) return getItemHandler();
     return null;
+  }
+
+  public IFluidHandler getFluidCap(Direction side) {
+    return getFluidTank();
   }
 
   public int getFluidCapacity(){

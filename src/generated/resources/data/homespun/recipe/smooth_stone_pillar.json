@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "x": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "pattern": [
+    "x",
+    "x",
+    "x"
+  ],
+  "result": {
+    "count": 3,
+    "id": "homespun:smooth_stone_pillar"
+  }
+}

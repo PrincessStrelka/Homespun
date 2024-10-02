@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:ingots/gold"
+    },
+    "o": {
+      "tag": "c:nuggets/gold"
+    }
+  },
+  "pattern": [
+    "o",
+    "#",
+    "o"
+  ],
+  "result": {
+    "count": 1,
+    "id": "homespun:gold_chain"
+  }
+}
