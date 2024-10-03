@@ -6,16 +6,21 @@ import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -39,7 +44,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             ModBlocks.IRONWOOD_SAPLING,
             ModItems.IRONBERRIES,
             new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F},
-            new float[]{0.30F, 0.40F, 0.68F, 0.76F, 0.64F}, registries);
+            new float[]{0.30F, 0.40F, 0.68F, 0.76F, 0.64F}
+    );
     simplePottedBlock(ModBlocks.POTTED_IRONWOOD_SAPLING);
     simpleDoorTable(ModBlocks.IRONWOOD_DOOR);
     simpleDropSelf(ModBlocks.IRONWOOD_SAPLING);
@@ -65,8 +71,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             ModBlocks.OLIVE_SAPLING,
             ModItems.OLIVES,
             new float[]{0.08F, 0.106F, 0.132F, 0.16F},
-            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F},
-            registries);
+            new float[]{0.15F, 0.20F, 0.34F, 0.38F, 0.32F}
+    );
     simplePottedBlock(ModBlocks.POTTED_OLIVE_SAPLING);
     simpleDoorTable(ModBlocks.OLIVE_DOOR);
     simpleDropSelf(ModBlocks.OLIVE_SAPLING);
@@ -152,19 +158,30 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     return ModBlocks.BLOCKS.getEntries().stream().map(x -> x.getDelegate().value())::iterator;
   }
 
-  private void leafWithExtra(DeferredBlock<?> leafBlock, DeferredBlock<?> saplingBlock, DeferredItem<?> extraItem, float[] saplingFortuneChances, float[] extraFortuneChances, HolderLookup.Provider lookup){
-    this.add(leafBlock.get(),
-            (block) -> createLeavesDrops(
-                    block,
-                    saplingBlock.get(),
-                    saplingFortuneChances)
-                    .withPool(LootPool
-                            .lootPool()
+  private void leafWithExtra(DeferredBlock<?> leafBlock, DeferredBlock<?> saplingBlock, DeferredItem<?> extraItem, float[] saplingFortuneChances, float[] extraFortuneChances){
+    HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+    this.add(leafBlock.get(), block -> this.createLeavesDrops(block, saplingBlock.get(), saplingFortuneChances)
+            .withPool(
+                    LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).or(HAS_SHEARS.or(this.hasSilkTouch()).invert()).invert())
-                            .add(applyExplosionCondition(block, LootItem.lootTableItem(extraItem.get()))
-                                    .when(BonusLevelTableCondition.bonusLevelFlatChance(
-                                            lookup.holderOrThrow(Enchantments.FORTUNE),
-                                            extraFortuneChances)))));
+                            .when(this.doesNotHaveShearsOrSilkTouch())
+                            .add(
+                                    ((LootPoolSingletonContainer.Builder)this.applyExplosionCondition(leafBlock.get(), LootItem.lootTableItem(extraItem)))
+                                            .when(
+                                                    BonusLevelTableCondition.bonusLevelFlatChance(
+                                                            registrylookup.getOrThrow(Enchantments.FORTUNE), extraFortuneChances
+                                                    )
+                                            )
+                            )
+            ));
   }
+
+  private LootItemCondition.Builder hasShearsOrSilkTouch() {
+    return HAS_SHEARS.or(this.hasSilkTouch());
+  }
+
+  private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
+    return this.hasShearsOrSilkTouch().invert();
+  }
+
 }

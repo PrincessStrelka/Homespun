@@ -6,7 +6,7 @@
     "item": "minecraft:raw_iron"
   },
   "output_item": {
-    "count": 1,
+    "count": 12,
     "id": "homespun:tiny_iron_dust"
   }
 }

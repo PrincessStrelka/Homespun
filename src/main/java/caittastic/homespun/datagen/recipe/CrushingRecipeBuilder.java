@@ -24,6 +24,14 @@ public class CrushingRecipeBuilder implements RecipeBuilder {
 
     public static CrushingRecipeBuilder of(ItemStack outputStack) {
         CrushingRecipeBuilder builder = new CrushingRecipeBuilder();
+        outputStack.setCount(1);
+        builder.outputStack = outputStack;
+        return builder;
+    }
+
+    public static CrushingRecipeBuilder of(ItemStack outputStack, int count) {
+        CrushingRecipeBuilder builder = new CrushingRecipeBuilder();
+        outputStack.setCount(count);
         builder.outputStack = outputStack;
         return builder;
     }

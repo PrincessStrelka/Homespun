@@ -283,12 +283,12 @@ public class ModRecipes extends RecipeProvider {
                 .inputStack(SizedIngredient.of(Tags.Items.GRAVELS, 1))
                 .save(p_recipeOutput);
 
-        CrushingRecipeBuilder.of(Items.SUGAR.getDefaultInstance())
+        CrushingRecipeBuilder.of(Items.SUGAR.getDefaultInstance(), 2)
                 .fluidStack(new FluidStack(Fluids.WATER, 250))
                 .inputStack(SizedIngredient.of(Items.BEETROOT, 1))
                 .save(p_recipeOutput);
 
-        CrushingRecipeBuilder.of(ModItems.TINY_IRON_DUST.toStack())
+        CrushingRecipeBuilder.of(ModItems.TINY_IRON_DUST.toStack(), 12)
                 .fluidStack(FluidStack.EMPTY)
                 .inputStack(SizedIngredient.of(Items.RAW_IRON, 1))
                 .save(p_recipeOutput);
