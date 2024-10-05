@@ -20,11 +20,14 @@ build
 # other
 eclipse
 run
+runs
+run-data
 LICENSE.txt
 .gitattributes
 CREDITS.txt
 changelog.txt
 src/generated/resources/.cache
+repo
 
 # Files from Forge MDK
 forge*changelog.txt

@@ -1,0 +1,15 @@
+{
+  "type": "homespun:tub_crushing",
+  "fluid_stack": {
+    "amount": 250,
+    "id": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "minecraft:beetroot"
+  },
+  "output_item": {
+    "count": 2,
+    "id": "minecraft:sugar"
+  }
+}

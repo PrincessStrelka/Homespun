@@ -1,0 +1,12 @@
+{
+  "type": "homespun:evaporating",
+  "fluid_stack": {
+    "amount": 250,
+    "id": "homespun:ironberry_juice"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "homespun:tiny_iron_dust"
+  },
+  "time": 100
+}

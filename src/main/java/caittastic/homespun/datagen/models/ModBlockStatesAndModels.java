@@ -1,20 +1,23 @@
 package caittastic.homespun.datagen.models;
 
 import caittastic.homespun.block.ModBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.function.Supplier;
 
 import static caittastic.homespun.Homespun.MOD_ID;
 
 public class ModBlockStatesAndModels extends BlockStateProvider{
-  public ModBlockStatesAndModels(DataGenerator gen, ExistingFileHelper helper){
-    super(gen, MOD_ID, helper);
+
+  public ModBlockStatesAndModels(PackOutput output, ExistingFileHelper exFileHelper) {
+    super(output, MOD_ID, exFileHelper);
   }
 
   @Override
@@ -91,10 +94,10 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
   }
 
   //------------------------------------- methods -------------------------------------//
-  private void registerVesselModel(RegistryObject<Block> vessel){
+  private void registerVesselModel(DeferredBlock<?> vessel){
     simpleBlock(
             vessel.get(),
-            models().withExistingParent(vessel.getId().getPath(), new ResourceLocation(MOD_ID, "block/base_ceramic_vessel"))
+            models().withExistingParent(vessel.getId().getPath(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/base_ceramic_vessel"))
                     .texture("top", vesselTexture(vessel.get()) + "_top")
                     .texture("bottom", vesselTexture(vessel.get()) + "_bottom")
                     .texture("side", vesselTexture(vessel.get()) + "_side")
@@ -102,11 +105,11 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
   }
 
   public ResourceLocation vesselTexture(Block block){
-    ResourceLocation name = ForgeRegistries.BLOCKS.getKey(block);
-    return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + "vessels/" + name.getPath());
+    ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
+    return ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + "vessels/" + name.getPath());
   }
 
-  private void registerLeavesBlock(RegistryObject<Block> leavesBlock){
+  private void registerLeavesBlock(DeferredBlock<?> leavesBlock){
     simpleBlock(
             leavesBlock.get(),
             models()
@@ -115,7 +118,7 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     );
   }
 
-  private void registerPottedPlant(RegistryObject<Block> pottedPlantBlock, RegistryObject<Block> plantBlock){
+  private void registerPottedPlant(DeferredBlock<?> pottedPlantBlock, DeferredBlock<?> plantBlock){
     simpleBlock(
             pottedPlantBlock.get(),
             models()
@@ -125,84 +128,84 @@ public class ModBlockStatesAndModels extends BlockStateProvider{
     );
   }
 
-  private void registerPressurePlate(RegistryObject<Block> pressurePlateBlock, RegistryObject<Block> baseBlock){
+  private void registerPressurePlate(DeferredBlock<?> pressurePlateBlock, DeferredBlock<?> baseBlock){
     pressurePlateBlock(
             (PressurePlateBlock)pressurePlateBlock.get(),
             blockTexture(baseBlock.get())
     );
   }
 
-  private void registerDoor(RegistryObject<Block> doorBlock){
+  private void registerDoor(DeferredBlock<?> doorBlock){
     doorBlock(
             (DoorBlock)doorBlock.get(),
-            new ResourceLocation(MOD_ID, "block/" + doorBlock.getId().getPath() + "_bottom"),
-            new ResourceLocation(MOD_ID, "block/" + doorBlock.getId().getPath() + "_top")
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/" + BuiltInRegistries.BLOCK.getKey(doorBlock.get()).getPath() + "_bottom"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/" + BuiltInRegistries.BLOCK.getKey(doorBlock.get()).getPath() + "_top")
     );
   }
 
-  private void registerFenceGate(RegistryObject<Block> fenceGateBlock, RegistryObject<Block> baseBlock){
+  private void registerFenceGate(DeferredBlock<?> fenceGateBlock, DeferredBlock<?> baseBlock){
     fenceGateBlock((FenceGateBlock)fenceGateBlock.get(),
             blockTexture(baseBlock.get()));
   }
 
-  private void registerTrapdoor(RegistryObject<Block> trapdoorBlock){
+  private void registerTrapdoor(DeferredBlock<?> trapdoorBlock){
     trapdoorBlockWithRenderType((TrapDoorBlock)trapdoorBlock.get(),
             blockTexture(trapdoorBlock.get()), true, "cutout");
   }
 
-  private void registerSlabWithBaseBlock(RegistryObject<Block> slabBlock, RegistryObject<Block> doubleSlabBlock){
+  private void registerSlabWithBaseBlock(DeferredBlock<?> slabBlock, DeferredBlock<?> doubleSlabBlock){
     slabBlock((SlabBlock)slabBlock.get(),
             blockTexture(doubleSlabBlock.get()),
             blockTexture(doubleSlabBlock.get()));
   }
 
-  private void registerStairWithBaseBlock(RegistryObject<Block> stairBlock, RegistryObject<Block> baseBlock){
+  private void registerStairWithBaseBlock(DeferredBlock<?> stairBlock, DeferredBlock<?> baseBlock){
     stairsBlock((StairBlock)stairBlock.get(),
             blockTexture(baseBlock.get()));
   }
 
-  private void registerAxisBlockWithBaseBlock(RegistryObject<Block> axisBlock, RegistryObject<Block> baseBlock){
+  private void registerAxisBlockWithBaseBlock(DeferredBlock<?> axisBlock, DeferredBlock<?> baseBlock){
     axisBlock((RotatedPillarBlock)axisBlock.get(),
             blockTexture(baseBlock.get()),
             blockTexture(baseBlock.get())
     );
   }
 
-  private void registerCrossBlock(RegistryObject<Block> crossBlock){
+  private void registerCrossBlock(DeferredBlock<?> crossBlock){
     simpleBlock(
             crossBlock.get(),
             models()
-                    .cross(crossBlock.getId().getPath(), blockTexture(crossBlock.get()))
+                    .cross(BuiltInRegistries.BLOCK.getKey(crossBlock.get()).getPath(), blockTexture(crossBlock.get()))
                     .renderType(ResourceLocation.tryParse("cutout")));
   }
 
-  private void registerButton(RegistryObject<Block> buttonBlock, RegistryObject<Block> baseBlock){
+  private void registerButton(DeferredBlock<?> buttonBlock, DeferredBlock<?> baseBlock){
     buttonBlock((ButtonBlock)buttonBlock.get(),
             blockTexture(baseBlock.get()));
     itemModels().buttonInventory(
-            ForgeRegistries.BLOCKS.getKey(buttonBlock.get()).getPath() + "_inventory",
+            BuiltInRegistries.BLOCK.getKey(buttonBlock.get()).getPath() + "_inventory",
             blockTexture(baseBlock.get())
     );
   }
 
-  private void registerFence(RegistryObject<Block> fenceBlock, RegistryObject<Block> fenceBaseBlock){
+  private void registerFence(DeferredBlock<?> fenceBlock, DeferredBlock<?> fenceBaseBlock){
     fenceBlock(
             (FenceBlock)fenceBlock.get(),
             blockTexture(fenceBaseBlock.get())
     );
     itemModels().fenceInventory(
-            ForgeRegistries.BLOCKS.getKey(fenceBlock.get()).toString() + "_inventory",
+            BuiltInRegistries.BLOCK.getKey(fenceBlock.get()).toString() + "_inventory",
             blockTexture(fenceBaseBlock.get())
     );
   }
 
-  private void registerWall(RegistryObject<Block> wallBlock, RegistryObject<Block> ParentBlock){
+  private void registerWall(DeferredBlock<?> wallBlock, DeferredBlock<?> ParentBlock){
     wallBlock(
             (WallBlock)wallBlock.get(),
             blockTexture(ParentBlock.get())
     );
     itemModels().wallInventory(
-            ForgeRegistries.BLOCKS.getKey(wallBlock.get()).toString() + "_inventory",
+            BuiltInRegistries.BLOCK.getKey(wallBlock.get()).toString() + "_inventory",
             blockTexture(ParentBlock.get())
     );
   }

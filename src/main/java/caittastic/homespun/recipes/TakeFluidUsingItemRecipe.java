@@ -1,9 +1,17 @@
 package caittastic.homespun.recipes;
 
 import caittastic.homespun.Homespun;
+import caittastic.homespun.recipes.inputs.StackAndTankInput;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
@@ -13,28 +21,15 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-public class TakeFluidUsingItemRecipe implements Recipe<SimpleContainerWithTank>{
-  private final ResourceLocation id;
-  private final ItemStack emptyItem;
-  private final FluidStack fluidStack;
-  private final ItemStack filledItem;
-
-  public TakeFluidUsingItemRecipe(ResourceLocation id, ItemStack inputItem, FluidStack inputFluid, ItemStack outputItem){
-    this.id = id;
-    this.emptyItem = inputItem;
-    this.fluidStack = inputFluid;
-    this.filledItem = outputItem;
-  }
-
+public record TakeFluidUsingItemRecipe(ItemStack emptyItem, FluidStack fluidStack, ItemStack filledItem) implements Recipe<StackAndTankInput> {
   @Override
-  public boolean matches(SimpleContainerWithTank container, Level level){
-    FluidTank tank = container.getTank();
-    ItemStack stackInHand = container.getStack();
+  public boolean matches(StackAndTankInput container, Level level){
+    FluidTank tank = container.tank();
+    ItemStack stackInHand = container.inputStack();
 
     if(level.isClientSide || stackInHand.isEmpty())
       return false;
@@ -45,8 +40,8 @@ public class TakeFluidUsingItemRecipe implements Recipe<SimpleContainerWithTank>
   }
 
   @Override
-  public ItemStack assemble(SimpleContainerWithTank pContainer){
-    return filledItem;
+  public ItemStack assemble(StackAndTankInput p_345149_, HolderLookup.Provider p_346030_) {
+    return filledItem.copy();
   }
 
   @Override
@@ -55,13 +50,8 @@ public class TakeFluidUsingItemRecipe implements Recipe<SimpleContainerWithTank>
   }
 
   @Override
-  public ItemStack getResultItem(){
+  public ItemStack getResultItem(HolderLookup.Provider registries) {
     return filledItem.copy();
-  }
-
-  @Override
-  public ResourceLocation getId(){
-    return id;
   }
 
   @Override
@@ -86,7 +76,6 @@ public class TakeFluidUsingItemRecipe implements Recipe<SimpleContainerWithTank>
     return filledItem;
   }
 
-
   public static class Type implements RecipeType<TakeFluidUsingItemRecipe>{
     public static final Type INSTANCE = new Type();
     public static final String ID = "take_using_item";
@@ -96,44 +85,31 @@ public class TakeFluidUsingItemRecipe implements Recipe<SimpleContainerWithTank>
 
   public static class Serializer implements RecipeSerializer<TakeFluidUsingItemRecipe>{
     public static final Serializer INSTANCE = new Serializer();
-    public static final ResourceLocation ID = new ResourceLocation(Homespun.MOD_ID, "take_using_item");
+
+    private static final MapCodec<TakeFluidUsingItemRecipe> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
+            ItemStack.CODEC.fieldOf("empty_item").forGetter(TakeFluidUsingItemRecipe::emptyItem),
+            FluidStack.CODEC.fieldOf("fluid_stack").forGetter(TakeFluidUsingItemRecipe::fluidStack),
+            ItemStack.CODEC.fieldOf("filled_item").forGetter(TakeFluidUsingItemRecipe::filledItem)
+    ).apply(builder, TakeFluidUsingItemRecipe::new));
+
+    private static final StreamCodec<RegistryFriendlyByteBuf, TakeFluidUsingItemRecipe> STREAM_CODEC = StreamCodec.composite(
+            ItemStack.STREAM_CODEC,
+            TakeFluidUsingItemRecipe::emptyItem,
+            FluidStack.STREAM_CODEC,
+            TakeFluidUsingItemRecipe::fluidStack,
+            ItemStack.STREAM_CODEC,
+            TakeFluidUsingItemRecipe::filledItem,
+            TakeFluidUsingItemRecipe::new
+    );
 
     @Override
-    public TakeFluidUsingItemRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe){
-      ItemStack emptyItem = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "empty_item"));
-      ItemStack filledItem = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "filled_item"));
-      FluidStack fluidStack = fluidStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "fluid_stack"));
-
-      return new TakeFluidUsingItemRecipe(pRecipeId, emptyItem, fluidStack, filledItem);
-    }
-
-    private FluidStack fluidStackFromJson(JsonObject json){
-      String fluidName = GsonHelper.getAsString(json, "fluid");
-      ResourceLocation fluidKey = new ResourceLocation(fluidName);
-
-      if(!ForgeRegistries.FLUIDS.containsKey(fluidKey))
-        throw new JsonSyntaxException("Uh oh! Unknown fluid '" + fluidName + "'!");
-      Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidKey);
-
-      int amount = GsonHelper.getAsInt(json, "amount", 250);
-
-      return new FluidStack(fluid, amount);
-    }
-
-    @Override
-    public @Nullable TakeFluidUsingItemRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf){
-      ItemStack emptyItem = buf.readItem();
-      FluidStack fluidStack = buf.readFluidStack();
-      ItemStack filledItem = buf.readItem();
-
-      return new TakeFluidUsingItemRecipe(id, emptyItem, fluidStack, filledItem);
+    public MapCodec<TakeFluidUsingItemRecipe> codec() {
+      return CODEC;
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buf, TakeFluidUsingItemRecipe recipe){
-      buf.writeItemStack(recipe.emptyItem, false);
-      buf.writeFluidStack(recipe.fluidStack);
-      buf.writeItemStack(recipe.filledItem, false);
+    public StreamCodec<RegistryFriendlyByteBuf, TakeFluidUsingItemRecipe> streamCodec() {
+      return STREAM_CODEC;
     }
   }
 }

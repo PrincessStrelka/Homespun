@@ -1,20 +1,16 @@
 package caittastic.homespun.blockentity;
 
-import caittastic.homespun.networking.FluidStackSyncS2CPacket;
-import caittastic.homespun.networking.ModPackets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,13 +20,12 @@ public class FluidStorageBE extends BlockEntity{
   private final FluidTank fluidTank = new FluidTank(TANK_CAPACITY){
     @Override
     protected void onContentsChanged(){
-      if(!level.isClientSide){
-        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
-      }
       setChanged();
+      if(!level.isClientSide){
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+      }
     }
   };
-  private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
   /* ----------------------------------- constructor ----------------------------------- */
   public FluidStorageBE(BlockPos pos, BlockState state){
@@ -44,40 +39,21 @@ public class FluidStorageBE extends BlockEntity{
   }
 
   @Override
-  public @NotNull CompoundTag getUpdateTag(){
-    return saveWithoutMetadata();
+  public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider lookup){
+    return saveWithoutMetadata(lookup);
   }
 
   @Override
-  public void onLoad(){
-    super.onLoad();
-    lazyFluidHandler = LazyOptional.of(() -> fluidTank);
-  }
-
-  @Override
-  public void load(CompoundTag nbt){
-    fluidTank.readFromNBT(nbt);
-    super.load(nbt);
+  public void loadAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    fluidTank.readFromNBT(lookup, nbt);
+    super.loadAdditional(nbt, lookup);
 
   }
 
   @Override
-  public void invalidateCaps(){
-    super.invalidateCaps();
-    lazyFluidHandler.invalidate();
-  }
-
-  @Override
-  protected void saveAdditional(CompoundTag nbt){
-    nbt = fluidTank.writeToNBT(nbt);
-    super.saveAdditional(nbt);
-  }
-
-  @Override
-  public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
-    if(cap == ForgeCapabilities.FLUID_HANDLER)
-      return lazyFluidHandler.cast();
-    return super.getCapability(cap, side);
+  protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    nbt = fluidTank.writeToNBT(lookup, nbt);
+    super.saveAdditional(nbt, lookup);
   }
 
   /* --------------------------------- custom methods --------------------------------- */
@@ -95,5 +71,9 @@ public class FluidStorageBE extends BlockEntity{
 
   public boolean isEmpty(){
     return fluidTank.getFluid().isEmpty();
+  }
+
+  public IFluidHandler getFluidCap(Direction side) {
+    return getFluidTank();
   }
 }

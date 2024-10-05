@@ -4,24 +4,29 @@ import caittastic.homespun.Homespun;
 import caittastic.homespun.TagInit;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModItemTags extends ItemTagsProvider{
 
-  public ModItemTags(DataGenerator gen, BlockTagsProvider blockTagsProvider, ExistingFileHelper helper){
-    super(gen, blockTagsProvider, Homespun.MOD_ID, helper);
+  public ModItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags) {
+    super(output, lookupProvider, blockTags);
   }
 
   @Override
-  protected void addTags(){
+  protected void addTags(HolderLookup.Provider lookup){
     //------------------------------- tagging blocks -------------------------------//
-    tag(ItemTags.OVERWORLD_NATURAL_LOGS)
+    tag(ItemTags.LOGS)
             .add(ModBlocks.IRONWOOD_LOG.get().asItem())
             .add(ModBlocks.OLIVE_LOG.get().asItem());
 

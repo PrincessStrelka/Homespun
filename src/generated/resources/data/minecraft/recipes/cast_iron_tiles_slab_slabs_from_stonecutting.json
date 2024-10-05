@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "homespun:cast_iron_tiles"
-  },
-  "result": "homespun:cast_iron_tiles_slab"
-}

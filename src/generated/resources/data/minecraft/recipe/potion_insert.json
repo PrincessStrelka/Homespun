@@ -1,0 +1,20 @@
+{
+  "type": "homespun:fill_using_item",
+  "empty_item": {
+    "count": 1,
+    "id": "minecraft:glass_bottle"
+  },
+  "filled_item": {
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:water"
+      }
+    },
+    "count": 1,
+    "id": "minecraft:potion"
+  },
+  "fluid_stack": {
+    "amount": 250,
+    "id": "minecraft:water"
+  }
+}

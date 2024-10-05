@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "homespun:olive_wood"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "homespun:olive_planks"
+  }
+}

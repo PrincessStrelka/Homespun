@@ -1,12 +1,10 @@
 package caittastic.homespun.blockentity;
 
-import caittastic.homespun.networking.FluidStackSyncS2CPacket;
-import caittastic.homespun.networking.ItemStackSyncS2CPacket;
-import caittastic.homespun.networking.ModPackets;
 import caittastic.homespun.recipes.CrushingTubRecipe;
-import caittastic.homespun.recipes.SimpleContainerWithTank;
+import caittastic.homespun.recipes.inputs.StackAndTankInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
@@ -19,18 +17,19 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.capabilities.BlockCapability;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,23 +44,19 @@ public class CrushingTubBE extends BlockEntity{
     protected void onContentsChanged(int slot){
       setChanged();
       if(!level.isClientSide){
-        ModPackets.sendToClients(new ItemStackSyncS2CPacket(this, worldPosition));
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
       }
     }
   };
-  private final FluidTank FLUID_TANK = new FluidTank(CAPACITY){
+  private final FluidTank fluidTank = new FluidTank(CAPACITY){
     @Override
     protected void onContentsChanged(){
-      if(!level.isClientSide){
-        ModPackets.sendToClients(new FluidStackSyncS2CPacket(this.fluid, worldPosition));
-      }
       setChanged();
+      if(!level.isClientSide){
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+      }
     }
   };
-
-
-  private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-  private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
   public CrushingTubBE(BlockPos pos, BlockState state){
     super(ModBlockEntities.CRUSHING_TUB.get(), pos, state);
@@ -72,24 +67,15 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public void setFluid(FluidStack stack){
-    this.FLUID_TANK.setFluid(stack);
+    this.fluidTank.setFluid(stack);
   }
 
   @Override
-  public void onLoad(){
-    super.onLoad();
-    lazyItemHandler = LazyOptional.of(() -> itemHandler);
-    lazyFluidHandler = LazyOptional.of(() -> FLUID_TANK);
+  public void loadAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    itemHandler.deserializeNBT(lookup, nbt.getCompound("inventory"));
+    fluidTank.readFromNBT(lookup, nbt);
 
-  }
-
-  @Override
-  public void load(CompoundTag nbt){
-    itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-    FLUID_TANK.readFromNBT(nbt);
-
-    super.load(nbt);
-
+    super.loadAdditional(nbt, lookup);
   }
 
   @Override
@@ -98,22 +84,15 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   @Override
-  public @NotNull CompoundTag getUpdateTag(){
-    return saveWithoutMetadata();
+  public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider lookup){
+    return saveWithoutMetadata(lookup);
   }
 
   @Override
-  public void invalidateCaps(){
-    super.invalidateCaps();
-    lazyItemHandler.invalidate();
-    lazyFluidHandler.invalidate();
-  }
-
-  @Override
-  protected void saveAdditional(CompoundTag nbt){
-    nbt.put("inventory", itemHandler.serializeNBT());
-    nbt = FLUID_TANK.writeToNBT(nbt);
-    super.saveAdditional(nbt);
+  protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup){
+    nbt.put("inventory", itemHandler.serializeNBT(lookup));
+    nbt = fluidTank.writeToNBT(lookup, nbt);
+    super.saveAdditional(nbt, lookup);
   }
 
 
@@ -126,21 +105,20 @@ public class CrushingTubBE extends BlockEntity{
   }
 
   public FluidStack getStoredFluidStack(){
-    return FLUID_TANK.getFluid();
+    return fluidTank.getFluid();
   }
 
-  @Override
-  public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
-    if(cap == ForgeCapabilities.FLUID_HANDLER)
-      return lazyFluidHandler.cast();
-    if(cap == ForgeCapabilities.ITEM_HANDLER && side != Direction.DOWN){
-      return lazyItemHandler.cast();
-    }
-    return super.getCapability(cap, side);
+  public IItemHandler getItemCap(Direction side) {
+    if (side == Direction.DOWN) return getItemHandler();
+    return null;
+  }
+
+  public IFluidHandler getFluidCap(Direction side) {
+    return getFluidTank();
   }
 
   public int getFluidCapacity(){
-    return FLUID_TANK.getTankCapacity(0);
+    return fluidTank.getTankCapacity(0);
   }
 
   //just done on the client to keep things in sync?
@@ -176,26 +154,26 @@ public class CrushingTubBE extends BlockEntity{
   public void doCraft(){
     Optional<CrushingTubRecipe> crushingRecipe = level.getRecipeManager().getRecipeFor(
             CrushingTubRecipe.Type.INSTANCE,
-            new SimpleContainerWithTank(FLUID_TANK, itemHandler.getStackInSlot(CRAFT_SLOT)),
-            level);
+            new StackAndTankInput(itemHandler.getStackInSlot(CRAFT_SLOT), fluidTank),
+            level).map(RecipeHolder::value);
 
     if(crushingRecipe.isPresent()){
       CrushingTubRecipe recipe = crushingRecipe.get();
       SoundEvent crushSound;
-      ItemStack inputItemStack = recipe.getInputItemStack();
-      if(inputItemStack.getItem() instanceof BlockItem blockitem)
+      SizedIngredient inputItemStack = recipe.inputItemStack();
+      if(itemHandler.getStackInSlot(CRAFT_SLOT).getItem() instanceof BlockItem blockitem)
         crushSound = blockitem.getBlock().defaultBlockState().getSoundType().getBreakSound();
       else
         crushSound = SoundEvents.SLIME_BLOCK_FALL;
       this.level.playSound(null, this.getBlockPos(), crushSound, SoundSource.BLOCKS, 0.5F, new Random().nextFloat() * 0.1F + 0.9F);
-      this.itemHandler.extractItem(CRAFT_SLOT, inputItemStack.getCount(), false);
-      dropItems(this.getBlockPos(), recipe.getResultItem());
-      this.FLUID_TANK.fill(recipe.getResultFluidStack(), IFluidHandler.FluidAction.EXECUTE);
+      this.itemHandler.extractItem(CRAFT_SLOT, inputItemStack.count(), false);
+      dropItems(this.getBlockPos(), recipe.getResultItem(null));
+      this.fluidTank.fill(recipe.outputFluidStack(), IFluidHandler.FluidAction.EXECUTE);
     }
   }
 
   public FluidTank getFluidTank(){
-    return FLUID_TANK;
+    return fluidTank;
   }
 
   public IItemHandler getItemHandler(){

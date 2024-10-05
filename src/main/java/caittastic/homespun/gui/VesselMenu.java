@@ -2,6 +2,7 @@ package caittastic.homespun.gui;
 
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.blockentity.VesselBE;
+import caittastic.homespun.utils.BlockUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -10,8 +11,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class VesselMenu extends AbstractContainerMenu{
   //container slot stuff
@@ -30,29 +32,30 @@ public class VesselMenu extends AbstractContainerMenu{
   /* constructor */
   //im not really sure what this stuff means
   protected VesselMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-    this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(VesselBE.DATA_COUNT)); //psize has to match the count in blockentity
+    this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(VesselBE.DATA_COUNT)); //psize has to match the count in blockentity
   }
 
   public VesselMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data){
     super(ModMenuRegistry.VESSEL_MENU.get(), pContainerId); //the first one needs to be the matching menu type to the block entity type
     checkContainerSize(inv, VesselBE.SLOT_COUNT);//pMinSize is how many slots your block entity has
     blockEntity = ((VesselBE)entity);
-    this.level = inv.player.level;
+    this.level = inv.player.level();
 
     addPlayerInventory(inv);
     addPlayerHotbar(inv);
 
     //indexes are the same as the ones in the block entities itemhandler, the x and y positions match the sprites of the slots in the texture
-    this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-      for(int slot = 0; slot < VesselBE.SLOT_COUNT; slot++){
+    IItemHandler capability = BlockUtils.getCapability(Capabilities.ItemHandler.BLOCK, blockEntity);
+    if (capability != null) {
+      for (int slot = 0; slot < VesselBE.SLOT_COUNT; slot++) {
         int xStar = 53;
         int yStar = 17;
         int rowWidth = 4;
         int xOffs = (slot % rowWidth) * 18;
         int yOffs = slot / rowWidth * 18;
-        this.addSlot(new VesselSlot(handler, slot, xStar + xOffs, yStar + yOffs));
+        this.addSlot(new VesselSlot(capability, slot, xStar + xOffs, yStar + yOffs));
       }
-    });
+    }
 
     addDataSlots(data);
   }

@@ -3,8 +3,8 @@ package caittastic.homespun.block;
 import caittastic.homespun.blockentity.EvaporatingBasinBE;
 import caittastic.homespun.blockentity.ModBlockEntities;
 import caittastic.homespun.recipes.InsertFluidUsingItemRecipe;
-import caittastic.homespun.recipes.SimpleContainerWithTank;
 import caittastic.homespun.recipes.TakeFluidUsingItemRecipe;
+import caittastic.homespun.recipes.inputs.StackAndTankInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -13,9 +13,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -29,13 +32,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidActionResult;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,7 +54,7 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
   }
 
   @Override
-  public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag){
+  public void appendHoverText(ItemStack pStack, @Nullable Item.TooltipContext pLevel, List<Component> pTooltip, TooltipFlag pFlag){
     pTooltip.add(Component.translatable("tooltip.homespun.evaporating_basin"));
     super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
   }
@@ -68,10 +71,8 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
   }
 
   @Override
-  public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult){
-    if(!level.isClientSide){
+  public ItemInteractionResult useItemOn(ItemStack stackInHand, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult){
       FluidActionResult fluidResult;
-      ItemStack stackInHand = player.getItemInHand(hand);
       if(level.getBlockEntity(pos) instanceof EvaporatingBasinBE entity){
         FluidTank fluidTank = entity.getFluidTank();
         IItemHandler itemHandler = entity.getItemHandler();
@@ -86,35 +87,35 @@ public class EvaporatingBasinBlock extends FluidInteractingBase{
         if(fluidResult.isSuccess())
           player.setItemInHand(hand, fluidResult.getResult());
 
-        if(!stackInHand.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()){
+        if(stackInHand.getCapability(Capabilities.FluidHandler.ITEM) == null){
           Optional<TakeFluidUsingItemRecipe> takeOutRecipe = level.getRecipeManager().getRecipeFor(
                   TakeFluidUsingItemRecipe.Type.INSTANCE,
-                  new SimpleContainerWithTank(fluidTank, stackInHand),
-                  level);
+                  new StackAndTankInput(stackInHand, fluidTank),
+                  level).map(RecipeHolder::value);
 
           Optional<InsertFluidUsingItemRecipe> insertFluidUsingRecipe = level.getRecipeManager().getRecipeFor(
                   InsertFluidUsingItemRecipe.Type.INSTANCE,
-                  new SimpleContainerWithTank(fluidTank, stackInHand),
-                  level);
+                  new StackAndTankInput(stackInHand, fluidTank),
+                  level).map(RecipeHolder::value);
 
           if(takeOutRecipe.isPresent()){ //try to extract fluid using item
-            player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
             fluidTank.drain(takeOutRecipe.get().fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
             removeStackAndReplaceWith(player, hand, stackInHand, takeOutRecipe.get().filledItem().copy());
           } else if(insertFluidUsingRecipe.isPresent()){ // try insert fluid using item
-            player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-            fluidTank.fill(insertFluidUsingRecipe.get().fluid(), IFluidHandler.FluidAction.EXECUTE);
+            level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+            fluidTank.fill(insertFluidUsingRecipe.get().inputFluid(), IFluidHandler.FluidAction.EXECUTE);
             removeStackAndReplaceWith(player, hand, stackInHand, insertFluidUsingRecipe.get().emptyItem().copy());
           } else if(!internalStack.isEmpty()){
-            player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.PLAYERS, 1.0F, 1.0F);
+            level.playSound(null, player.blockPosition(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.PLAYERS, 1.0F, 1.0F);
             if(!player.isCreative())
-              popResourceFromFace(player.getLevel(), entity.getBlockPos(), player.getDirection().getOpposite(), internalStack);
+              popResourceFromFace(level, entity.getBlockPos(), player.getDirection().getOpposite(), internalStack);
             itemHandler.extractItem(EvaporatingBasinBE.OUTPUT_SLOT, internalStack.getCount(), false);
           }
+          return ItemInteractionResult.SUCCESS;
         }
       }
-    }
-    return InteractionResult.sidedSuccess(level.isClientSide);
+    return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
   }
 
 

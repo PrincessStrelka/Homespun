@@ -3,19 +3,21 @@ package caittastic.homespun.datagen.models;
 import caittastic.homespun.block.ModBlocks;
 import caittastic.homespun.item.ModItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import static caittastic.homespun.Homespun.MOD_ID;
 
 public class ModItemModels extends ItemModelProvider{
 
-  public ModItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper){
-    super(generator, MOD_ID, existingFileHelper);
+  public ModItemModels(PackOutput packOutput, ExistingFileHelper existingFileHelper){
+    super(packOutput, MOD_ID, existingFileHelper);
   }
 
   @Override
@@ -121,7 +123,7 @@ public class ModItemModels extends ItemModelProvider{
   }
 
   //------------------------------------- methods -------------------------------------//
-  private void regiserTrapdoor(RegistryObject<Block> trapdoor){
+  private void regiserTrapdoor(DeferredBlock<?> trapdoor){
     String id = trapdoor.getId().toString();
     registerWithExistingParentAtRegistryLocation(
             trapdoor,
@@ -129,7 +131,7 @@ public class ModItemModels extends ItemModelProvider{
     );
   }
 
-  private void registerWithExistingInventoryModel(RegistryObject<Block> block){
+  private void registerWithExistingInventoryModel(DeferredBlock<?> block){
     String id = block.getId().toString();
     registerWithExistingParentAtRegistryLocation(
             block,
@@ -137,21 +139,21 @@ public class ModItemModels extends ItemModelProvider{
     );
   }
 
-  private void registerFlatBlockModelWithItemTexture(RegistryObject<Block> block){
-    ResourceLocation resourceLoc = new ResourceLocation(
+  private void registerFlatBlockModelWithItemTexture(DeferredBlock<?> block){
+    ResourceLocation resourceLoc = ResourceLocation.fromNamespaceAndPath(
             MOD_ID,
             "item/" + block.getId().getPath());
     registerFlatBlockModel(block, resourceLoc.getPath());
   }
 
-  private void registerFlatBlockWithBlockTexture(RegistryObject<Block> block){
+  private void registerFlatBlockWithBlockTexture(DeferredBlock<?> block){
     String id = block.getId().toString();
     registerFlatBlockModel(
             block,
             "block/" + id.substring(id.indexOf(":") + 1));
   }
 
-  private void registerFlatBlockModel(RegistryObject<Block> block, String registryLoc){
+  private void registerFlatBlockModel(DeferredBlock<?> block, String registryLoc){
     singleTexture(
             block.getId().getPath(),
             mcLoc("item/generated"),
@@ -159,8 +161,8 @@ public class ModItemModels extends ItemModelProvider{
             modLoc(registryLoc));
   }
 
-  private void registerFlatItemModel(RegistryObject<Item> item){
-    ResourceLocation resourceLocation = new ResourceLocation(
+  private void registerFlatItemModel(DeferredItem<?> item){
+    ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath(
             MOD_ID,
             "item/" + item.getId().getPath());
     singleTexture(
@@ -169,14 +171,14 @@ public class ModItemModels extends ItemModelProvider{
             "layer0", resourceLocation);
   }
 
-  private void registerWithExistingParent(RegistryObject<Block> block){
+  private void registerWithExistingParent(DeferredBlock<?> block){
     registerWithExistingParentAtRegistryLocation(
             block,
             "block/" + block.getId().getPath());
   }
 
   private void registerWithExistingParentAtRegistryLocation(
-          RegistryObject<Block> block,
+          DeferredBlock<?> block,
           String registryLoc){
     withExistingParent(block.getId().getPath(), modLoc(registryLoc));
   }

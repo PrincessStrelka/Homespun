@@ -7,17 +7,17 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Homespun.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = Homespun.MOD_ID)
 public class CoreClientEvents{
-  public static final Style INVISIBLE_STYLE = Style.EMPTY.withFont(new ResourceLocation(Homespun.MOD_ID, "invisible"));
+  public static final Style INVISIBLE_STYLE = Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "invisible"));
 
   private CoreClientEvents(){}
 

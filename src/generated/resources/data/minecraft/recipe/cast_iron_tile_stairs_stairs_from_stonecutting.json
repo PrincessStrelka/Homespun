@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "homespun:cast_iron_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "homespun:cast_iron_tile_stairs"
+  }
+}

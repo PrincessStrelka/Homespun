@@ -3,8 +3,6 @@ package caittastic.homespun.renderer;
 import caittastic.homespun.blockentity.FluidStorageBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,9 +15,11 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 import java.util.Objects;
 import java.util.Random;
@@ -64,7 +64,7 @@ public class FluidStorageBER implements BlockEntityRenderer<FluidStorageBE>{
 
     TextureAtlasSprite stillFluidSprite =
             minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(renderProperties.getStillTexture(fluidStack));
-    VertexConsumer vertexBuffer = bufferSource.getBuffer(RenderType.translucentNoCrumbling());
+    VertexConsumer vertexBuffer = bufferSource.getBuffer(RenderType.translucent());
 
     int startPixel = 4;
     int endPixel = 12;
@@ -74,8 +74,9 @@ public class FluidStorageBER implements BlockEntityRenderer<FluidStorageBE>{
     float fluidAmount = fluidStack.getAmount();
     float fluidMax = FluidStorageBE.TANK_CAPACITY;
 
-    Matrix4f lastPose = poseStack.last().pose();
-    Matrix3f matrix = poseStack.last().normal();
+    PoseStack.Pose last = poseStack.last();
+    Matrix4f lastPose = last.pose();
+    Matrix3f matrix = last.normal();
 
     float fluidY = Float.MIN_VALUE + median(
             pixHeight * minFluidHeight,
@@ -90,13 +91,13 @@ public class FluidStorageBER implements BlockEntityRenderer<FluidStorageBE>{
     float fluidSpriteV0 = stillFluidSprite.getV0() + (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 4;
     float fluidSpriteV1 = stillFluidSprite.getV1() - (stillFluidSprite.getV1() - stillFluidSprite.getV0()) / 4;
     //north-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV1).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
+    vertexBuffer.addVertex(lastPose, fluidStartDrawPixel, fluidY, fluidStartDrawPixel).setColor(red, green, blue, alpha).setUv(fluidSpriteU0, fluidSpriteV1).setUv2(l2, i3).setNormal(last, 0, 1, 0);
     //south-west
-    vertexBuffer.vertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU0, fluidSpriteV0).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
+    vertexBuffer.addVertex(lastPose, fluidStartDrawPixel, fluidY, fluidEndDrawPixel).setColor(red, green, blue, alpha).setUv(fluidSpriteU0, fluidSpriteV0).setUv2(l2, i3).setNormal(last, 0, 1, 0);
     //south-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV0).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
+    vertexBuffer.addVertex(lastPose, fluidEndDrawPixel, fluidY, fluidEndDrawPixel).setColor(red, green, blue, alpha).setUv(fluidSpriteU1, fluidSpriteV0).setUv2(l2, i3).setNormal(last, 0, 1, 0);
     //north-east
-    vertexBuffer.vertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).color(red, green, blue, alpha).uv(fluidSpriteU1, fluidSpriteV1).uv2(l2, i3).normal(matrix, 0, 1, 0).endVertex();
+    vertexBuffer.addVertex(lastPose, fluidEndDrawPixel, fluidY, fluidStartDrawPixel).setColor(red, green, blue, alpha).setUv(fluidSpriteU1, fluidSpriteV1).setUv2(l2, i3).setNormal(last, 0, 1, 0);
   }
 
   private int getLightLevel(Level level, BlockPos pos){

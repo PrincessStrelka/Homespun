@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "homespun:tuff_tiles"
-  },
-  "result": "homespun:tuff_tile_stairs"
-}

@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PostBlock extends Block{
@@ -26,7 +27,7 @@ public class PostBlock extends Block{
   }
 
   @Override
-  public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction){
+  public @NotNull BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction){
     return switch(direction){
       case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch(state.getValue(AXIS)){
         case X -> state.setValue(AXIS, Direction.Axis.Z);
