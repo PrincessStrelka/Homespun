@@ -44,7 +44,8 @@
       "state": {
         "Name": "homespun:ironwood_log",
         "Properties": {
-          "axis": "y"
+          "axis": "y",
+          "floating": "false"
         }
       }
     }

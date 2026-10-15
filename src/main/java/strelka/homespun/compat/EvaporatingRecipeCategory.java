@@ -1,0 +1,66 @@
+package strelka.homespun.compat;
+
+import strelka.homespun.Homespun;
+import strelka.homespun.block.ModBlocks;
+import strelka.homespun.blockentity.EvaporatingBasinBE;
+import strelka.homespun.recipes.EvaporatingBasinRecipe;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+
+public class EvaporatingRecipeCategory implements IRecipeCategory<EvaporatingBasinRecipe>{
+  public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "evaporating");
+  public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Homespun.MOD_ID, "textures/gui/evaporating_basin_jei.png");
+
+  public final IDrawable background;
+  public final IDrawable icon;
+
+  public EvaporatingRecipeCategory(IGuiHelper helper){
+    this.background = helper.createDrawable(TEXTURE, 0, 0, 108, 68);
+    this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.EVAPORATING_BASIN.get()));
+
+  }
+
+  @Override
+  @Nullable
+  public IDrawable getBackground() {
+    return background;
+  }
+
+  @Override
+  public RecipeType<EvaporatingBasinRecipe> getRecipeType(){
+    return JEIHomespunPlugin.EVAPORATING_TYPE;
+  }
+
+  @Override
+  public Component getTitle(){
+    return Component.translatable("jei.homespun.evaporating_recipe");
+  }
+
+  @Override
+  public IDrawable getIcon(){
+    return this.icon;
+  }
+
+  @Override
+  public void setRecipe(IRecipeLayoutBuilder builder, EvaporatingBasinRecipe recipe, IFocusGroup focuses){
+
+    int scaledAmount = (int)(recipe.fluidIngredient().getAmount() * (34f / EvaporatingBasinBE.TANK_CAPACITY));
+
+    builder.addSlot(RecipeIngredientRole.INPUT, 21, 15 + (34 - scaledAmount))
+            .addFluidStack(recipe.fluidIngredient().getFluid(), recipe.fluidIngredient().getAmount())
+            .setFluidRenderer(recipe.fluidIngredient().getAmount(), true, 16, scaledAmount);
+
+    builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 29).addItemStack(recipe.getResultItem(null));
+
+  }
+}
